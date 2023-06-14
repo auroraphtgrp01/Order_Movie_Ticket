@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date('bat_dau');
             $table->date('ket_thuc');
             $table->integer('hien_thi')->comment('0: Ko, 1:Co');
+            $table->integer('hien_thi')->comment('0: Ko, 1:Co');
             $table->timestamps();
         });
     }
