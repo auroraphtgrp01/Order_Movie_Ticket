@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class PhimController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('admin.page.phim.index');
+    }
 }

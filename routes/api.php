@@ -1,19 +1,19 @@
 <?php
 
+use App\Http\Controllers\APIPHIMController;
+use App\Http\Controllers\APIPhongChieuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', [TestController::class, 'index']);
+Route::group(['prefix' => '/admin'], function () {
+    // Quản lý phim
+    Route::group(['prefix' => '/phim'], function () {
+        Route::post('/create', [APIPHIMController::class, 'store'])->name('phimStore');
+        Route::post('/data', [APIPHIMController::class, 'data'])->name('phimData');
+    });
+    Route::group(['prefix' => '/phong-chieu'], function () {
+        Route::post('/create', [APIPhongChieuController::class, 'store'])->name('phongchieuStore');
+        Route::post('/data', [APIPhongChieuController::class, 'data'])->name('phongchieuData');
+    });
 });

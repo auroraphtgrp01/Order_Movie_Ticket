@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark-theme">
+<html lang="en" class="">
 
 <head>
     @extends('admin.share.css')
@@ -26,8 +26,9 @@
             </div>
         </div>
     </div>
-    @extends('admin.share.js')
     @extends('admin.share.color')
+    @extends('admin.share.js')
+    @yield('js')
 </body>
 
 
