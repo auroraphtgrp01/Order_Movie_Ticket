@@ -112,7 +112,7 @@
                             <tbody>
                             </tbody>
                         </table>
-                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal"
                             aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -121,11 +121,14 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">Bạn có chắc chắn muốn xoá nó ? (Yes / No)</div>
+                                    <div class="modal-body">Bạn có chắc chắn muốn xoá phim <b class="text-danger"
+                                            id="phimDel"></b>?
+                                        (Yes / No)</div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary"
                                             data-bs-dismiss="modal">No</button>
-                                        <button type="button" class="btn btn-danger">Yes</button>
+                                        <button type="button" id="acpDel" data-bs-dismiss="modal"
+                                            class="btn btn-danger">Yes</button>
                                     </div>
                                 </div>
                             </div>
@@ -217,6 +220,7 @@
                                         <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary">Cập Nhật</button>
+                                        <input type="hidden" id="id_text">
                                     </div>
                                 </div>
                             </div>
@@ -260,19 +264,20 @@
                         noi_dung += '<td class="text-center align-middle">';
                         if (v.hien_thi == 0) {
                             noi_dung +=
-                                '<button class="btn btn-primary align-middle" style="width: 140px;" data-bs-toggle="modal" data-bs-target="#updateModal">Hiển Thị</button>';
+                                '<button data-id="' + v.id +
+                                '" class="status btn btn-primary align-middle" style="width: 140px;" >Hiển Thị</button>';
                         } else {
-                            noi_dung +=
-                                '<button class="btn btn-secondary align-middle" data-bs-toggle="modal" data-bs-target="#updateModal">Không Hiển Thị</button>';
+                            noi_dung += '<button data-id="' + v.id +
+                                '" class="status btn btn-secondary align-middle" >Không Hiển Thị</button>';
                         }
                         noi_dung += '</td>';
-
                         noi_dung += '<td class="text-center align-middle">';
                         noi_dung +=
                             '<button class="btn btn-primary align-middle me-2" data-bs-toggle="modal"  data-bs-target="#updateModal"> <i class="fa-solid fa-pen-to-square" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i>';
                         noi_dung += '</button>';
                         noi_dung +=
-                            '<button class="btn btn-danger align-middle" data-bs-toggle="modal" data-bs-target="#deleteModal"> <i class="fa-regular fa-trash-can" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i>';
+                            '<button data-id="' + v.id +
+                            '" class="del btn btn-danger align-middle" data-bs-toggle="modal" data-bs-target="#deleteModal"> <i class="fa-regular fa-trash-can" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i>';
                         noi_dung += '</button>';
                         noi_dung += '</td>';
                         noi_dung += '</tr>';
@@ -307,6 +312,56 @@
                     }
                 });
             loadData();
+        });
+        $("body").on('click', '.status', function() {
+            // toastr.success("ID là: " + id);
+            var payload = {
+                'id': $(this).data('id')
+            };
+            axios
+                .post('{{ Route('phimStatus') }}', payload)
+                .then((res) => {
+                    if (res.data.status) {
+                        toastr.success(res.data.message, 'Success');
+                        loadData();
+                    } else {
+                        toastr.error(res.data.message, 'Error');
+                    }
+                });
+        })
+        $("body").on('click', '.del', function() {
+            var id = $(this).data('id');
+            var payload = {
+                'id': id,
+            }
+            axios
+                .post('{{ Route('phimInfo') }}', payload)
+                .then((res) => {
+                    if (res.data.status) {
+                        $("#phimDel").text(res.data.data.ten_phim);
+                        $("#id_text").val(res.data.data.id);
+                    } else {
+                        toastr.error(res.data.message, "Error");
+                        setTimeout(() => {
+                            $('#themPhimModel').modal('hide');
+                        }, 500);
+                    }
+                });
+        });
+        $("body").on('click', '#acpDel', function() {
+            var id_check = {
+                'id': $("#id_text").val(),
+            };
+            axios
+                .post('{{ Route('phimDel') }}', id_check)
+                .then((res) => {
+                    if (res.data.status) {
+                        toastr.success(res.data.message, 'Sucess !');
+                        loadData();
+                    } else {
+                        toastr.error(res.data.message, 'Error !');
+                    }
+                });
         });
     </script>
 @endsection

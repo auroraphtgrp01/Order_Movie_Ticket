@@ -23,4 +23,55 @@ class APIPHIMController extends Controller
             'data' => $data,
         ]);
     }
+    public function status(Request $request)
+    {
+        $phim = Phim::find($request->id);
+        if ($phim) {
+            if ($phim->hien_thi == 1) {
+                $phim->hien_thi = 0;
+            } else {
+                $phim->hien_thi = 1;
+            }
+            $phim->save();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Thành công !'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Phim không tồn tại!'
+            ]);
+        }
+    }
+    public function info(Request $request)
+    {
+        $data = Phim::find($request->id);
+        if ($data) {
+            return response()->json([
+                'status' => 1,
+                'data' => $data
+            ]);
+        }
+        return response()->json([
+            'status' => 0,
+            'message' => 'Phim không tồn tại !'
+        ]);
+    }
+    public function destroy(Request $request)
+    {
+        $data = Phim::find($request->id);
+        if ($data) {
+            $data->delete();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đã xoá thành công !'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Phim không tồn tại !'
+            ]);
+        }
+    }
 }

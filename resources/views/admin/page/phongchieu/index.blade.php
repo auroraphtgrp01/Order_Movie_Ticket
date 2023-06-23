@@ -54,6 +54,7 @@
                         </div>
 
                         <div class="col-12">
+                            <input type="hidden" id="id_check">
                             <label for="inputAddress3" class="form-label">Tình Trạng</label>
                             <select name="" id="tinhTrang" class="form-control">
                                 <option value="0">Sử Dụng</option>
@@ -69,6 +70,23 @@
             </div>
         </div>
         <div class="col-md">
+            <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">XOÁ PHÒNG CHIẾU ?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">Bạn có chắc chắn muốn xoá phim <b class="text-danger" id="phimDel"></b>?
+                            (Yes / No)</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No</button>
+                            <button type="button" id="acpDel" data-bs-dismiss="modal"
+                                class="btn btn-danger">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card border-top border-0 border-4 border-danger">
                 <div class="card-body p-3">
                     <div class="table-responsive">
@@ -120,6 +138,7 @@
         });
 
         function loadData() {
+
             axios
                 .post('{{ Route('phongchieuData') }}')
                 .then((res) => {
@@ -135,20 +154,73 @@
                         noi_dung += '<td class="text-center align-middle">' + v.loai_phong + '</td>'
                         if (v.tinh_trang == 0) {
                             noi_dung +=
-                                '<td class="text-center align-middle"> <button class="btn btn-primary">Sử Dụng Được</button></td>';
+                                '<td class="text-center align-middle"> <button data-btn="' + v.id +
+                                '" class="status btn btn-primary">Sử Dụng Được</button></td>';
                         } else {
                             noi_dung +=
-                                '<td class="text-center align-middle"> <button class="btn btn-secondary" style="width: 135px;">Bảo Trì</button></td>';
+                                '<td class="text-center align-middle"> <button data-btn="' + v.id +
+                                '" class="status btn btn-secondary" style="width: 135px;">Bảo Trì</button></td>';
                         }
                         noi_dung +=
                             '<td class="text-center align-middle"><button class="btn btn-primary align-middle me-2" data-bs-toggle="modal"data-bs-target="#updateModal"> <i class="fa-solid fa-pen-to-square"style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i></button>'
                         noi_dung +=
-                            '<button class="btn btn-danger align-middle" data-bs-toggle="modal"  data-bs-target="#deleteModal"> <i class="fa-regular fa-trash-can" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i></button>'
+                            '<button class="dele_btn btn btn-danger align-middle" data-idbtn ="' + v.id +
+                            '"  data-bs-toggle="modal"  data-bs-target="#deleteModal"> <i class="fa-regular fa-trash-can" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i></button>'
                         noi_dung += '</td>'
                         noi_dung += '</tr>'
                     });
                     $("#table tbody").html(noi_dung);
                 });
+
         }
+        $("body").on('click', '.status', function() {
+            var id = {
+                'id': $(this).data('btn'),
+            }
+            axios
+                .post('{{ Route('phongchieuStatus') }}', id)
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        toastr.success(res.data.message, "Success");
+                        loadData();
+                    } else {
+                        toastr.error(res.data.message, "Error");
+                    }
+                });
+            // toastr.success(id);
+
+        });
+        $("body").on('click', '.dele_btn', function() {
+            var payload = {
+                'id': $(this).data('idbtn'),
+            };
+            axios
+                .post('{{ Route('phongchieuInfo') }}', payload)
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        $("#id_check").val(res.data.data.id);
+                        $("#phimDel").text(res.data.data.ten_phong);
+                        loadData();
+                    } else {
+                        toastr.error(res.data.message, "Error");
+                    }
+                });
+        });
+        $("body").on('click', '#acpDel', function() {
+            var payload = {
+                'id': $("#id_check").val(),
+            };
+            axios
+                .post('{{ Route('phongchieuDelete') }}', payload)
+                .then((res) => {
+                    if (res.data.status) {
+                        toastr.success(res.data.message, "Success !");
+                        loadData();
+                    } else {
+                        toastr.error(res.data.message, "Error !");
+
+                    }
+                });
+        })
     </script>
 @endsection

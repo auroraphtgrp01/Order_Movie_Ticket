@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongChieuController;
 use App\Http\Controllers\TestController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [TestController::class, 'index']);
+Route::get('/', [HomePageController::class, 'index']);
 Route::group(['prefix' => '/admin'], function () {
     // Quản lý phim
     Route::group(['prefix' => '/phim'], function () {
