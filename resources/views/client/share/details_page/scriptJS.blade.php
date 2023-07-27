@@ -2,27 +2,6 @@
     integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
-    new Vue({
-        el: '#app',
-        data: {
-            list_Movie: [],
-        },
-        created() {
-            this.loadData();
-        },
-        methods: {
-            loadData() {
-                axios
-                    .post('{{ Route('HomePageData') }}')
-                    .then((res) => {
-                        this.list_Movie = res.data.data;
-                        console.log(this.list_Movie);
-                    });
-            }
-        },
-    });
-</script>
 <script src="/client_assets/js/isotope.pkgd.min.js"></script>
 <script src="/client_assets/js/imagesloaded.pkgd.min.js"></script>
 <script src="/client_assets/js/jquery.magnific-popup.min.js"></script>

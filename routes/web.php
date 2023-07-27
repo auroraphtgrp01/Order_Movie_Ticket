@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomePageController::class, 'index']);
+Route::get('/movie-detail', [HomePageController::class, 'details']);
 Route::get('/film-detail/{id}', [HomePageController::class, 'detail']);
 Route::get('/register', [CustomerAccountController::class, 'viewResgister']);
 Route::get('/login', [CustomerAccountController::class, 'viewLogin']);
@@ -57,4 +58,3 @@ Route::group(['prefix' => '/admin'], function () {
 });
 Route::get('/dang-ky', [AuthenticationController::class, 'signup']);
 Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
-Route::get('/test', [TestController::class, 'index']);

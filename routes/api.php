@@ -4,13 +4,17 @@ use App\Http\Controllers\APIAdminController;
 use App\Http\Controllers\APIDichVuController;
 use App\Http\Controllers\APIDonViController;
 use App\Http\Controllers\APIGheChieuController;
+use App\Http\Controllers\APIHomePageController;
 use App\Http\Controllers\APILichChieuController;
+use App\Http\Controllers\APIMovieDetailController;
 use App\Http\Controllers\APIPHIMController;
 use App\Http\Controllers\APIPhongChieuController;
 use App\Http\Controllers\CustomerAccountController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [TestController::class, 'index']);
+Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
+Route::post('/details',[APIMovieDetailController::class, 'data'])->name('MovieDetail');
+//
 Route::group(['prefix' => '/admin'], function () {
     // Quản lý phim
     Route::group(['prefix' => '/phim'], function () {

@@ -8,6 +8,6 @@ class TestController extends Controller
 {
     public function index()
     {
-        return view('client.share.masterpage_client');
+        return view('client.page.Homepage.details');
     }
 }

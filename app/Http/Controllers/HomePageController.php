@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Phim;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class HomePageController extends Controller
 {
+    public function view()
+    {
+        return view('client.page.Homepage.homepage');
+    }
+    public function details(){
+        return view('client.page.Homepage.details');
+    }
     public function index()
     {
         $today          = Carbon::today();
@@ -20,7 +26,7 @@ class HomePageController extends Controller
             ->whereDate('bat_dau', '>', $today)
             ->get();
 
-        return view('client.page.homepage', compact('phimDangChieu', 'phimSapChieu'));
+        return view('client.page.Homepage.homepage', compact('phimDangChieu', 'phimSapChieu'));
     }
     public function detail($id)
     {
