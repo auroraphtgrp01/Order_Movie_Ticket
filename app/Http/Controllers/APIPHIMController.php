@@ -16,6 +16,23 @@ class APIPHIMController extends Controller
             'message' => 'Đã thêm mới phim thành công!'
         ]);
     }
+    public function update(Request $request)
+    {
+        $phim = Phim::find($request->id);
+        if ($phim) {
+            $data = $request->all();
+            $phim->update($data);
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đã cập nhật phim thành công'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Không cập nhật phim thành công'
+            ]);
+        }
+    }
     public function data()
     {
         $data = Phim::get();

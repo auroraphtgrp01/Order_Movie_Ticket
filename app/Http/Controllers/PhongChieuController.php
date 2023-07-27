@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class PhongChieuController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('admin.page.phongchieu.index');
     }
 }

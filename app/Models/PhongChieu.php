@@ -10,7 +10,7 @@ class PhongChieu extends Model
     protected $table = 'phong_chieus';
     protected $fillable = [
         'ten_phong',
-        'loai_may',
+        'loai_may_chieu',
         'hang_ngang',
         'hang_doc',
         'tinh_trang',

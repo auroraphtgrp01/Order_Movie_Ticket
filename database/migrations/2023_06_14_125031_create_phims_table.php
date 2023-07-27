@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('ten_phim');
             $table->string('slug_phim');
-            $table->longText('hinh_anh');
+            $table->string('hinh_anh');
             $table->string('dao_dien');
             $table->string('dien_vien');
             $table->string('the_loai');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('trailer');
             $table->date('bat_dau');
             $table->date('ket_thuc');
-            $table->integer('hien_thi')->comment('0: Ko, 1:Co');
+            $table->integer('hien_thi')->comment('0: Không hiển thị trang chủ, 1: Hiển thị trang chủ');
             $table->timestamps();
         });
     }

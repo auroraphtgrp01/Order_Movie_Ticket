@@ -168,33 +168,16 @@
                                                     <a href="https://vimeo.com/28177848"
                                                         class="btn-trailers video-player">watch trailer</a>
                                                     <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
+                                                    <a href="/film-detail/{{ $value->id }}" class="btn_trailers"
+                                                        style="margin-top: 12px;">Detail</a>
                                                 </div>
                                             </div>
                                             <div class="entry-desc">
-                                                <div class="rating">
-                                                    <input name="stars" type="radio">
-                                                    <label>☆</label>
-                                                    <input name="stars" type="radio">
-                                                    <label>☆</label>
-                                                    <input name="stars" type="radio">
-                                                    <label>☆</label>
-                                                    <input name="stars" type="radio">
-                                                    <label>☆</label>
-                                                    <input name="stars" type="radio">
-                                                    <label>☆</label>
-                                                </div>
-                                                <h3 class="entry-title">{{ $value->ten_phim }}</h3>
-                                                <ul class="entry-date">
-                                                    <li>11 :00</li>
-                                                    <li>13 :50</li>
-                                                    <li>14 :00</li>
-                                                    <li>18 :00</li>
-                                                </ul>
+
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-
 
                             </div>
                         </div>
@@ -208,40 +191,25 @@
                     <div class="ticket-carousel pvt85">
                         <div class="swiper-container carousel-container movie-images" data-col="5">
                             <div class="swiper-wrapper">
+
                                 @foreach ($phimSapChieu as $key => $value)
-                                @endforeach
-                                <div class="swiper-slide">
-                                    <div class="movie-image" data-bg-image="{{ $value->hinh_anh }}">
-                                        <div class="entry-hover">
-                                            <div class="entry-actions">
-                                                <a href="https://vimeo.com/28177848"
-                                                    class="btn-trailers video-player">watch trailer</a>
-                                                <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
+                                    <div class="swiper-slide">
+                                        <div class="movie-image" data-bg-image="{{ $value->hinh_anh }}">
+                                            <div class="entry-hover">
+                                                <div class="entry-actions">
+                                                    <a href="https://vimeo.com/28177848"
+                                                        class="btn-trailers video-player">watch trailer</a>
+                                                    <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
+                                                    <a href="#detail" class="order_btn"
+                                                        style="margin-top: 12px;">Detail</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="entry-desc">
-                                            <div class="rating">
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>56
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
-                                                <input name="stars" type="radio">
-                                                <label>☆</label>
+                                            <div class="entry-desc">
                                             </div>
-                                            <h3 class="entry-title">{{ $value->ten_phim }}</h3>
-                                            <ul class="entry-date">
-                                                <li>11 :00</li>
-                                                <li>13 :50</li>
-                                                <li>14 :00</li>
-                                                <li>18 :00</li>
-                                            </ul>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
+
 
                             </div>
                         </div>
@@ -866,5 +834,11 @@
 
         <script type="text/javascript" src="js/google-maps.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+
     </section>
+@endsection
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection

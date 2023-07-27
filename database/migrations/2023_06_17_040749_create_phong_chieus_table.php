@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('phong_chieus', function (Blueprint $table) {
             $table->id();
             $table->string('ten_phong');
-            $table->string('loai_may');
+            $table->string('loai_may_chieu');
             $table->integer('hang_ngang');
             $table->integer('hang_doc');
             $table->integer('tinh_trang');

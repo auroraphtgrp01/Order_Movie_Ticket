@@ -3,10 +3,10 @@
         <nav class="navbar navbar-expand">
             <div class="topbar-logo-header">
                 <div class="">
-                    <img src="/assets_admin/images/logo-icon.png" class="logo-icon" alt="logo icon">
+                    <img src="/assets_admin/images/logo-icon.png" style="width: 50px;" class="logo-icon" alt="logo icon">
                 </div>
                 <div class="">
-                    <h4 class="logo-text">Rocker</h4>
+                    <h4 class="logo-text mt-2 text-danger">Movie Dashboard</h4>
                 </div>
             </div>
             <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div>

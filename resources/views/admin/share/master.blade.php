@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en" class="">
+<html lang="en" class="dark-theme">
 
 <head>
-    @extends('admin.share.css')
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    @include('admin.share.css')
+    <title>Dashboard - Movie Control Panel</title>
 </head>
 
 <body>
@@ -12,10 +12,10 @@
         <!--start header wrapper-->
         <div class="header-wrapper">
             <!--start header -->
-            @extends('admin.share.header')
+            @include('admin.share.header')
             <!--end header -->
             <!--navigation-->
-            @extends('admin.share.menu')
+            @include('admin.share.menu')
             <!--end navigation-->
         </div>
         <!--end header wrapper-->
@@ -26,8 +26,8 @@
             </div>
         </div>
     </div>
-    @extends('admin.share.color')
-    @extends('admin.share.js')
+    @include('admin.share.color')
+    @include('admin.share.js')
     @yield('js')
 </body>
 

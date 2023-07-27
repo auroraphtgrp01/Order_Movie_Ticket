@@ -143,83 +143,85 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
+                                            <input type="text" id="e_id">
                                             <div class="col-md-3"> <label for="" class="mb-2">Tên Phim:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_ten_phim" type="text" class="form-control"
                                                     placeholder="Nhập vào tên phim">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Slug Phim:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_slug_phim" type="text" class="form-control"
                                                     placeholder="Nhập vào slug phim">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Hình Ảnh:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_hinh_anh" type="text" class="form-control"
                                                     placeholder="Nhập vào link hình ảnh">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Đạo Diễn:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_dao_dien" type="text" class="form-control"
                                                     placeholder="Nhập vào tên đạo diễn">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-3"> <label for="" class="mb-2">Diễn Viên:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_dien_vien" type="text" class="form-control"
                                                     placeholder="Nhập vào tên diễn viên">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Thể Loại:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_the_loai" type="text" class="form-control"
                                                     placeholder="Nhập vào thể loại">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Thời lượng:
                                                 </label>
-                                                <input type="number" class="form-control"
+                                                <input id="e_thoi_luong" type="number" class="form-control"
                                                     placeholder="Nhập vào thời lượng">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Ngôn ngữ:
                                                 </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_ngon_ngu" type="text" class="form-control"
                                                     placeholder="Nhập vào ngôn ngữ">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-3"> <label for="" class="mb-2">Rated: </label>
-                                                <input type="text" class="form-control" placeholder="Nhập vào rated">
+                                                <input id="e_rated" type="text" class="form-control"
+                                                    placeholder="Nhập vào rated">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Trailer: </label>
-                                                <input type="text" class="form-control"
+                                                <input id="e_trailer" type="text" class="form-control"
                                                     placeholder="Nhập vào trailer">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Bắt Đầu: </label>
-                                                <input type="date" class="form-control">
+                                                <input id="e_bat_dau" type="date" class="form-control">
                                             </div>
                                             <div class="col-md-3"> <label for="" class="mb-2">Kết Thúc:
                                                 </label>
-                                                <input type="date" class="form-control">
+                                                <input id="e_ket_thuc" type="date" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row mt-2">
                                             <div class="col-md-3">
                                                 <label for="" class="mb-2">Hiển Thị: </label>
-                                                <select name="" id="" class="form-control">
+                                                <select name="" id="e_hien_thi" class="form-control">
                                                     <option value="0">Hiển Thị</option>
                                                     <option value="1">Không Hiển Thị</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-9">
                                                 <label for="" class="mb-2">Mô tả: </label>
-                                                <textarea name="mo_ta" id="" cols="20" rows="10" class="form-control"></textarea>
+                                                <textarea name="mo_ta" id="e_mo_ta" cols="20" rows="10" class="form-control"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Cập Nhật</button>
+                                        <button type="button" id="aUpdate" class="btn btn-primary">Cập Nhật</button>
                                         <input type="hidden" id="id_text">
                                     </div>
                                 </div>
@@ -240,6 +242,7 @@
     <script>
         $(document).ready(function() {
             CKEDITOR.replace('mo_ta');
+            CKEDITOR.replace('e_mo_ta');
             loadData();
         });
 
@@ -273,7 +276,8 @@
                         noi_dung += '</td>';
                         noi_dung += '<td class="text-center align-middle">';
                         noi_dung +=
-                            '<button class="btn btn-primary align-middle me-2" data-bs-toggle="modal"  data-bs-target="#updateModal"> <i class="fa-solid fa-pen-to-square" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i>';
+                            '<button data-id="' + v.id +
+                            '" class="edit btn btn-primary align-middle me-2" data-bs-toggle="modal"  data-bs-target="#updateModal"> <i class="fa-solid fa-pen-to-square" style="margin-right:0px; font-size: 1rem;vertical-align:baseline;"></i>';
                         noi_dung += '</button>';
                         noi_dung +=
                             '<button data-id="' + v.id +
@@ -313,6 +317,8 @@
                 });
             loadData();
         });
+
+
         $("body").on('click', '.status', function() {
             // toastr.success("ID là: " + id);
             var payload = {
@@ -348,6 +354,41 @@
                     }
                 });
         });
+        //
+        $("body").on('click', '.edit', function() {
+            var id = $(this).data('id');
+            var payload = {
+                'id': id,
+            }
+            axios
+                .post('{{ Route('phimInfo') }}', payload)
+                .then((res) => {
+                    if (res.data.status) {
+                        $("#e_id").val(res.data.data.id);
+                        $("#e_ten_phim").val(res.data.data.ten_phim);
+                        $("#e_slug_phim").val(res.data.data.slug_phim);
+                        $("#e_hinh_anh").val(res.data.data.hinh_anh);
+                        $("#e_dao_dien").val(res.data.data.dao_dien);
+                        $("#e_dien_vien").val(res.data.data.dien_vien);
+                        $("#e_thoi_luong").val(res.data.data.thoi_luong);
+                        $("#e_the_loai").val(res.data.data.the_loai);
+                        $("#e_ngon_ngu").val(res.data.data.ngon_ngu);
+                        $("#e_rated").val(res.data.data.rated);
+                        $("#e_trailer").val(res.data.data.trailer);
+                        $("#e_mo_ta").val(res.data.data.mo_ta);
+                        $("#e_bat_dau").val(res.data.data.bat_dau);
+                        $("#e_ket_thuc").val(res.data.data.ket_thuc);
+                        $("#e_hien_thi").val(res.data.data.hien_thi);
+                        $("#e_mo_ta").val(res.data.data.mo_ta);
+                        CKEDITOR.instances.e_mo_ta.setData(res.data.data.mo_ta);
+                    } else {
+                        toastr.error(res.data.message, "Error");
+                        setTimeout(() => {
+                            $('#themPhimModel').modal('hide');
+                        }, 500);
+                    }
+                });
+        });
         $("body").on('click', '#acpDel', function() {
             var id_check = {
                 'id': $("#id_text").val(),
@@ -360,6 +401,37 @@
                         loadData();
                     } else {
                         toastr.error(res.data.message, 'Error !');
+                    }
+                });
+        });
+
+        $("body").on('click', '#aUpdate', function() {
+            var new_phim = {
+                'id': $("#e_id").val(),
+                'ten_phim': $("#e_ten_phim").val(),
+                'slug_phim': $("#e_slug_phim").val(),
+                'hinh_anh': $("#e_hinh_anh").val(),
+                'dao_dien': $("#e_dao_dien").val(),
+                'dien_vien': $("#e_dien_vien").val(),
+                'thoi_luong': $("#e_thoi_luong").val(),
+                'the_loai': $("#e_the_loai").val(),
+                'ngon_ngu': $("#e_ngon_ngu").val(),
+                'rated': $("#e_rated").val(),
+                'mo_ta': CKEDITOR.instances['e_mo_ta'].getData(),
+                'trailer': $("#e_trailer").val(),
+                'bat_dau': $("#e_bat_dau").val(),
+                'ket_thuc': $("#e_ket_thuc").val(),
+                'hien_thi': $("#e_hien_thi").val(),
+            }
+            axios
+                .post('{{ Route('phimUpdate') }}', new_phim)
+                .then((res) => {
+                    if (res.data.status == true) {
+                        toastr.success(res.data.message);
+                        $('#updateModal').modal('hide');
+                        loadData();
+                    } else {
+                        toastr.error(res.data.message)
                     }
                 });
         });
