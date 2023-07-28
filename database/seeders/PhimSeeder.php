@@ -13,8 +13,7 @@ class PhimSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {
-        {
+    { {
 
             DB::table('phims')->delete();
 
@@ -114,7 +113,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Gene Stupnitsky",
                     'dien_vien'         => "Jennifer Lawrence, Natalie Morales, Ebon Moss-Bachrach",
                     'the_loai'          => "Hài",
-                    'thoi_luong'        =>  103 ,
+                    'thoi_luong'        =>  103,
                     'ngon_ngu'          => "Tiếng Anh - Phụ đề Tiếng Việt",
                     'rated'             => "T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)",
                     'mo_ta'             => "Không dành cho bé dưới 18!.. Red Band Trailer với Jennifer Lawrence trở lại, nóng bỏng cả mắt trong tựa phim hài-bựa-lầy nhất hè năm nay #NoHardFeelings - VÚ EM DẠY 'YÊU. Duy nhất tại rạp. Dự",
@@ -131,7 +130,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Lee Ho-kyung",
                     'dien_vien'         => "Lee Ho-kyung, Lee Ho-kyung, Ebon Moss-Bachrach",
                     'the_loai'          => "Phim tài liệu",
-                    'thoi_luong'        =>  78  ,
+                    'thoi_luong'        =>  78,
                     'ngon_ngu'          => "Tiếng Hàn - Phụ đề tiếng Việt",
                     'rated'             => "T16 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 16 TUỔI TRỞ LÊN (16+)",
                     'mo_ta'             => "Rơi nước mắt cùng những câu chuyện cuối đời từ những người cha, người mẹ và những đứa trẻ đang phải kiên cường bên bờ tuyệt vọng chiến đấu với căn bệnh ung thư. Dù ngắn ngủi đến đâu, giây phút đẹp nhất cuộc đời là khi ta còn được ở bên cạnh người mình yêu thương.",
@@ -161,11 +160,11 @@ class PhimSeeder extends Seeder
                 [
                     'ten_phim'          => "PHIM ĐIỆN ẢNH DORAEMON: NOBITA VÀ VÙNG ĐẤT LÝ TƯỞNG TRÊN BẦU TRỜI",
                     'slug_phim'         => Str::slug('PHIM ĐIỆN ẢNH DORAEMON: NOBITA VÀ VÙNG ĐẤT LÝ TƯỞNG TRÊN BẦU TRỜI'),
-                    'hinh_anh'          => "https://cdn.baoquocte.vn/stores/news_dataimages/2023/052023/05/16/in_social/phim-ve-doraemon-nobita-va-nhung-nguoi-ban-se-cong-chieu-tai-viet-nam-20230505163945.jpg?randTime=1687062292",
+                    'hinh_anh'          => "https://upload.wikimedia.org/wikipedia/vi/9/97/Eiga_Doraemon_Nobita_no_Shin_Ky%C5%8Dry%C5%AB_poster.jpg",
                     'dao_dien'          => "Takumi Doyama",
                     'dien_vien'         => "Joaquim Dos Santos, Justin K. Thompson, Kemp Powers",
                     'the_loai'          => "Hoạt Hình",
-                    'thoi_luong'        =>  108 ,
+                    'thoi_luong'        =>  108,
                     'ngon_ngu'          => "Tiếng Nhật - Phụ đề Tiếng Việt; Lồng tiếng",
                     'rated'             => "P - PHIM ĐƯỢC PHÉP PHỔ BIẾN ĐẾN NGƯỜI XEM Ở MỌI ĐỘ TUỔI.",
                     'mo_ta'             => "Phim điện ảnh Doraemon: Nobita Và Vùng Đất Lý Tưởng Trên Bầu Trời kể câu chuyện khi Nobita tìm thấy một hòn đảo hình lưỡi liềm trên trời mây. Ở nơi đó, tất cả đều hoàn hảo… đến mức cậu nhóc Nobita mê ngủ ngày cũng có thể trở thành một thần đồng toán học, một siêu sao thể thao. Cả hội Doraemon cùng sử dụng một món bảo bối độc đáo chưa từng xuất hiện trước đây để đến với vương quốc tuyệt vời này. ",
@@ -183,7 +182,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Kirk DeMicco, Faryn Pearl",
                     'dien_vien'         => " Lana Condor, Knives Out, Toni Collete",
                     'the_loai'          => "Gia đình, Phiêu Lưu",
-                    'thoi_luong'        =>  91  ,
+                    'thoi_luong'        =>  91,
                     'ngon_ngu'          => "Tiếng Anh - Phụ đề Tiếng Việt; Lồng tiếng",
                     'rated'             => "P - PHIM ĐƯỢC PHÉP PHỔ BIẾN ĐẾN NGƯỜI XEM Ở MỌI ĐỘ TUỔI.",
                     'mo_ta'             => "Ruby Thủy Quái Tuổi Teen kể về cô bé Ruby Gillman nhút nhát, tình cờ phát hiện ra mình là một phần của dòng dõi thủy quái hoàng gia huyền thoại. Và kể từ giây phút này, số phận của cô bé dưới đáy đại dương bỗng thay thổi hoàn toàn, cùng với đó là một sứ mệnh lớn hơn tất cả những gì cô từng mơ đến.",
@@ -200,7 +199,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "James Mangold",
                     'dien_vien'         => "Boyd Holbrook, Thomas Kretschmann, Mads Mikkelsen, Harrison Ford, Phoebe Waller-Bridge",
                     'the_loai'          => "Hành Động, Phiêu Lưu",
-                    'thoi_luong'        =>  154   ,
+                    'thoi_luong'        =>  154,
                     'ngon_ngu'          => "Tiếng Anh - Phụ đề Tiếng Việt",
                     'rated'             => "T16 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 16 TUỔI TRỞ LÊN (16+)",
                     'mo_ta'             => "Indiana Jones 5 sẽ pha trộn giữa thực tế, hư cấu khi lấy bối cảnh năm 1969, lần này Indiana Jones sẽ đối mặt với Đức quốc xã trong thời gian diễn ra cuộc chạy đua vào không gian.",
@@ -217,7 +216,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Keiichi Hara",
                     'dien_vien'         => "Ami Touma, Takumi Kitamura, Ashida Mana, Minami Takayama, Itagaki Rihito, Naho Yokomizo, Kaji Yuki, Sakura Yoshiyanagi",
                     'the_loai'          => "Hoạt Hình",
-                    'thoi_luong'        =>  116    ,
+                    'thoi_luong'        =>  116,
                     'ngon_ngu'          => "Tiếng Nhật - Phụ đề Tiếng Việt",
                     'rated'             => "T13 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 13 TUỔI TRỞ LÊN (13+)",
                     'mo_ta'             => "Bỗng dưng một ngày nọ, Kokoro - cô bé lớp bảy ngày qua ngày giam mình trong phòng riêng thay vì tới trường sau tổn thương tâm lý - phát hiện tấm gương trong phòng mình phát sáng, bước qua tấm gương, Kokoro nhận ra mình đang ở trong một toà lâu đài cùng sáu người bạn chung hoàn cảnh. Bảy đứa trẻ cô độc buộc phải dấn bước vào một cuộc phiêu lưu kỳ lạ, trước khi đáp án cuối cùng mở ra, gây sững sờ và xúc động tột cùng",
@@ -234,7 +233,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Gabriel Riva Palacio Alatriste, Rodolfo Riva Palacio Alatriste",
                     'dien_vien'         => "Bruno Bichir, Maite Perroni, Carlos Espejel",
                     'the_loai'          => "Hoạt Hình",
-                    'thoi_luong'        =>  89  ,
+                    'thoi_luong'        =>  89,
                     'ngon_ngu'          => "Lồng tiếng Việt",
                     'rated'             => " K - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM DƯỚI 13 TUỔI VÀ CÓ NGƯỜI BẢO HỘ ĐI KÈM",
                     'mo_ta'             => "Một chú gà trống dễ thương, tên là Toto, sống yên bình bên chú gà nhỏ Di của mình trong trang trại Pollón nổi tiếng. Dần dần, cả hai nảy sinh tình cảm và giờ đây, họ đã trở thành cha mẹ đáng tự hào của một cặp trứng nhỏ dễ thương tên là Uly và Max, chúng có đặc điểm là rất vàng, khiến chúng trông giống như những “quả trứng vàng”. ",
@@ -251,7 +250,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Adrian Garcia Bogliano",
                     'dien_vien'         => "María Evoli, Ramón Medína, Pilar Santacruz",
                     'the_loai'          => " Kinh Dị",
-                    'thoi_luong'        =>  102     ,
+                    'thoi_luong'        =>  102,
                     'ngon_ngu'          => "Tiếng Tây Ban Nha - Phụ đề Tiếng Việt & Tiếng Anh",
                     'rated'             => "T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)",
                     'mo_ta'             => "Ofelia - một nữ tu trẻ vừa đặt chân đến thị trấn San Ramon đã bị ép phải thực hiện buổi lễ trừ tà cho một phụ nữ đang mang thai. Tưởng chừng buổi trục quỷ đã hoàn tất, Ofelia bàng hoàng nhận ra hiện thân quỷ dữ chưa từng biến mất.",
@@ -268,7 +267,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Patrick Wilson",
                     'dien_vien'         => "Ty Simpkins, Patrick Wilson, Hiam Abbass, Sinclair Daniel, Andrew Astor, Rose Byrne",
                     'the_loai'          => " Kinh Dị",
-                    'thoi_luong'        =>  102     ,
+                    'thoi_luong'        =>  102,
                     'ngon_ngu'          => "Tiếng Anh - Phụ đề Tiếng Việt",
                     'rated'             => "T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)",
                     'mo_ta'             => "Phần tiếp theo của loạt phim kinh dị Insidious với sự góp mặt của dàn diễn viên gốc thuộc gia đình Lambert. Câu chuyện xoay quanh quyết định mở ra cánh cửa đỏ và đi sâu vào Cõi Vô Định của Josh (Patrick Wilson) và Dalton (Ty Simpkins) - nay đã trưởng thành - để tiêu diệt một lần và mãi mãi những con quỷ đang ám ảnh cả gia đình mình.",
@@ -285,7 +284,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Christopher McQuarrie",
                     'dien_vien'         => "Tom Cruise, Rebecca Ferguson, Vanessa Kirby",
                     'the_loai'          => " Hành Động, Phiêu Lưu",
-                    'thoi_luong'        =>  102     ,
+                    'thoi_luong'        =>  102,
                     'ngon_ngu'          => "Tiếng Anh - Phụ đề Tiếng Việt",
                     'rated'             => "T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)",
                     'mo_ta'             => "Phần phim thứ 7 của loạt phim Nhiệm Vụ Bất Khả Thi",
@@ -302,7 +301,7 @@ class PhimSeeder extends Seeder
                     'dao_dien'          => "Lê Thanh Sơn",
                     'dien_vien'         => "Tuấn Trần, Thảo Tâm, Rocker Nguyễn, Gi A Nguyễn, Quốc Khánh, Naomi, Ceri, Hồng Thanh",
                     'the_loai'          => "Hồi hộp, Kinh Dị",
-                    'thoi_luong'        =>  100     ,
+                    'thoi_luong'        =>  100,
                     'ngon_ngu'          => "Tiếng Việt - Phụ đề Tiếng Anh",
                     'rated'             => "T18 - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ 18 TUỔI TRỞ LÊN (18+)",
                     'mo_ta'             => "Móng Vuốt dẫn dắt câu chuyện đi từ buổi tiệc dã ngoại náo nhiệt của một nhóm bạn đến một kết cục kinh hoàng khi phải đấu tranh sinh tồn với một con ác thú.",
@@ -316,7 +315,6 @@ class PhimSeeder extends Seeder
 
 
             ]);
-
         }
     }
 }

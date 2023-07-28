@@ -13,7 +13,7 @@ use App\Http\Controllers\CustomerAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
-Route::post('/details',[APIMovieDetailController::class, 'data'])->name('MovieDetail');
+Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieDetail');
 //
 Route::group(['prefix' => '/admin'], function () {
     // Quản lý phim
@@ -75,4 +75,8 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/status', [APIAdminController::class, 'status'])->name('adminStatus');
         Route::post('/update', [APIAdminController::class, 'update'])->name('adminUpdate');
     });
+});
+Route::group(['prefix' => '/movie-details'], function () {
+    Route::post('/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
+    Route::post('/dataget', [APIMovieDetailController::class, 'dataGet'])->name('MovieDataGet');
 });

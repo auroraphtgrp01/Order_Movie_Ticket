@@ -1,10 +1,10 @@
-<section class="ucm-area ucm-bg" data-background="/client_assets/img/bg/ucm_bg.png">
+<section class="ucm-area ucm-bg" data-background="/client_assets/img/bg/ucm_bg1.png">
     <div class="container">
         <div class="row align-items-end mb-55">
             <div class="col-lg-6" style="z-index: 1;">
                 <div class="section-title text-start text-lg-left">
-                    <span class="sub-title">PHIM BOM TẤN</span>
-                    <h2 class="title">PHIM SẮP CHIẾU</h2>
+                    <span class="sub-title">PHIM ĐANG HOT</span>
+                    <h2 class="title">PHIM ĐANG CHIẾU</h2>
                 </div>
             </div>
             <div class="col-lg-6" style="z-index: 1;">
@@ -12,7 +12,7 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="tvShow-tab" data-toggle="tab" href="#tvShow" role="tab"
-                                aria-controls="tvShow" aria-selected="true">Movie</a>
+                                aria-controls="tvShow" aria-selected="true">Movie Mới</a>
                         </li>
                     </ul>
                 </div>

@@ -4,8 +4,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="newsletter-content">
-                        <h4>Trial Start First 30 Days.</h4>
-                        <p>Enter your email to create or restart your membership.</p>
+                        <h4>ĐẶT PHÒNG TỔ CHỨC TIỆC ?</h4>
+                        <p>Hãy nhập Email của bạn để được tư vấn !</p>
                     </div>
                 </div>
                 <div class="col-lg-6">

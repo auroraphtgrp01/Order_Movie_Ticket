@@ -29,7 +29,7 @@
             <!-- movie-details-area-end -->
 
             <!-- episode-area -->
-            @include('client.share.details_page.episode')
+            {{-- @include('client.share.details_page.episode') --}}
             <!-- episode-area-end -->
 
             <!-- tv-series-area -->
@@ -55,17 +55,38 @@
             new Vue({
                 el: '#app_details',
                 data: {
-
+                    dataMovie: [],
+                    listRcm: [],
                 },
                 created() {
-
+                    this.loadData();
                 },
                 methods: {
+                    loadData() {
+                        axios
+                            .post('{{ Route('MovieDataGet') }}')
+                            .then((res) => {
+                                this.dataMovie = res.data.data;
+                                this.listRcm = res.data.data_rcm;
+                                console.log(this.listRcm);
+
+                            });
+                    },
+                    detailMovie(payload) {
+                        axios
+                            .post('{{ Route('DataMovieSet') }}', payload)
+                            .then((res) => {
+                                if (res.data.status == 0) {
+                                    toastr.error(res.data.message, 'Error !');
+                                }
+                            });
+                    }
 
                 },
             });
         });
     </script>
+
 </body>
 
 </html>

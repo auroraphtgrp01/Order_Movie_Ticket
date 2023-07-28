@@ -7,7 +7,7 @@
                     <div class="menu-wrap">
                         <nav class="menu-nav show">
                             <div class="logo">
-                                <a href="index.html">
+                                <a href="/">
                                     <img src="/client_assets/img/logo/logo.png" alt="Logo">
                                 </a>
                             </div>
@@ -15,7 +15,7 @@
                                 <ul class="navigation">
                                     <li class="active menu-item-has-children"><a href="#">Home</a>
                                         <ul class="submenu">
-                                            <li class="active"><a href="index.html">Home One</a></li>
+                                            <li class="active"><a href="/">Home One</a></li>
                                             <li><a href="index-2.html">Home Two</a></li>
                                         </ul>
                                     </li>
@@ -62,7 +62,7 @@
                         <div class="close-btn"><i class="fas fa-times"></i></div>
 
                         <nav class="menu-box">
-                            <div class="nav-logo"><a href="index.html"><img src="/client_assets/img/logo/logo.png"
+                            <div class="nav-logo"><a href="/"><img src="/client_assets/img/logo/logo.png"
                                         alt="" title=""></a>
                             </div>
                             <div class="menu-outer">

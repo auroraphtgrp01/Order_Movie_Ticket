@@ -29,7 +29,7 @@
             <!-- up-coming-movie-area -->
             @include('client.share.upcoming')
             <!-- up-coming-movie-area-end -->
-
+            @include('client.share.now')
             <!-- services-area -->
             {{-- @include('client.share.services') --}}
             <!-- services-area-end -->
@@ -39,7 +39,7 @@
             <!-- top-rated-movie-end -->
 
             <!-- live-area -->
-            @include('client.share.live')
+            {{-- @include('client.share.live') --}}
             <!-- live-area-end -->
 
             <!-- tv-series-area -->
@@ -61,10 +61,6 @@
     <!-- JS here -->
 
     @include('client.share.scriptJS')
-
-
-
-
 
 </body>
 
