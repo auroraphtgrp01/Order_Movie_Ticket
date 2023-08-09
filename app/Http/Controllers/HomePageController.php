@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MovieDetail;
 use App\Models\Phim;
 use Carbon\Carbon;
 
@@ -11,8 +12,14 @@ class HomePageController extends Controller
     {
         return view('client.page.Homepage.homepage');
     }
-    public function details(){
-        return view('client.page.Homepage.details');
+    public function details()
+    {
+        $data = MovieDetail::all();
+        if (count($data) == 1) {
+            return view('client.page.Homepage.details');
+        } else {
+            return redirect('/');
+        }
     }
     public function index()
     {

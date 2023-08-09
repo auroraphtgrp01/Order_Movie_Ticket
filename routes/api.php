@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
 Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieDetail');
 //
+Route::group(['prefix' => '/client'], function () {
+    Route::post('/lich-chieu-theo-phim', [APILichChieuController::class, 'lich_chieu_theo_phim'])->name('lichChieuPhim');
+});
 Route::group(['prefix' => '/admin'], function () {
     // Quản lý phim
     Route::group(['prefix' => '/phim'], function () {
@@ -47,6 +50,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/tinh_trang', [CustomerAccountController::class, 'tinh_trang'])->name('taiKhoanTinhTrang');
         Route::post('/delete', [CustomerAccountController::class, 'destroy'])->name('taiKhoanDel');
         Route::post('/update', [CustomerAccountController::class, 'update'])->name('taiKhoanUpdate');
+        Route::post('/login', [CustomerAccountController::class, 'login'])->name('taiKhoanLogin');
     });
     Route::group(['prefix'  =>  '/don-vi'], function () {
         Route::post('/create', [APIDonViController::class, 'store'])->name('donViStore');
@@ -67,6 +71,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/status', [APILichChieuController::class, 'status'])->name('lichChieuStatus');
         Route::post('/update', [APILichChieuController::class, 'update'])->name('lichChieuUpdate');
         Route::post('/delete', [APILichChieuController::class, 'delete'])->name('lichChieuDelete');
+        Route::post('/info', [APILichChieuController::class, 'info'])->name('lichChieuInfo');
     });
     Route::group(['prefix' => '/admin-manage'], function () {
         Route::post('/data', [APIAdminController::class, 'data'])->name('adminData');
@@ -79,4 +84,5 @@ Route::group(['prefix' => '/admin'], function () {
 Route::group(['prefix' => '/movie-details'], function () {
     Route::post('/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
     Route::post('/dataget', [APIMovieDetailController::class, 'dataGet'])->name('MovieDataGet');
+    Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
 });

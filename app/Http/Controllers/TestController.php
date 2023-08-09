@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TestController extends Controller
 {
-    public function index()
+    public function create()
     {
-        return view('client.page.Homepage.details');
+        Session::start();
+        Session::put('s_1', 'sdsd');
+        return response('x')->withCookie(Cookie('c_1'));
     }
 }

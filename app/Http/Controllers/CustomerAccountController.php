@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CustomerAccountController extends Controller
 {
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data               = $request->all();
+        $data['is_block']   =   0;
+        $data['tinh_trang'] =   0;
+        $data['password']   = bcrypt($request->password);
         CustomerAccount::create($data);
         return response()->json([
             'status' => true,
@@ -104,6 +108,26 @@ class CustomerAccountController extends Controller
     }
     public function viewLogin()
     {
-        return view('client.page.register_login.index');
+        return view('client_view.page.register_login.index');
+    }
+    public function login(Request $request)
+    {
+        $check  = CustomerAccount::where('email', $request->email)
+            ->first();
+        $passwordInput = $request->password;
+        $passwordSave  = $check->password;
+        if ($check && password_verify($passwordInput, $passwordSave)) {
+            Session::start();
+            Session::put('auth', $check);
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đăng Nhập Thành Công !'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Đăng Nhập Thất Bại !'
+            ]);
+        }
     }
 }

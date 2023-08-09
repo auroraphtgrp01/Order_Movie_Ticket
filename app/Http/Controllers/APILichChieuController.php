@@ -28,8 +28,8 @@ class APILichChieuController extends Controller
     public function data()
     {
         $data = LichChieu::join('phims', 'phims.id', 'lich_chieus.id_phim')
-            ->join('phong_chieus', 'phong_chieus.id', 'lich_chieus.id_phong')
-            ->select('lich_chieus.*', 'phims.ten_phim', 'phong_chieus.ten_phong')
+            ->join('phong_chieus', 'lich_chieus.id_phong', 'phong_chieus.id')
+            ->select('lich_chieus.*', 'phims.ten_phim', 'phong_chieus.ten_phong', 'phong_chieus.hang_ngang', 'phong_chieus.hang_doc')
             ->get();
         // dd($data->toArray());
         $today = Carbon::today();
@@ -41,6 +41,14 @@ class APILichChieuController extends Controller
             'ds_phong' => $ds_phong,
             'ds_phim' => $ds_phim,
             'data1' => $data
+        ]);
+    }
+    public function info(Request $request)
+    {
+        $lichChieu  = VeXemPhim::where('id_lich_chieu', $request->id)->get();
+
+        return response()->json([
+            'data'    =>  $lichChieu
         ]);
     }
     public function status(Request $request)
@@ -201,5 +209,10 @@ class APILichChieuController extends Controller
             Log::error($e);
             DB::rollBack();
         }
+    }
+    public function lich_chieu_theo_phim(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
     }
 }

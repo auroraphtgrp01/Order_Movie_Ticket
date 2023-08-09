@@ -12,8 +12,6 @@ use App\Http\Controllers\LichChieuController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongChieuController;
 use App\Http\Controllers\TestController;
-use App\Models\DanhSachTaiKhoan;
-use App\Models\PhongChieu;
 use Illuminate\Support\Facades\Route;
 
 
@@ -58,3 +56,4 @@ Route::group(['prefix' => '/admin'], function () {
 });
 Route::get('/dang-ky', [AuthenticationController::class, 'signup']);
 Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
+Route::get('/create', [TestController::class, 'create']);

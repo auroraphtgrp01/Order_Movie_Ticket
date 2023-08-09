@@ -32,86 +32,88 @@
         <!-- Start login section  -->
         <div class="login__section section--padding">
             <div class="container">
-                <form action="#">
-                    <div class="login__section--inner">
-                        <div class="row row-cols-md-2 row-cols-1">
-                            <div class="col">
-                                <div class="account__login">
-                                    <div class="account__login--header mb-25">
-                                        <h2 class="account__login--header__title mb-10">Đăng Nhập</h2>
-                                        <p class="account__login--header__desc">Đăng Nhập Tại Đây Nếu Bạn Đã Là Thành
-                                            Viên</p>
+                <div class="login__section--inner">
+                    <div class="row row-cols-md-2 row-cols-1">
+                        <div class="col">
+                            <div class="account__login">
+                                <div class="account__login--header mb-25">
+                                    <h2 class="account__login--header__title mb-10">Đăng Nhập</h2>
+                                    <p class="account__login--header__desc">Đăng Nhập Tại Đây Nếu Bạn Đã Là Thành
+                                        Viên</p>
+                                </div>
+                                <div class="account__login--inner">
+                                    <label>
+                                        <input v-model="login.email" class="account__login--input"
+                                            placeholder="Email Addres" type="email">
+                                    </label>
+                                    <label>
+                                        <input v-model="login.password" class="account__login--input"
+                                            placeholder="Password" type="password">
+                                    </label>
+
+                                    <button v-on:click="loginAcc()"
+                                        class="account__login--btn primary__btn">Login</button>
+
+                                    <div class="account__login--divide">
+                                        <span class="account__login--divide__text">OR</span>
                                     </div>
-                                    <div class="account__login--inner">
-                                        <label>
-                                            <input class="account__login--input" placeholder="Email Addres"
-                                                type="email">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" placeholder="Password" type="password">
-                                        </label>
-                                        <button class="account__login--btn primary__btn" type="submit">Login</button>
-                                        <div class="account__login--divide">
-                                            <span class="account__login--divide__text">OR</span>
-                                        </div>
-                                        <div class="account__social d-flex justify-content-center mb-15">
-                                            <a class="account__social--link facebook" target="_blank"
-                                                href="https://www.facebook.com">Facebook</a>
-                                            <a class="account__social--link google" target="_blank"
-                                                href="https://www.google.com">Google</a>
-                                            <a class="account__social--link twitter" target="_blank"
-                                                href="https://twitter.com">Twitter</a>
-                                        </div>
-                                        <p class="account__login--signup__text">Don,t Have an Account? <button
-                                                type="submit">Sign up now</button></p>
+                                    <div class="account__social d-flex justify-content-center mb-15">
+                                        <a class="account__social--link facebook" target="_blank"
+                                            href="https://www.facebook.com">Facebook</a>
+                                        <a class="account__social--link google" target="_blank"
+                                            href="https://www.google.com">Google</a>
+                                        <a class="account__social--link twitter" target="_blank"
+                                            href="https://twitter.com">Twitter</a>
                                     </div>
+                                    <p class="account__login--signup__text">Don,t Have an Account? <button
+                                            type="button">Sign up now</button></p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="account__login register">
-                                    <div class="account__login--header mb-25">
-                                        <h2 class="account__login--header__title mb-10">Tạo Tài Khoản</h2>
-                                        <p class="account__login--header__desc">Tạo Tài Khoản Tại Đây Để Trở Thành Thành
-                                            Viên</p>
-                                    </div>
-                                    <div class="account__login--inner">
-                                        <label>
-                                            <input class="account__login--input" v-model="tt_new.ho_va_ten"
-                                                placeholder="Họ Và Tên" type="text">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" v-model="tt_new.ngay_sinh"
-                                                placeholder="Ngày Sinh" type="date">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" v-model="tt_new.dia_chi"
-                                                placeholder="Địa Chỉ" type="text">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" v-model="tt_new.email"
-                                                placeholder="Địa Chỉ Mail" type="email">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" v-model="tt_new.password"
-                                                placeholder="Password" type="password">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" placeholder="Nhập lại mật khẩu"
-                                                type="password">
-                                        </label>
-                                        <label>
-                                            <input class="account__login--input" v-model="tt_new.so_dien_thoai"
-                                                placeholder="Số điện thoại" type="password">
-                                        </label>
-                                        <button class="account__login--btn primary__btn mb-10"
-                                            v-on:click="themTaiKhoan()">Đăng
-                                            Ký</button>
-                                    </div>
+                        </div>
+                        <div class="col">
+                            <div class="account__login register">
+                                <div class="account__login--header mb-25">
+                                    <h2 class="account__login--header__title mb-10">Tạo Tài Khoản</h2>
+                                    <p class="account__login--header__desc">Tạo Tài Khoản Tại Đây Để Trở Thành Thành
+                                        Viên</p>
+                                </div>
+                                <div class="account__login--inner">
+                                    <label>
+                                        <input class="account__login--input" v-model="tt_new.ho_va_ten"
+                                            placeholder="Họ Và Tên" type="text">
+                                    </label>
+                                    <label>
+                                        <input class="account__login--input" v-model="tt_new.ngay_sinh"
+                                            placeholder="Ngày Sinh" type="date">
+                                    </label>
+                                    <label>
+                                        <input class="account__login--input" v-model="tt_new.dia_chi"
+                                            placeholder="Địa Chỉ" type="text">
+                                    </label>
+                                    <label>
+                                        <input class="account__login--input" v-model="tt_new.email"
+                                            placeholder="Địa Chỉ Mail" type="email">
+                                    </label>
+                                    <label>
+                                        <input class="account__login--input" v-model="tt_new.password"
+                                            placeholder="Password" type="password">
+                                    </label>
+                                    <label>
+                                        <input class="account__login--input" placeholder="Nhập lại mật khẩu"
+                                            type="password">
+                                    </label>
+                                    <label>
+                                        <input class="account__login--input" v-model="tt_new.so_dien_thoai"
+                                            placeholder="Số điện thoại" type="password">
+                                    </label>
+                                    <button class="account__login--btn primary__btn mb-10"
+                                        v-on:click="themTaiKhoan()">Đăng
+                                        Ký</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
         <!-- End login section  -->
@@ -149,7 +151,9 @@
                     tt_new: {
                         tinh_trang: 1,
                         is_block: 1,
-                    }
+                    },
+                    login: {},
+
                 },
                 created() {
 
@@ -164,12 +168,24 @@
                                         'is_block': 1,
                                         'tinh_trang': 1
                                     }
-                                    this.loadData();
+                                    toastr.success(res.data.message, 'Success !');
                                 } else {
-
+                                    toastr.error('Lỗi đăng ký tài khoản', 'Error !');
                                 }
                             });
                     },
+                    loginAcc() {
+                        axios
+                            .post('{{ Route('taiKhoanLogin') }}', this.login)
+                            .then((res) => {
+                                if (res.data.status) {
+                                    toastr.success(res.data.message, 'Success !');
+                                } else {
+                                    toastr.error(res.data.message, 'Error !');
+
+                                }
+                            });
+                    }
                 },
             });
         });

@@ -10,6 +10,7 @@ class MovieDetail extends Model
     use HasFactory;
     protected $table = 'movie_details';
     protected $fillable = [
+        'id_phim',
         'ten_phim_dau',
         'ten_phim_cuoi',
         'slug_phim',

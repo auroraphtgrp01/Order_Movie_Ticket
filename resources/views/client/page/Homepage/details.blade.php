@@ -57,19 +57,72 @@
                 data: {
                     dataMovie: [],
                     listRcm: [],
+                    data_lc: {},
+                    dateTime: [],
+                    tt_lich: {},
+                    veXemPhim: {},
+                    hang_doc: 0,
+                    hang_ngang: 0,
                 },
                 created() {
                     this.loadData();
                 },
                 methods: {
+                    date_format(now) {
+                        return moment(now).format('DD/MM/yyyy HH:mm');
+                    },
+                    getVe(payload) {
+                        axios
+                            .post('{{ Route('MovieGetVe') }}', payload)
+                            .then((res) => {
+                                this.veXemPhim = res.data.data;
+                                console.log(this.veXemPhim);
+                                this.hang_doc = this.veXemPhim[0].hang_doc;
+                                this.hang_ngang = this.veXemPhim[0].hang_ngang;
+                                console.log(this.veXemPhim);
+                            });
+                    },
+
+                    dateAndTime(data) {
+                        for (var key in data) {
+                            let datetime, year, month, day, hours, minute, timeOnly, dateOnly;
+                            datetime = new Date(data[key].gio_bat_dau);
+                            year = datetime.getFullYear();
+                            month = datetime.getMonth() + 1;
+                            day = datetime.getDate();
+                            hours = datetime.getHours();
+                            minute = datetime.getMinutes();
+                            timeOnly = hours + ':' + minute;
+                            dateOnly = day + '/' + month + '/' + year;
+                            if (key >= 1 && dateOnly === this.dateTime[key - 1].ngay_chieu) {
+                                this.dateTime.push({
+                                    'gio_chieu': timeOnly,
+                                    'ngay_chieu': dateOnly,
+                                    'check': 1,
+                                    'id_lich_chieu': data[key].id,
+                                });
+                            } else {
+                                this.dateTime.push({
+                                    'gio_chieu': timeOnly,
+                                    'ngay_chieu': dateOnly,
+                                    'check': 0,
+                                    'id_lich_chieu': data[key].id,
+                                });
+                            }
+
+                        }
+                        console.log(this.dateTime);
+
+
+                    },
                     loadData() {
                         axios
                             .post('{{ Route('MovieDataGet') }}')
                             .then((res) => {
                                 this.dataMovie = res.data.data;
+                                this.data_lc = res.data.data_lc;
+                                this.dateAndTime(this.data_lc);
                                 this.listRcm = res.data.data_rcm;
-                                console.log(this.listRcm);
-
                             });
                     },
                     detailMovie(payload) {
@@ -81,7 +134,6 @@
                                 }
                             });
                     }
-
                 },
             });
         });
