@@ -83,6 +83,5 @@ Route::group(['prefix' => '/admin'], function () {
 });
 Route::group(['prefix' => '/movie-details'], function () {
     Route::post('/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
-    Route::post('/dataget', [APIMovieDetailController::class, 'dataGet'])->name('MovieDataGet');
     Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
 });

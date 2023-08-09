@@ -24,15 +24,15 @@
                     @foreach ($phimSapChieu as $key => $value)
                         <div class="movie-item mb-50">
                             <div class="movie-poster">
-                                <a href="/movie-detail" v-on:click="detailMovie({{ $value }})">
+                                <a href="/movie-detail/{{ $value->slug_phim }}">
                                     <img class="img-thumbnail" style="width: 300px; height: 400px;"
                                         src="{{ $value->hinh_anh }}" alt="">
                                 </a>
                             </div>
                             <div class="movie-content">
                                 <div class="top">
-                                    <h5 class="title"><a href="/movie-detail"
-                                            v-on:click="detailMovie({{ $value }})">{{ $value->ten_phim }}</a>
+                                    <h5 class="title"><a
+                                            href="/movie-detail/{{ $value->slug_phim }}">{{ $value->ten_phim }}</a>
                                     </h5>
                                     <span class="date">2021</span>
                                 </div>

@@ -42,7 +42,7 @@ class APIMovieDetailController extends Controller
     public function data(Request $request)
     {
         MovieDetail::query()->delete();
-        $movie = Phim::find($request->id);
+        $movie = Phim::where('slug_phim', $request->slug_phim)->first();
         if ($movie) {
             $ten_dau = (string)$this->getFirst($movie->ten_phim);
             $ten_cuoi = (string)$this->getWords($movie->ten_phim);
@@ -64,33 +64,27 @@ class APIMovieDetailController extends Controller
                 'ket_thuc' => $movie->ket_thuc,
                 'hien_thi' => $movie->hien_thi,
             ]);
-        } else {
-            return response()->json([
-                'status' => 0,
-                'message' => 'Phim Không Tồn Tại !'
-            ]);
-        }
-    }
-    public function dataGet()
-    {
-        $data = MovieDetail::all();
-        $movie = Phim::all();
-        if (count($data) == 1) {
-            $dataGet = MovieDetail::first();
-            $idPhim = $dataGet->id_phim;
-            $now = Carbon::now();
-            $dataLichChieu = LichChieu::where('id_phim', $idPhim)
-                ->where('trang_thai', 1)
-                // ->where('gio_bat_dau', '>', $now)
-                ->get();
-            $movie_arr = $movie->toArray();
-            shuffle($movie_arr);
-            $rcm_movie = array_slice($movie_arr, 0, 4);
-            return response()->json([
-                'data' => $dataGet,
-                'data_rcm' => $rcm_movie,
-                'data_lc' => $dataLichChieu,
-            ]);
+
+            $data = MovieDetail::all();
+            $movieR = Phim::all();
+            if (count($data) == 1) {
+                $dataGet = MovieDetail::first();
+                $idPhim = $dataGet->id_phim;
+                $now = Carbon::now();
+                $dataLichChieu = LichChieu::where('id_phim', $idPhim)
+                    ->where('trang_thai', 1)
+                    ->get();
+                $movie_arr = $movieR->toArray();
+                shuffle($movie_arr);
+                $rcm_movie = array_slice($movie_arr, 0, 4);
+                return response()->json([
+                    'data' => $dataGet,
+                    'data_rcm' => $rcm_movie,
+                    'data_lc' => $dataLichChieu,
+                ]);
+            } else {
+                return redirect('/');
+            }
         } else {
             return redirect('/');
         }

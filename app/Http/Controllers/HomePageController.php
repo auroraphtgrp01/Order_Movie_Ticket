@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\MovieDetail;
 use App\Models\Phim;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class HomePageController extends Controller
 {
@@ -12,15 +14,18 @@ class HomePageController extends Controller
     {
         return view('client.page.Homepage.homepage');
     }
-    public function details()
+    public function details(Request $request)
     {
-        $data = MovieDetail::all();
-        if (count($data) == 1) {
+        $url = $request->url();
+        $slug = Str::afterLast($url, '/');
+        $movie = Phim::where('slug_phim', $slug)->first();
+        if ($movie) {
             return view('client.page.Homepage.details');
         } else {
             return redirect('/');
         }
     }
+
     public function index()
     {
         $today          = Carbon::today();

@@ -11,7 +11,6 @@
         },
         created() {
             this.loadData();
-            this.loadData1();
         },
         methods: {
             loadData() {
@@ -19,23 +18,6 @@
                     .post('{{ Route('HomePageData') }}')
                     .then((res) => {
                         this.list_Movie = res.data.data;
-                    });
-            },
-            detailMovie(payload) {
-                axios
-                    .post('{{ Route('DataMovieSet') }}', payload)
-                    .then((res) => {
-                        if (res.data.status == 0) {
-                            toastr.error(res.data.message, 'Error !');
-                        }
-                    });
-            },
-            loadData1() {
-                axios
-                    .post('{{ Route('MovieDataGet') }}')
-                    .then((res) => {
-                        this.listRcm = res.data.data_rcm;
-                        console.log(this.listRcm);
                     });
             },
         },

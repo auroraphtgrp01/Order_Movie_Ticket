@@ -65,7 +65,7 @@
                     hang_ngang: 0,
                 },
                 created() {
-                    this.loadData();
+                    this.loadDataFromURL();
                 },
                 methods: {
                     date_format(now) {
@@ -82,7 +82,6 @@
                                 console.log(this.veXemPhim);
                             });
                     },
-
                     dateAndTime(data) {
                         for (var key in data) {
                             let datetime, year, month, day, hours, minute, timeOnly, dateOnly;
@@ -109,15 +108,20 @@
                                     'id_lich_chieu': data[key].id,
                                 });
                             }
-
                         }
                         console.log(this.dateTime);
-
-
                     },
-                    loadData() {
+                    loadDataFromURL() {
+                        var currentURL = window.location.href;
+                        var parts = currentURL.split('/');
+                        var movieSlug = parts[parts.length - 1];
+                        let payload = {
+                            'slug_phim': movieSlug,
+                        }
+                        console.log(payload);
+
                         axios
-                            .post('{{ Route('MovieDataGet') }}')
+                            .post('{{ Route('DataMovieSet') }}', payload)
                             .then((res) => {
                                 this.dataMovie = res.data.data;
                                 this.data_lc = res.data.data_lc;
@@ -125,15 +129,6 @@
                                 this.listRcm = res.data.data_rcm;
                             });
                     },
-                    detailMovie(payload) {
-                        axios
-                            .post('{{ Route('DataMovieSet') }}', payload)
-                            .then((res) => {
-                                if (res.data.status == 0) {
-                                    toastr.error(res.data.message, 'Error !');
-                                }
-                            });
-                    }
                 },
             });
         });

@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomePageController::class, 'index']);
-Route::get('/movie-detail', [HomePageController::class, 'details']);
-Route::get('/film-detail/{id}', [HomePageController::class, 'detail']);
+Route::get('/movie-detail/{slug}', [HomePageController::class, 'details']);
 Route::get('/register', [CustomerAccountController::class, 'viewResgister']);
 Route::get('/login', [CustomerAccountController::class, 'viewLogin']);
 //

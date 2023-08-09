@@ -23,14 +23,13 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-two">
                         <div class="movie-item mb-60">
                             <div class="movie-poster">
-                                <a href="/movie-detail" v-on:click="detailMovie({{ $value }})"><img
-                                        class="img-thumbnail" style="height: 400px; width: 300px;"
-                                        src="{{ $value->hinh_anh }}" alt=""></a>
+                                <a href="/movie-detail/{{ $value->slug_phim }}"><img class="img-thumbnail"
+                                        style="height: 400px; width: 300px;" src="{{ $value->hinh_anh }}"
+                                        alt=""></a>
                             </div>
                             <div class="movie-content">
                                 <div class="top">
-                                    <h5 class="title"><a href="/"
-                                            v-on:click="detailMovie({{ $value }})">{{ $value->ten_phim }}</a>
+                                    <h5 class="title"><a href="/">{{ $value->ten_phim }}</a>
                                     </h5>
                                     <span class="date">2023</span>
                                 </div>
@@ -51,14 +50,13 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 grid-item grid-sizer cat-one cat-three">
                         <div class="movie-item mb-60">
                             <div class="movie-poster">
-                                <a href="/movie-detail" v-on:click="detailMovie({{ $value }})"><img
-                                        class="img-thumbnail" style="height: 400px; width: 300px;"
-                                        src="{{ $value->hinh_anh }}" alt=""></a>
+                                <a href="/movie-detail/{{ $value->slug_phim }}"><img class="img-thumbnail"
+                                        style="height: 400px; width: 300px;" src="{{ $value->hinh_anh }}"
+                                        alt=""></a>
                             </div>
                             <div class="movie-content">
                                 <div class="top">
-                                    <h5 class="title"><a href="/"
-                                            v-on:click="detailMovie({{ $value }})">{{ $value->ten_phim }}</a>
+                                    <h5 class="title"><a href="/">{{ $value->ten_phim }}</a>
                                     </h5>
                                     <span class="date">2021</span>
                                 </div>

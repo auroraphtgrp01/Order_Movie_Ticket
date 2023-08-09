@@ -13,13 +13,14 @@
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="movie-item mb-50">
                         <div class="movie-poster">
-                            <a href="/movie-detail" v-on:click="detailMovie(v)"><img v-bind:src="v.hinh_anh"
-                                    class="img-thumbnail" style="height: 400px; width: 500px;" alt=""></a>
+                            <a v-bind:href="v.slug_phim"><img v-bind:src="v.hinh_anh" class="img-thumbnail"
+                                    style="height: 400px; width: 500px;" alt=""></a>
                         </div>
                         <div class="movie-content">
                             <div class="top text-center">
-                                <h5 class="title text-white"><a style="text-decoration: none;" href="/movie-detail"
-                                        v-on:click="detailMovie(v)">@{{ v.ten_phim }}</a></h5>
+                                <h5 class="title text-white"><a style="text-decoration: none;"
+                                        v-bind:href="v.slug_phim">@{{ v.ten_phim }}</a>
+                                </h5>
                             </div>
                         </div>
                     </div>
