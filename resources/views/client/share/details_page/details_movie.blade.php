@@ -12,20 +12,19 @@
                         <template v-if="dateTime.length == 0">
                             <b class="text-success">PHIM HIỆN CHƯA CÓ LỊCH CHIẾU</b>
                         </template>
-                        <template v-for="(v, k) in dateTime">
-                            <template v-if="v.check == 0">
-                                <template v-if="k != 0">
-                                    <hr>
-                                </template>
+                        <template v-for="(v, k)  in dateTime">
+                            <template v-if="(k) == v.check">
                                 <h6 class="mt-2"><b>Ngày : @{{ v.ngay_chieu }} </b></h6>
-                                <button data-bs-toggle="modal" v-on:click="tt_lich = v ; getVe(v)"
-                                    data-bs-target="#veModal"
-                                    class="btn btn-danger me-2">@{{ v.gio_chieu }}</button>
-                            </template>
-                            <template v-else>
-                                <button v-on:click="tt_lich = v ; getVe(v)" data-bs-toggle="modal"
-                                    data-bs-target="#veModal"
-                                    class="btn btn-danger me-2">@{{ v.gio_chieu }}</button>
+                                {{-- <div>@{{ v.check }}</div> --}}
+                                <template v-for="(v1, k1)  in dateTime">
+                                    <template v-if="v.check == v1.check">
+                                        <button data-bs-toggle="modal"
+                                            v-on:click="tt_lich = v ; getVe(v); hang_doc = 0; hang_ngang = 0"
+                                            data-bs-target="#veModal"
+                                            class="btn btn-danger me-2">@{{ v1.gio_chieu }}</button>
+                                    </template>
+                                </template>
+                                <hr>
                             </template>
                         </template>
                     </div>
@@ -53,7 +52,10 @@
                     <div class="col-12">
                         <div class="card border-primary border-bottom border-3 border-0">
                             <div class="card-body">
-                                <table class="table table-bordered" id="table">
+                                <template v-if="hang_doc == 0 && hang_ngang == 0">
+                                    <h4 class="text-center"><b class="text-danger">PHIM HIỆN CHƯA ĐƯỢC TẠO GHẾ</b></h4>
+                                </template>
+                                <table v-else class="table table-bordered" id="table">
                                     <thead>
                                         <tr>
                                             <th colspan="100%" class="bg-warning text-center align-middle">
@@ -65,6 +67,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <template v-for="i in hang_doc">
                                             <tr>
                                                 <template v-for="j in hang_ngang">
@@ -104,7 +107,7 @@
             </div>
             <div class="col-xl-6 col-lg-8">
                 <div class="movie-details-content">
-                    <h2 class="text-danger fs-1">@{{ dataMovie.ten_phim_dau }}<span> @{{ dataMovie.ten_phim_cuoi }}</span></h2>
+                    <h2 class="text-danger fs-1">@{{ getFirst(dataMovie.ten_phim) }}<span> @{{ getWords(dataMovie.ten_phim) }}</span></h2>
                     <div class="banner-meta">
                         <ul>
                             <li class="quality">

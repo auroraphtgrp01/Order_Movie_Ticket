@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     new Vue({
         el: '#app_details',
@@ -15,6 +16,39 @@ $(document).ready(function () {
             this.loadDataFromURL();
         },
         methods: {
+            getFirst(sentence) {
+                if (sentence !== undefined) {
+                    var words = sentence.split(' ');
+                    var wordCount = words.length;
+                    if (wordCount > 3) {
+                        return words[0] + ' ' + words[1];
+                    } else if (wordCount <= 3) {
+                        return words[0];
+                    } else {
+                        return '';
+                    }
+                } else {
+                    return '';
+                }
+
+            },
+            getWords(sentence) {
+                if (sentence !== undefined) {
+                    var words = sentence.split(' ');
+                    var wordCount = words.length;
+                    if (wordCount > 4) {
+                        var result = words.slice(2);
+                    } else if (wordCount > 1) {
+                        var result = words.slice(1);
+                    } else {
+                        var result = '';
+                    }
+                    return result.join(' ');
+                } else {
+                    return '';
+                }
+
+            },
             date_format(now) {
                 return moment(now).format('DD/MM/yyyy HH:mm');
             },

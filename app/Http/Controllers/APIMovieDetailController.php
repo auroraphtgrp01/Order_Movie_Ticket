@@ -41,6 +41,25 @@ class APIMovieDetailController extends Controller
     }
     public function data(Request $request)
     {
+        $movie = Phim::where('slug_phim', $request->slug_phim)->first();
+        if ($movie) {
+            $idPhim = $movie->id;
+            $now = Carbon::now();
+            $dataLichChieu = LichChieu::where('id_phim', $idPhim)
+                ->where('trang_thai', 1)
+                ->get();
+            $movie_arr = Phim::all()->toArray();
+            shuffle($movie_arr);
+            $rcm_movie = array_slice($movie_arr, 0, 4);
+            return response()->json([
+                'data' => $movie,
+                'data_rcm' => $rcm_movie,
+                'data_lc' => $dataLichChieu,
+            ]);
+        }
+    }
+    public function data1(Request $request)
+    {
         MovieDetail::query()->delete();
         $movie = Phim::where('slug_phim', $request->slug_phim)->first();
         if ($movie) {

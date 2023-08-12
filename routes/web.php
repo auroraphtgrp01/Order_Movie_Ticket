@@ -12,15 +12,15 @@ use App\Http\Controllers\LichChieuController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongChieuController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestViewController;
 use Illuminate\Support\Facades\Route;
-
-
-
+use Illuminate\Testing\TestView;
 
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/movie-detail/{slug}', [HomePageController::class, 'details']);
 Route::get('/register', [CustomerAccountController::class, 'viewResgister']);
 Route::get('/login', [CustomerAccountController::class, 'viewLogin']);
+Route::get('/test', [TestViewController::class, 'index']);
 //
 Route::group(['prefix' => '/admin'], function () {
     Route::get('/', [AdminController::class, 'adminManage']);

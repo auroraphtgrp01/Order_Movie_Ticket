@@ -38,7 +38,7 @@ class HomePageController extends Controller
             ->whereDate('bat_dau', '>', $today)
             ->get();
 
-        return view('client.page.Homepage.homepage', compact('phimDangChieu', 'phimSapChieu'));
+        return view('client_2.page.client_homepage', compact('phimDangChieu', 'phimSapChieu'));
     }
     public function detail($id)
     {
