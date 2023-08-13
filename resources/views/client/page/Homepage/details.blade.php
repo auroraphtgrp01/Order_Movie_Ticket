@@ -50,7 +50,7 @@
 
     <!-- JS here -->
     @include('client.share.details_page.scriptJS')
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             new Vue({
                 el: '#app_details',
@@ -198,8 +198,7 @@
                 },
             });
         });
-    </script>
-
+    </script> --}}
 </body>
 
 </html>

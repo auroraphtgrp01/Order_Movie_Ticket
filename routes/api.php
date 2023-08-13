@@ -36,7 +36,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/delete', [APIPhongChieuController::class, 'delete'])->name('phongchieuDelete');
         Route::post('/update', [APIPhongChieuController::class, 'update'])->name('phongchieuUpdate');
     });
-    Route::group(['prefix' => '/ghe_chieu'], function () {
+    Route::group(['prefix' => '/ghe-chieu'], function () {
         Route::post('/create', [APIGheChieuController::class, 'store'])->name('gheChieuStore');
         Route::post('/info', [APIGheChieuController::class, 'info'])->name('infoPhongGhe');
         Route::post('/status', [APIGheChieuController::class, 'status'])->name('gheChieuStatus');
@@ -47,7 +47,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/create', [CustomerAccountController::class, 'store'])->name('taiKhoanStore');
         Route::post('/data', [CustomerAccountController::class, 'data'])->name('taiKhoanData');
         Route::post('/block', [CustomerAccountController::class, 'block'])->name('taiKhoanBlock');
-        Route::post('/tinh_trang', [CustomerAccountController::class, 'tinh_trang'])->name('taiKhoanTinhTrang');
+        Route::post('/tinh-trang', [CustomerAccountController::class, 'tinh_trang'])->name('taiKhoanTinhTrang');
         Route::post('/delete', [CustomerAccountController::class, 'destroy'])->name('taiKhoanDel');
         Route::post('/update', [CustomerAccountController::class, 'update'])->name('taiKhoanUpdate');
         Route::post('/login', [CustomerAccountController::class, 'login'])->name('taiKhoanLogin');

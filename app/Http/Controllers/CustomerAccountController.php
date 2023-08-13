@@ -104,11 +104,11 @@ class CustomerAccountController extends Controller
     }
     public function viewResgister()
     {
-        return view('client.page.register_login.index');
+        return view('client_2.page.register_login.index');
     }
     public function viewLogin()
     {
-        return view('client_view.page.register_login.index');
+        return view('client_2.page.register_login.index');
     }
     public function login(Request $request)
     {
