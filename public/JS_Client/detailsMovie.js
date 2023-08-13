@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     new Vue({
         el: '#app_details',
@@ -11,11 +10,36 @@ $(document).ready(function () {
             veXemPhim: {},
             hang_doc: 0,
             hang_ngang: 0,
+            dateObj: [],
         },
         created() {
             this.loadDataFromURL();
         },
         methods: {
+            sortArrayByTime(arr) {
+                function convertTimeToMinutes(time) {
+                    const [hours, minutes] = time.split(':');
+                    return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+                }
+
+                function compareTimes(item1, item2) {
+                    const time1 = convertTimeToMinutes(item1.gio_chieu);
+                    const time2 = convertTimeToMinutes(item2.gio_chieu);
+                    return time1 - time2;
+                }
+
+                const sortedArr = arr.slice().sort(compareTimes);
+                return sortedArr;
+            },
+            sortArrayByDate(arr) {
+                function compareDates(item1, item2) {
+                    const date1 = new Date(item1.ngay_chieu);
+                    const date2 = new Date(item2.ngay_chieu);
+                    return date1 - date2;
+                }
+                const sortedArr = arr.slice().sort(compareDates);
+                return sortedArr;
+            },
             getFirst(sentence) {
                 if (sentence !== undefined) {
                     var words = sentence.split(' ');
@@ -30,7 +54,6 @@ $(document).ready(function () {
                 } else {
                     return '';
                 }
-
             },
             getWords(sentence) {
                 if (sentence !== undefined) {
@@ -54,13 +77,14 @@ $(document).ready(function () {
             },
             getVe(payload) {
                 axios
-                    .post('{{ Route("MovieGetVe") }}', payload)
+                    .post('/api/movie-details/get-ve', payload)
                     .then((res) => {
                         this.veXemPhim = res.data.data;
                         console.log(this.veXemPhim);
-                        this.hang_doc = this.veXemPhim[0].hang_doc;
-                        this.hang_ngang = this.veXemPhim[0].hang_ngang;
-                        console.log(this.veXemPhim);
+                        if (this.veXemPhim.length) {
+                            this.hang_doc = this.veXemPhim[0].hang_doc;
+                            this.hang_ngang = this.veXemPhim[0].hang_ngang;
+                        }
                     });
             },
             dateAndTime(data) {
@@ -74,22 +98,32 @@ $(document).ready(function () {
                     minute = datetime.getMinutes();
                     timeOnly = hours + ':' + minute;
                     dateOnly = day + '/' + month + '/' + year;
-                    if (key >= 1 && dateOnly === this.dateTime[key - 1].ngay_chieu) {
-                        this.dateTime.push({
-                            'gio_chieu': timeOnly,
-                            'ngay_chieu': dateOnly,
-                            'check': 1,
-                            'id_lich_chieu': data[key].id,
-                        });
-                    } else {
-                        this.dateTime.push({
-                            'gio_chieu': timeOnly,
-                            'ngay_chieu': dateOnly,
-                            'check': 0,
-                            'id_lich_chieu': data[key].id,
-                        });
+                    this.dateTime.push({
+                        'gio_chieu': timeOnly,
+                        'ngay_chieu': dateOnly,
+                        'check': 0,
+                        'id_lich_chieu': data[key].id,
+                    });
+                }
+                // this.dateTime = this.sortArrayByTime(this.dateTime);
+                this.dateTime = this.sortArrayByDate(this.dateTime);
+                console.log(this.dateTime);
+
+                let obj = {};
+                let arr = [];
+                for (let i = 0; i < this.dateTime.length; i++) {
+                    this.dateTime[i].check = i;
+                }
+                for (let i = 0; i < this.dateTime.length; i++) {
+                    this.dateObj.push(i);
+                    for (let j = i + 1; j < this.dateTime.length; j++) {
+                        if (this.dateTime[i].ngay_chieu == this.dateTime[j].ngay_chieu) {
+                            this.dateTime[j].check = this.dateTime[i].check;
+                            break;
+                        }
                     }
                 }
+
                 console.log(this.dateTime);
             },
             loadDataFromURL() {
@@ -99,10 +133,8 @@ $(document).ready(function () {
                 let payload = {
                     'slug_phim': movieSlug,
                 }
-                console.log(payload);
-
                 axios
-                    .post('{{ Route("DataMovieSet") }}', payload)
+                    .post('/api/movie-details/dataset', payload)
                     .then((res) => {
                         this.dataMovie = res.data.data;
                         this.data_lc = res.data.data_lc;
