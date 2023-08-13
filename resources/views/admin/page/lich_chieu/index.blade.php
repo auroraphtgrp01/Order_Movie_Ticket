@@ -47,9 +47,12 @@
                                                     <template v-for="(v, k) in ds_ve">
                                                         <template v-if="k == (detail.hang_doc + 1) * (j - 1) + i - 1">
                                                             <td class="text-center">
-                                                                <i v-if="v.tinh_trang == -1" class="text-danger fa-solid fa-couch fa-2x"></i>
-                                                                <i v-else-if="v.tinh_trang == 0" class="fa-solid fa-couch fa-2x"></i>
-                                                                <i v-else-if="v.tinh_trang == 1" class="text-warning fa-solid fa-couch fa-2x"></i>
+                                                                <i v-if="v.tinh_trang == -1"
+                                                                    class="text-danger fa-solid fa-couch fa-2x"></i>
+                                                                <i v-else-if="v.tinh_trang == 0"
+                                                                    class="fa-solid fa-couch fa-2x"></i>
+                                                                <i v-else-if="v.tinh_trang == 1"
+                                                                    class="text-warning fa-solid fa-couch fa-2x"></i>
                                                                 <i v-else class="text-success fa-solid fa-couch fa-2x"></i>
                                                                 <br>
                                                                 <b>@{{ v.so_ghe }}</b>
@@ -273,105 +276,5 @@
     </div>
 @endsection
 @section('js')
-    <script>
-        $(document).ready(function() {
-            new Vue({
-                el: '#app',
-                data: {
-                    tt_themMoi: {
-                        'tinh_trang': 0,
-                    },
-                    list_phim: [],
-                    list_phong: [],
-                    list_data: [],
-                    tt_update: {
-                        'tinh_trang': 0,
-                    },
-                    del: {},
-                    detail: {},
-                    ds_ve: [],
-                },
-                created() {
-                    this.loadData();
-                },
-                methods: {
-                    getTT(payload) {
-                        axios
-                            .post('{{ Route('lichChieuInfo') }}', payload)
-                            .then((res) => {
-                                this.ds_ve = res.data.data;
-                                console.log(this.ds_ve);
-                                console.log(this.detail);
-                            })
-                            .catch((res) => {
-                                $.each(res.response.data.errors, function(k, v) {
-                                    toastr.error(v[0], 'Error');
-                                });
-                            });
-                    },
-                    createData() {
-                        axios
-                            .post('{{ Route('lichChieuStore') }}', this.tt_themMoi)
-                            .then((res) => {
-                                if (res.data.status) {
-                                    toastr.success(res.data.message, 'Success !');
-                                    this.loadData();
-                                } else {
-                                    toastr.error('Error !');
-                                }
-                            });
-                    },
-                    loadData() {
-                        axios
-                            .post('{{ Route('lichChieuData') }}')
-                            .then((res) => {
-                                this.list_phim = res.data.ds_phim;
-                                this.list_phong = res.data.ds_phong;
-                                this.list_data = res.data.data1;
-                                console.log(this.list_data);
-                            });
-                    },
-                    changeStatus(payload) {
-                        axios
-                            .post('{{ Route('lichChieuStatus') }}', payload)
-                            .then((res) => {
-                                if (res.data.status) {
-                                    toastr.success(res.data.message, 'Success');
-                                    this.loadData();
-                                } else {
-                                    toastr.error(res.data.message, 'Error !');
-                                }
-                            });
-                    },
-                    updateData() {
-                        axios
-                            .post('{{ Route('lichChieuUpdate') }}', this.tt_update)
-                            .then((res) => {
-                                if (res.data.status) {
-                                    toastr.success(res.data.message, 'Success !');
-                                    this.loadData();
-                                    $("#updateModal").modal('hide');
-                                } else {
-                                    toastr.error(res.data.message, 'Error !');
-
-                                }
-                            });
-                    },
-                    deleteData() {
-                        axios
-                            .post('{{ Route('lichChieuDelete') }}', this.del)
-                            .then((res) => {
-                                if (res.data.status) {
-                                    toastr.success(res.data.message, 'Success !');
-                                    this.loadData();
-                                    $("#deleteModal").modal('hide');
-                                } else {
-                                    toastr.error(res.data.message, 'Error !');
-                                }
-                            });
-                    }
-                },
-            });
-        });
-    </script>
+    <script src="/JS_Admin/calendarMovie.js"></script>
 @endsection

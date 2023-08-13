@@ -19,7 +19,7 @@
                                 <template v-for="(v1, k1)  in dateTime">
                                     <template v-if="v.check == v1.check">
                                         <button data-bs-toggle="modal"
-                                            v-on:click="tt_lich = v ; getVe(v); hang_doc = 0; hang_ngang = 0"
+                                            v-on:click="tt_lich = v1 ; getVe(v1); hang_doc = 0; hang_ngang = 0"
                                             data-bs-target="#veModal"
                                             class="btn btn-danger me-2">@{{ v1.gio_chieu }}</button>
                                     </template>
