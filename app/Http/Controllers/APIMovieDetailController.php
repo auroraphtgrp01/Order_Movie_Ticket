@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DonHang;
 use App\Models\LichChieu;
 use App\Models\MovieDetail;
 use App\Models\Phim;
 use App\Models\VeXemPhim;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class APIMovieDetailController extends Controller
 {
@@ -116,8 +121,59 @@ class APIMovieDetailController extends Controller
             ->join('phong_chieus', 'phong_chieus.id', 'lich_chieus.id_phong')
             ->select('ve_xem_phims.*', 'phong_chieus.hang_ngang', 'phong_chieus.hang_doc')
             ->get();
+        foreach ($data as $key => $value) {
+            $value->choose = 0;
+        }
         return response()->json([
             'data' => $data
         ]);
+    }
+    public function order(Request $request)
+    {
+        $login = Session::get('auth');
+        if ($login) {
+
+            DB::beginTransaction();
+            try {
+                $donHang = DonHang::create([
+                    'id_khach_hang' => $login->id,
+                ]);
+                $donHang->ma_don_hang = $donHang->id + 2937;
+                $donHang->save();
+                $tongTien = 0;
+                $count = 0;
+                foreach ($request->order as $key => $value) {
+                    if ($value['choose']) {
+                        $count++;
+                        $ve = VeXemPhim::find($value['id']);
+                        $ve->id_don_hang = $donHang->ma_don_hang;
+                        $ve->tinh_trang = \App\Models\VeXemPhim::VE_DANG_GIU_CHO;
+                        $ve->save();
+                        $tongTien += $ve->gia_ve;
+                    }
+                }
+                $donHang->tong_tien = $tongTien;
+                $donHang->save();
+                if ($count == 0) {
+                    return response()->json([
+                        'status' => -1,
+                        'message' => 'Vui Lòng Chọn Ghế !'
+                    ]);
+                }
+                DB::commit();
+                return response()->json([
+                    'status' => 1,
+                    'message' => 'Đã Đặt Vé Thành Công !'
+                ]);
+            } catch (Exception $e) {
+                Log::error($e);
+                DB::rollBack();
+            }
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Tính Năng Này Yêu Cầu Phải Đăng Nhập !'
+            ]);
+        }
     }
 }

@@ -1,9 +1,10 @@
+
 $(document).ready(function () {
     new Vue({
         el: '#app_details',
         data: {
             dataMovie: [],
-            listRcm: [],
+            listRcm:[],
             data_lc: {},
             dateTime: [],
             tt_lich: {},
@@ -14,8 +15,25 @@ $(document).ready(function () {
         },
         created() {
             this.loadDataFromURL();
+
         },
         methods: {
+            datVe() {
+                axios
+                    .post('/api/movie-details/order', payload = {
+                        'order': this.veXemPhim
+                    })
+                    .then((res) => {
+                        if (res.data.status == 1) {
+                            toastr.success(res.data.message, 'Success');
+                            $('#veModal').modal('hide');
+                        } else if (res.data.status == -1) {
+                            toastr.error(res.data.message, 'Error');
+                        } else {
+                            toastr.error(res.data.message, 'Error');
+                        }
+                    });
+            },
             sortArrayByTime(arr) {
                 function convertTimeToMinutes(time) {
                     const [hours, minutes] = time.split(':');
@@ -75,6 +93,11 @@ $(document).ready(function () {
             date_format(now) {
                 return moment(now).format('DD/MM/yyyy HH:mm');
             },
+            // chooseChair(payload) {
+            //     axios
+            //         .post('/api/movie-details/status', payload)
+            //         .then((res) => { });
+            // },
             getVe(payload) {
                 axios
                     .post('/api/movie-details/get-ve', payload)
@@ -142,6 +165,7 @@ $(document).ready(function () {
                         this.listRcm = res.data.data_rcm;
                     });
             },
+
         },
     });
 });

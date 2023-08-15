@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('client.share.css')
+    @include('client_view.share.css')
 </head>
 
 <body class="sticky-menu">
@@ -16,10 +16,10 @@
         @include('client.share.footer')
     </div>
 
-    @include('client.share.search')
-    @include('client.share.order')
+    @include('client_view.share.search')
+    @include('client_view.share.order')
 
-    @include('client.share.js')
+    @include('client_view.share.js')
     @yield('js')
 </body>
 

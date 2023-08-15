@@ -73,7 +73,7 @@ $(document).ready(function () {
             createGhe() {
                 this.create.gia_mac_dinh = this.gia_mac_dinh;
                 axios
-                    .post('/api/admin/ghe-chieu/store', this.create)
+                    .post('/api/admin/ghe-chieu/create', this.create)
                     .then((res) => {
                         if (res.data.status) {
                             toastr.success(res.data.message, 'Success');

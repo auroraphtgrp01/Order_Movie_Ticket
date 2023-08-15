@@ -27,6 +27,7 @@
                                 <hr>
                             </template>
                         </template>
+                        `
                     </div>
                 </div>
 
@@ -55,7 +56,7 @@
                                 <template v-if="hang_doc == 0 && hang_ngang == 0">
                                     <h4 class="text-center"><b class="text-danger">PHIM HIỆN CHƯA ĐƯỢC TẠO GHẾ</b></h4>
                                 </template>
-                                <table v-else class="table table-bordered" id="table">
+                                <table class="table table-bordered" id="table">
                                     <thead>
                                         <tr>
                                             <th colspan="100%" class="bg-warning text-center align-middle">
@@ -74,24 +75,42 @@
                                                     <th class="text-center align-middle">
                                                         <template v-for="(v, k) in veXemPhim">
                                                             <template v-if="k == ((i - 1) * hang_ngang + j - 1)">
-                                                                <i class="fa-solid fa-couch fa-2x"></i>
-                                                                <br>
-                                                                <span>
-                                                                    @{{ v.so_ghe }} / @{{ v.gia_ve }}
-                                                                </span>
+                                                                <div style="cursor: pointer;">
+                                                                    <template v-if="v.tinh_trang == 0">
+                                                                        <i v-if="v.choose == 1"
+                                                                            v-on:click="v.choose = 0"
+                                                                            class="text-success fa-solid fa-couch fa-2x"></i>
+                                                                        <i v-if="v.choose == 0"
+                                                                            v-on:click="v.choose = 1"
+                                                                            class="fa-solid fa-couch fa-2x"></i>
+                                                                    </template>
+                                                                    <template v-else>
+                                                                        <i
+                                                                            class="text-danger fa-solid fa-couch fa-2x"></i>
+                                                                    </template>
+                                                                    <br>
+                                                                    <span>
+                                                                        @{{ v.so_ghe }} / @{{ v.gia_ve }}
+                                                                    </span>
+                                                                </div>
                                                             </template>
                                                         </template>
                                                     </th>
                                                 </template>
                                             </tr>
                                         </template>
+
                                     </tbody>
                                 </table>
+                                <div class="text-end"> <button class="btn btn-danger" v-on:click="datVe()">Đặt
+                                        Vé</button></div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -153,7 +172,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

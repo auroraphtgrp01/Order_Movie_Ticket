@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\APIVeXemPhimController;
 use App\Http\Controllers\APIAdminController;
 use App\Http\Controllers\APIDichVuController;
 use App\Http\Controllers\APIDonViController;
@@ -17,6 +18,7 @@ Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieD
 //
 Route::group(['prefix' => '/client'], function () {
     Route::post('/lich-chieu-theo-phim', [APILichChieuController::class, 'lich_chieu_theo_phim'])->name('lichChieuPhim');
+    Route::post('/order', [APIVeXemPhimController::class, 'order']);
 });
 Route::group(['prefix' => '/admin'], function () {
     // Quản lý phim
@@ -36,7 +38,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/delete', [APIPhongChieuController::class, 'delete'])->name('phongchieuDelete');
         Route::post('/update', [APIPhongChieuController::class, 'update'])->name('phongchieuUpdate');
     });
-    Route::group(['prefix' => '/ghe_chieu'], function () {
+    Route::group(['prefix' => '/ghe-chieu'], function () {
         Route::post('/create', [APIGheChieuController::class, 'store'])->name('gheChieuStore');
         Route::post('/info', [APIGheChieuController::class, 'info'])->name('infoPhongGhe');
         Route::post('/status', [APIGheChieuController::class, 'status'])->name('gheChieuStatus');
@@ -84,4 +86,5 @@ Route::group(['prefix' => '/admin'], function () {
 Route::group(['prefix' => '/movie-details'], function () {
     Route::post('/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
     Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
+    Route::post('/order', [APIMovieDetailController::class, 'order']);
 });
