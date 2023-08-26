@@ -13,4 +13,8 @@ class TestController extends Controller
         Session::put('s_1', 'sdsd');
         return response('x')->withCookie(Cookie('c_1'));
     }
+    public function index()
+    {
+        return view('admin.page.login');
+    }
 }

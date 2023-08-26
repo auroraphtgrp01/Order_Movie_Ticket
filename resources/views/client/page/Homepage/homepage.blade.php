@@ -33,11 +33,9 @@
             <!-- services-area -->
             {{-- @include('client.share.services') --}}
             <!-- services-area-end -->
-
             <!-- top-rated-movie -->
             @include('client.share.top_rated')
             <!-- top-rated-movie-end -->
-
             <!-- live-area -->
             {{-- @include('client.share.live') --}}
             <!-- live-area-end -->

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -107,6 +108,21 @@ class APIAdminController extends Controller
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
+        }
+    }
+    public function loginAdmin(Request $request)
+    {
+        $check  = Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password]);
+        if ($check == true) {
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đã đăng nhập thành công !'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Sai tài khoản hoặc mật khẩu !',
+            ]);
         }
     }
 }

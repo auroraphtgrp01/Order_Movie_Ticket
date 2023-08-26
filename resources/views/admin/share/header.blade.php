@@ -366,12 +366,8 @@
                     <img src="/assets_admin/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         @php
-                            $value = Session::get('auth');
-                            if ($value) {
-                                $username = $value->ho_va_ten;
-                            } else {
-                                $username = 'Chưa Login';
-                            }
+                            $user = Auth::guard('admin')->user();
+                            $username = $user->username;
                         @endphp
                         <p class="user-name mb-0">{{ $username }}</p>
                         <p class="designattion mb-0">Fullstack Development</p>

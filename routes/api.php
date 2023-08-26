@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\API\APIVeXemPhimController;
 use App\Http\Controllers\APIAdminController;
 use App\Http\Controllers\APIDichVuController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\APIGheChieuController;
 use App\Http\Controllers\APIHomePageController;
 use App\Http\Controllers\APILichChieuController;
 use App\Http\Controllers\APIMovieDetailController;
+use App\Http\Controllers\APIPhanQuyenController;
 use App\Http\Controllers\APIPHIMController;
 use App\Http\Controllers\APIPhongChieuController;
 use App\Http\Controllers\CustomerAccountController;
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
 Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieDetail');
+Route::post('/admin/login',  [APIAdminController::class, 'loginAdmin']);
 //
 Route::group(['prefix' => '/client'], function () {
     Route::post('/lich-chieu-theo-phim', [APILichChieuController::class, 'lich_chieu_theo_phim'])->name('lichChieuPhim');
@@ -82,9 +85,18 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/status', [APIAdminController::class, 'status'])->name('adminStatus');
         Route::post('/update', [APIAdminController::class, 'update'])->name('adminUpdate');
     });
+    Route::group(['prefix' => '/phan-quyen'], function () {
+        Route::post('/data', [APIPhanQuyenController::class, 'data']);
+        Route::post('/data-chuc-nang', [APIPhanQuyenController::class, 'dataChucNang']);
+        Route::post('/create', [APIPhanQuyenController::class, 'create']);
+        Route::post('/status', [APIPhanQuyenController::class, 'status']);
+        Route::post('/update', [APIPhanQuyenController::class, 'update']);
+        Route::post('/delete', [APIPhanQuyenController::class, 'delete']);
+    });
 });
-Route::group(['prefix' => '/movie-details'], function () {
-    Route::post('/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
+Route::post('/movie-details/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
+
+Route::group(['prefix' => '/movie-details', 'middleware' => 'APIClient'], function () {
     Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
     Route::post('/order', [APIMovieDetailController::class, 'order']);
 });

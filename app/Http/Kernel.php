@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Routing\MiddlewareNameResolver;
 
 class Kernel extends HttpKernel
 {
@@ -69,5 +70,8 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'APIClient' => \App\Http\Middleware\APIClientMiddleWare::class,
+        'APIAdmin' => \App\Http\Middleware\APIAdminMiddleware::class,
+        'WebAdmin' => \App\Http\Middleware\WebAdmin::class,
     ];
 }

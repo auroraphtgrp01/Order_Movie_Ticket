@@ -9,6 +9,7 @@ use App\Http\Controllers\DonViController;
 use App\Http\Controllers\GheChieuController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LichChieuController;
+use App\Http\Controllers\PhanQuyenController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongChieuController;
 use App\Http\Controllers\TestController;
@@ -16,17 +17,22 @@ use App\Http\Controllers\TestViewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestView;
 
+// Route::get('/test', [TestController::class, 'index']);
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/movie-detail/{slug}', [HomePageController::class, 'details']);
 Route::get('/register', [CustomerAccountController::class, 'viewResgister']);
 Route::get('/login', [CustomerAccountController::class, 'viewLogin']);
-Route::get('/test', [TestViewController::class, 'index']);
+// Route::get('/test', [TestViewController::class, 'index']);
+Route::get('/admin/login', [AdminController::class, 'loginView']);
 //
-Route::group(['prefix' => '/admin'], function () {
+Route::group(['prefix' => '/admin', 'middleware' => 'WebAdmin'], function () {
     Route::get('/', [AdminController::class, 'adminManage']);
     // Quản lý phim
     Route::group(['prefix' => '/phim'], function () {
         Route::get('/', [PhimController::class, 'index']);
+    });
+    Route::group(['prefix' => '/phan-quyen'], function () {
+        Route::get('/', [PhanQuyenController::class, 'index']);
     });
     Route::group(['prefix' => '/phong-chieu'], function () {
         Route::get('/', [PhongChieuController::class, 'index']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerAccount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CustomerAccountController extends Controller
@@ -112,13 +113,9 @@ class CustomerAccountController extends Controller
     }
     public function login(Request $request)
     {
-        $check  = CustomerAccount::where('email', $request->email)
-            ->first();
-        $passwordInput = $request->password;
-        $passwordSave  = $check->password;
-        if ($check && password_verify($passwordInput, $passwordSave)) {
-            Session::start();
-            Session::put('auth', $check);
+
+        $check = Auth::guard('client')->attempt(['email' => $request->email, 'password' => $request->password]);
+        if ($check) {
             return response()->json([
                 'status' => 1,
                 'message' => 'Đăng Nhập Thành Công !'
@@ -129,5 +126,23 @@ class CustomerAccountController extends Controller
                 'message' => 'Đăng Nhập Thất Bại !'
             ]);
         }
+
+        // $check  = CustomerAccount::where('email', $request->email)
+        //     ->first();
+        // $passwordInput = $request->password;
+        // $passwordSave  = $check->password;
+        // if ($check && password_verify($passwordInput, $passwordSave)) {
+        //     Session::start();
+        //     Session::put('auth', $check);
+        //     return response()->json([
+        //         'status' => 1,
+        //         'message' => 'Đăng Nhập Thành Công !'
+        //     ]);
+        // } else {
+        //     return response()->json([
+        //         'status' => 0,
+        //         'message' => 'Đăng Nhập Thất Bại !'
+        //     ]);
+        // }
     }
 }

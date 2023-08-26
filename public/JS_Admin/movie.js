@@ -111,6 +111,7 @@ $("body").on('click', '.del', function () {
                 }, 500);
             }
         });
+
 });
 //
 $("body").on('click', '.edit', function () {

@@ -10,6 +10,7 @@ use App\Models\VeXemPhim;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -57,6 +58,7 @@ class APIMovieDetailController extends Controller
             shuffle($movie_arr);
             $rcm_movie = array_slice($movie_arr, 0, 4);
             return response()->json([
+                'status' => 1,
                 'data' => $movie,
                 'data_rcm' => $rcm_movie,
                 'data_lc' => $dataLichChieu,
@@ -125,12 +127,14 @@ class APIMovieDetailController extends Controller
             $value->choose = 0;
         }
         return response()->json([
-            'data' => $data
+            'data' => $data,
+            'status' => 1,
+
         ]);
     }
     public function order(Request $request)
     {
-        $login = Session::get('auth');
+        $login =  Auth::guard('client')->user();
         if ($login) {
 
             DB::beginTransaction();

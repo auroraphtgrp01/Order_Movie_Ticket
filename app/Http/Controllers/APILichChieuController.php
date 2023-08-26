@@ -53,11 +53,8 @@ class APILichChieuController extends Controller
     }
     public function status(Request $request)
     {
-
-
         DB::beginTransaction();
         try {
-
             $data =  LichChieu::find($request->id);
             // change status active -> disable
             if ($data) {

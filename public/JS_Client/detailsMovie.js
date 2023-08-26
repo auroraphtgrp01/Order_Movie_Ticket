@@ -4,7 +4,7 @@ $(document).ready(function () {
         el: '#app_details',
         data: {
             dataMovie: [],
-            listRcm:[],
+            listRcm: [],
             data_lc: {},
             dateTime: [],
             tt_lich: {},
@@ -102,11 +102,15 @@ $(document).ready(function () {
                 axios
                     .post('/api/movie-details/get-ve', payload)
                     .then((res) => {
-                        this.veXemPhim = res.data.data;
-                        console.log(this.veXemPhim);
-                        if (this.veXemPhim.length) {
-                            this.hang_doc = this.veXemPhim[0].hang_doc;
-                            this.hang_ngang = this.veXemPhim[0].hang_ngang;
+                        if (res.data.status) {
+                            this.veXemPhim = res.data.data;
+                            console.log(this.veXemPhim);
+                            if (this.veXemPhim.length) {
+                                this.hang_doc = this.veXemPhim[0].hang_doc;
+                                this.hang_ngang = this.veXemPhim[0].hang_ngang;
+                            }
+                        } else {
+                            toastr.error(res.data.message, 'Error !');
                         }
                     });
             },
@@ -159,10 +163,18 @@ $(document).ready(function () {
                 axios
                     .post('/api/movie-details/dataset', payload)
                     .then((res) => {
-                        this.dataMovie = res.data.data;
-                        this.data_lc = res.data.data_lc;
-                        this.dateAndTime(this.data_lc);
-                        this.listRcm = res.data.data_rcm;
+                        if (res.data.status) {
+                            this.dataMovie = res.data.data;
+                            this.data_lc = res.data.data_lc;
+                            this.dateAndTime(this.data_lc);
+                            this.listRcm = res.data.data_rcm;
+                        } else {
+                            this.dataMovie = res.data.data;
+                            this.dateAndTime(this.data_lc);
+                            this.listRcm = res.data.data_rcm;
+                            toastr.error(res.data.message, 'Error !');
+                        }
+
                     });
             },
 
