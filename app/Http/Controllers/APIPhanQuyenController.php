@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChucNang;
 use App\Models\PhanQuyen;
+use App\Models\QuyenChucNang;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,16 +12,48 @@ use Illuminate\Support\Facades\Log;
 
 class APIPhanQuyenController extends Controller
 {
+    public function phanQuyen(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            QuyenChucNang::where('id_quyen', $request->quyen['id'])->delete();
+            foreach ($request->chuc_nang as $key => $value) {
+                if (isset($value['check']) && $value['check']) {
+                    QuyenChucNang::create([
+                        'id_quyen' => $request->quyen['id'],
+                        'id_chuc_nang' => $value['id'],
+                    ]);
+                }
+            }
+            DB::commit();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đã cập nhật quyền thành công!',
+            ]);
+        } catch (Exception $e) {
+            Log::error($e);
+            DB::rollBack();
+        }
+    }
     public function data()
     {
         $data = PhanQuyen::get();
         return response()->json([
-            'data'   => $data,
+            'data' => $data,
         ]);
     }
-    public function dataChucNang()
+    public function dataChucNang(Request $request)
     {
         $data = ChucNang::get();
+        $chucNang = QuyenChucNang::where('id_quyen', $request->id)->get();
+        foreach ($data as $k_1 => $v_1) {
+            foreach ($chucNang as $k_2 => $v_2) {
+                if ($v_1->id == $v_2->id_chuc_nang) {
+                    $v_1->check = true;
+                    break;
+                }
+            }
+        }
         return response()->json([
             'status' => 1,
             'data' => $data,
@@ -35,15 +68,15 @@ class APIPhanQuyenController extends Controller
             PhanQuyen::create($data);
             DB::commit();
             return response()->json([
-                'status'    => 1,
-                'message'   => 'Đã Thêm Mới Phân Quyền Thành Công !',
+                'status' => 1,
+                'message' => 'Đã Thêm Mới Phân Quyền Thành Công !',
             ]);
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
             return response()->json([
-                'status'    => 0,
-                'message'   => 'Thêm Mới Phân Quyền Thất Bại !',
+                'status' => 0,
+                'message' => 'Thêm Mới Phân Quyền Thất Bại !',
             ]);
         }
     }
@@ -62,15 +95,15 @@ class APIPhanQuyenController extends Controller
             $data->save();
             DB::commit();
             return response()->json([
-                'status'    => 1,
-                'message'   => 'Đã thay đổi trạng thái !',
+                'status' => 1,
+                'message' => 'Đã thay đổi trạng thái !',
             ]);
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
             return response()->json([
-                'status'    => 0,
-                'message'   => 'Thất Bại !',
+                'status' => 0,
+                'message' => 'Thất Bại !',
             ]);
         }
     }
@@ -86,16 +119,16 @@ class APIPhanQuyenController extends Controller
                 $phanQuyen->save();
                 DB::commit();
                 return response()->json([
-                    'status'    => 1,
-                    'message'   => 'Đã cập nhật thành công !',
+                    'status' => 1,
+                    'message' => 'Đã cập nhật thành công !',
                 ]);
             }
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
             return response()->json([
-                'status'    => 0,
-                'message'   => Log::error($e),
+                'status' => 0,
+                'message' => Log::error($e),
             ]);
         }
     }
@@ -109,16 +142,16 @@ class APIPhanQuyenController extends Controller
                 $data->delete();
                 DB::commit();
                 return response()->json([
-                    'status'    => 1,
-                    'message'   => 'Đã xoá thành công !',
+                    'status' => 1,
+                    'message' => 'Đã xoá thành công !',
                 ]);
             }
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
             return response()->json([
-                'status'    => 0,
-                'message'   => Log::error($e),
+                'status' => 0,
+                'message' => Log::error($e),
             ]);
         }
     }

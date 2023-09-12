@@ -33,11 +33,9 @@ class HomePageController extends Controller
             ->whereDate('bat_dau', '<=', $today)
             ->whereDate('ket_thuc', '>=', $today)
             ->get();
-
         $phimSapChieu  = Phim::where('hien_thi', 1)
             ->whereDate('bat_dau', '>', $today)
             ->get();
-
         return view('client_2.page.client_homepage', compact('phimDangChieu', 'phimSapChieu'));
     }
     public function detail($id)
@@ -49,7 +47,6 @@ class HomePageController extends Controller
                 ->whereDate('bat_dau', '<=', $today)
                 ->whereDate('ket_thuc', '>=', $today)
                 ->get();
-
             return view('client.page.phimDetail', compact('phim', 'phimDangChieu'));
         } else {
             return redirect('/');

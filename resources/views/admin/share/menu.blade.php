@@ -67,6 +67,13 @@
                     <div class="menu-title">Ghế Chiếu</div>
                 </a>
             </li>
+            <li class="nav-item dropdown">
+                <a href="/admin/phan-quyen" class="nav-link dropdown-toggle dropdown-toggle-nocaret">
+                    <div class="parent-icon"><i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="menu-title">Phân Quyền</div>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

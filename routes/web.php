@@ -14,6 +14,8 @@ use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongChieuController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestViewController;
+use App\Http\Controllers\ThongKeController;
+use App\Models\DanhSachTaiKhoan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestView;
 
@@ -22,6 +24,8 @@ Route::get('/', [HomePageController::class, 'index']);
 Route::get('/movie-detail/{slug}', [HomePageController::class, 'details']);
 Route::get('/register', [CustomerAccountController::class, 'viewResgister']);
 Route::get('/login', [CustomerAccountController::class, 'viewLogin']);
+Route::get('/forgot-password', [CustomerAccountController::class, 'viewForgotPassword']);
+Route::get('/change-password/{id}', [CustomerAccountController::class, 'viewChangePassword']);
 // Route::get('/test', [TestViewController::class, 'index']);
 Route::get('/admin/login', [AdminController::class, 'loginView']);
 //
@@ -58,7 +62,10 @@ Route::group(['prefix' => '/admin', 'middleware' => 'WebAdmin'], function () {
     Route::group(['prefix' => '/lich-chieu'], function () {
         Route::get('/', [LichChieuController::class, 'index']);
     });
+    Route::group(['prefix' => '/thong-ke'], function () {
+        Route::get('/', [ThongKeController::class, 'index']);
+    });
 });
 Route::get('/dang-ky', [AuthenticationController::class, 'signup']);
 Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
-Route::get('/create', [TestController::class, 'create']);
+Route::get('/index', [TestController::class, 'index']);

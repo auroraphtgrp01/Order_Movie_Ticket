@@ -10,7 +10,7 @@ $(document).ready(function () {
             tt_lich: {},
             veXemPhim: {},
             hang_doc: 0,
-            hang_ngang: 0,
+            hang_ngangF: 0,
             dateObj: [],
         },
         created() {

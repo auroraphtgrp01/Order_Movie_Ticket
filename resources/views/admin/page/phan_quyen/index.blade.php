@@ -75,7 +75,7 @@
                                                 class="btn btn-danger">Tạm Tắt</button>
                                         </td>
                                         <td class="text-center align-middle">
-                                            <button class="btn btn-info">Cấp Quyền</button>
+                                            <button class="btn btn-info" v-on:click="chonQuyen(v)">Cấp Quyền</button>
                                             <button class="btn btn-primary ms-2" data-bs-toggle="modal"
                                                 v-on:click="list_update = Object.assign({},v)"
                                                 data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"
@@ -154,16 +154,16 @@
                     Phân Quyền
                 </div>
                 <div class="card-body">
-                    {{-- <div class="row" v-if="quyen_dang_chon.id > 0">
+                    <div class="row" v-if="quyen_dang_chon.id > 0">
                         <template v-for="(v, k ) in list_chuc_nang">
                             <div class="col-md-6">
                                 <div class="form-check">
                                     <input v-model="v.check" class="form-check-input" type="checkbox">
-                                    <label class="form-check-label"></label>
+                                    <label class="form-check-label">@{{ v.ten_chuc_nang }}</label>
                                 </div>
                             </div>
                         </template>
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="text-center">
@@ -181,16 +181,31 @@
             el: '#phanQuyen',
             data: {
                 list_quyen: {},
-                list_chuc_nang: {},
+                list_chuc_nang: [],
                 new_quyen: {},
                 list_update: {},
                 list_delete: {},
+                quyen_dang_chon: {},
+
             },
             created() {
                 this.loadQuyen();
                 this.loadChucNang();
             },
             methods: {
+                chonQuyen(v) {
+                    this.quyen_dang_chon = Object.assign({}, v);
+                    axios
+                        .post('/api/admin/phan-quyen/data-chuc-nang', this.quyen_dang_chon)
+                        .then((res) => {
+                            this.list_chuc_nang = res.data.data;
+                        })
+                        .catch((res) => {
+                            $.each(res.response.data.errors, function(k, v) {
+                                toastr.error(v[0], 'Error');
+                            });
+                        });
+                },
                 loadQuyen() {
                     axios
                         .post('/api/admin/phan-quyen/data')
@@ -203,19 +218,19 @@
                             });
                         });
                 },
-                loadChucNang() {
-                    axios
-                        .post('/api/admin/phan-quyen/data-chuc-nang')
-                        .then((res) => {
-                            this.list_chuc_nang = res.data.data;
-                            console.log(this.list_chuc_nang);
-                        })
-                        .catch((res) => {
-                            $.each(res.response.data.errors, function(k, v) {
-                                toastr.error(v[0], 'Error');
-                            });
-                        });
-                },
+                // loadChucNang() {
+                //     axios
+                //         .post('/api/admin/phan-quyen/data-chuc-nang')
+                //         .then((res) => {
+                //             this.list_chuc_nang = res.data.data;
+                //             console.log(this.list_chuc_nang);
+                //         })
+                //         .catch((res) => {
+                //             $.each(res.response.data.errors, function(k, v) {
+                //                 toastr.error(v[0], 'Error');
+                //             });
+                //         });
+                // },
                 newData() {
                     axios
                         .post('/api/admin/phan-quyen/create', this.new_quyen)
@@ -283,7 +298,27 @@
                                 toastr.error(v[0], 'Error');
                             });
                         });
-                }
+                },
+                capNhatQuyen() {
+                    var payload = {
+                        'quyen': this.quyen_dang_chon,
+                        'chuc_nang': this.list_chuc_nang,
+                    };
+                    axios
+                        .post('/api/admin/phan-quyen/add', payload)
+                        .then((res) => {
+                            if (res.data.status) {
+                                toastr.success(res.data.message, 'Success');
+                            } else {
+                                toastr.error(res.data.message, 'Error');
+                            }
+                        })
+                        .catch((res) => {
+                            $.each(res.response.data.errors, function(k, v) {
+                                toastr.error(v[0], 'Error');
+                            });
+                        });
+                },
             },
         });
     </script>

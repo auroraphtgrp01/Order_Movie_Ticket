@@ -27,7 +27,6 @@
                                 <hr>
                             </template>
                         </template>
-                        `
                     </div>
                 </div>
 

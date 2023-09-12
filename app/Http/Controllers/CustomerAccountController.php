@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerAccount;
+use App\Models\QuyenChucNang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -11,6 +12,21 @@ class CustomerAccountController extends Controller
 {
     public function store(Request $request)
     {
+
+        $id_chuc_nang   =   18;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
+
+
         $data               = $request->all();
         $data['is_block']   =   0;
         $data['tinh_trang'] =   0;
@@ -23,6 +39,18 @@ class CustomerAccountController extends Controller
     }
     public function data()
     {
+        $id_chuc_nang   =   19;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         $data   = CustomerAccount::get();
         return response()->json([
             'xxx'    => $data,
@@ -30,6 +58,18 @@ class CustomerAccountController extends Controller
     }
     public function block(Request $request)
     {
+        $id_chuc_nang   =   21;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         $ds = CustomerAccount::find($request->id);
         if ($ds) {
             if ($ds->is_block  == 1) {
@@ -51,6 +91,19 @@ class CustomerAccountController extends Controller
     }
     public function tinh_trang(Request $request)
     {
+        $id_chuc_nang   =   20;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
+
         $ds = CustomerAccount::find($request->id);
         if ($ds) {
             if ($ds->tinh_trang == 0) {
@@ -72,6 +125,20 @@ class CustomerAccountController extends Controller
     }
     public function destroy(Request $request)
     {
+        $id_chuc_nang   =   23;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
+
+
         $ds = CustomerAccount::find($request->id);
         if ($ds) {
             $ds->delete();
@@ -88,6 +155,20 @@ class CustomerAccountController extends Controller
     }
     public function update(Request $request)
     {
+
+        $id_chuc_nang   =   24;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
+
         $ds = CustomerAccount::find($request->id);
         if ($ds) {
             $data = $request->all();
@@ -144,5 +225,42 @@ class CustomerAccountController extends Controller
         //         'message' => 'Đăng Nhập Thất Bại !'
         //     ]);
         // }
+    }
+    public function viewForgotPassword()
+    {
+        return view('client.page.Homepage.password_page.forgot_password');
+    }
+
+    public function viewChangePassword($id)
+    {
+        return view('client.page.Homepage.password_page.change_password', compact('id'));
+    }
+    public function matkhau(Request $request)
+    {
+        $acc = CustomerAccount::where('ma_doi_mat_khau', $request->id)->first();
+        if ($acc) {
+            $acc->password = bcrypt($request->password);
+            $acc->save();
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'error'
+            ]);
+        }
+    }
+    public function resetPassword(Request $request)
+    {
+        $acc = CustomerAccount::where('email', $request->email)->first();
+        if ($acc) {
+            return response()->json([
+                'status' => 1,
+                'message' => 'Check Mail',
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Loi',
+            ]);
+        }
     }
 }

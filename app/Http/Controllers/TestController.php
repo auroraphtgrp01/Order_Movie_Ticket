@@ -15,6 +15,6 @@ class TestController extends Controller
     }
     public function index()
     {
-        return view('admin.page.login');
+        return view('thong_ke.chart');
     }
 }

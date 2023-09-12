@@ -6,10 +6,12 @@ use App\Models\GheChieu;
 use App\Models\LichChieu;
 use App\Models\Phim;
 use App\Models\PhongChieu;
+use App\Models\QuyenChucNang;
 use App\Models\VeXemPhim;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -18,6 +20,18 @@ class APILichChieuController extends Controller
 {
     public function store(Request $request)
     {
+        $id_chuc_nang   =   38;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         $data = $request->all();
         LichChieu::create($data);
         return response()->json([
@@ -27,6 +41,18 @@ class APILichChieuController extends Controller
     }
     public function data()
     {
+        $id_chuc_nang   =   41;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         $data = LichChieu::join('phims', 'phims.id', 'lich_chieus.id_phim')
             ->join('phong_chieus', 'lich_chieus.id_phong', 'phong_chieus.id')
             ->select('lich_chieus.*', 'phims.ten_phim', 'phong_chieus.ten_phong', 'phong_chieus.hang_ngang', 'phong_chieus.hang_doc')
@@ -45,6 +71,18 @@ class APILichChieuController extends Controller
     }
     public function info(Request $request)
     {
+        $id_chuc_nang   =   43;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         $lichChieu  = VeXemPhim::where('id_lich_chieu', $request->id)->get();
 
         return response()->json([
@@ -53,6 +91,19 @@ class APILichChieuController extends Controller
     }
     public function status(Request $request)
     {
+        $id_chuc_nang   =   42;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
+
         DB::beginTransaction();
         try {
             $data =  LichChieu::find($request->id);
@@ -136,6 +187,18 @@ class APILichChieuController extends Controller
     }
     public function update(Request $request)
     {
+        $id_chuc_nang   =   39;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         $data = LichChieu::find($request->id);
         if ($data) {
             $check      =   LichChieu::where('trang_thai', 1)
@@ -170,6 +233,18 @@ class APILichChieuController extends Controller
     }
     public function delete(Request $request)
     {
+        $id_chuc_nang   =   40;
+        $user_login     =   Auth::guard('admin')->user();
+
+        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
+            ->where('id_chuc_nang', $id_chuc_nang)
+            ->first();
+        if (!$check) {
+            return response()->json([
+                'status'    => 0,
+                'message'   => 'Bạn không có quyền cho chức năng này!',
+            ]);
+        }
         DB::beginTransaction();
         try {
             $lichChieu     =   LichChieu::find($request->id);

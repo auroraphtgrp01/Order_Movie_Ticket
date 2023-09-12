@@ -12,12 +12,15 @@ use App\Http\Controllers\APIMovieDetailController;
 use App\Http\Controllers\APIPhanQuyenController;
 use App\Http\Controllers\APIPHIMController;
 use App\Http\Controllers\APIPhongChieuController;
+use App\Http\Controllers\APIThongKeController;
 use App\Http\Controllers\CustomerAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
 Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieDetail');
-Route::post('/admin/login',  [APIAdminController::class, 'loginAdmin']);
+Route::post('/admin/login', [APIAdminController::class, 'loginAdmin']);
+Route::post('/doi-mat-khau', [CustomerAccountController::class, 'matkhau'])->name('doimatkhau');
+Route::post('/reset-password', [CustomerAccountController::class, 'resetPassword'])->name('resetPassword');
 //
 Route::group(['prefix' => '/client'], function () {
     Route::post('/lich-chieu-theo-phim', [APILichChieuController::class, 'lich_chieu_theo_phim'])->name('lichChieuPhim');
@@ -57,7 +60,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/update', [CustomerAccountController::class, 'update'])->name('taiKhoanUpdate');
         Route::post('/login', [CustomerAccountController::class, 'login'])->name('taiKhoanLogin');
     });
-    Route::group(['prefix'  =>  '/don-vi'], function () {
+    Route::group(['prefix' => '/don-vi'], function () {
         Route::post('/create', [APIDonViController::class, 'store'])->name('donViStore');
         Route::post('/data', [APIDonViController::class, 'data'])->name('donViData');
         Route::post('/del', [APIDonViController::class, 'destroy'])->name('donViDel');
@@ -92,6 +95,10 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/status', [APIPhanQuyenController::class, 'status']);
         Route::post('/update', [APIPhanQuyenController::class, 'update']);
         Route::post('/delete', [APIPhanQuyenController::class, 'delete']);
+        Route::post('/add', [APIPhanQuyenController::class, 'phanQuyen']);
+    });
+    Route::group(['prefix' => '/thong-ke'], function () {
+        Route::post('/bt-1', [APIThongKeController::class, 'bt1']);
     });
 });
 Route::post('/movie-details/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
