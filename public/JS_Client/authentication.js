@@ -10,7 +10,6 @@ $(document).ready(function () {
 
         },
         created() {
-
         },
         methods: {
             themTaiKhoan() {
@@ -34,9 +33,9 @@ $(document).ready(function () {
                     .then((res) => {
                         if (res.data.status) {
                             toastr.success(res.data.message, 'Success !');
+                            window.location.href = '/';
                         } else {
                             toastr.error(res.data.message, 'Error !');
-
                         }
                     });
             }

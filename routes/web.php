@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestView;
 
 // Route::get('/test', [TestController::class, 'index']);
+Route::get('/confirmation/{id}',[CustomerAccountController::class, 'confirmation']);
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/movie-detail/{slug}', [HomePageController::class, 'details']);
 Route::get('/register', [CustomerAccountController::class, 'viewResgister']);

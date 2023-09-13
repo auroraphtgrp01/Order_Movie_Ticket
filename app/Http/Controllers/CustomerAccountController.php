@@ -2,40 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendEmail;
 use App\Models\CustomerAccount;
 use App\Models\QuyenChucNang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 class CustomerAccountController extends Controller
 {
     public function store(Request $request)
     {
-
-        $id_chuc_nang   =   18;
-        $user_login     =   Auth::guard('admin')->user();
-
-        $check          =   QuyenChucNang::where('id_quyen', $user_login->id_quyen)
-            ->where('id_chuc_nang', $id_chuc_nang)
-            ->first();
-        if (!$check) {
-            return response()->json([
-                'status'    => 0,
-                'message'   => 'Bạn không có quyền cho chức năng này!',
-            ]);
-        }
-
-
         $data               = $request->all();
         $data['is_block']   =   0;
         $data['tinh_trang'] =   0;
         $data['password']   = bcrypt($request->password);
+        $data['hashID'] = Str::uuid();
         CustomerAccount::create($data);
+        $mail['name'] = $request->ho_va_ten;
+        $mail['token'] = 'http://127.0.0.1:8000/confirmation/' . $data['hashID'];
+        Mail::to($request->email)->send(new sendEmail('Đăng ký tài khoản thành công', 'client.mail.create_account', $mail));
         return response()->json([
             'status' => true,
             'message' => 'Đã thêm mới thành công'
         ]);
+    }
+    public function confirmation ($id) {
+        $acc = CustomerAccount::where('hashID', $id)->first();
+        if($acc) {
+            $acc->tinh_trang = 1;
+            $acc->hashID = null;
+            $acc->save();
+            toastr()->success('Đã kích hoạt tài khoản thành công !');
+            return redirect('/login');
+        } else {
+            toastr()->error('Lỗi !');
+            return redirect( '/' );
+        }
     }
     public function data()
     {
@@ -197,6 +201,12 @@ class CustomerAccountController extends Controller
 
         $check = Auth::guard('client')->attempt(['email' => $request->email, 'password' => $request->password]);
         if ($check) {
+            if(Auth::guard('client')->user()->tinh_trang == 0) {
+                return response()->json([
+                    'status' => 0,
+                    'message' => 'Vui lòng xác thực tài khoản !'
+                ]);
+            }
             return response()->json([
                 'status' => 1,
                 'message' => 'Đăng Nhập Thành Công !'

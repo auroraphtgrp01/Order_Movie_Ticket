@@ -19,5 +19,7 @@ class CustomerAccount extends Authenticatable
         'ho_va_ten',
         'is_block',
         'tinh_trang',
+        'hashID',
+        'tokenPassword'
     ];
 }
