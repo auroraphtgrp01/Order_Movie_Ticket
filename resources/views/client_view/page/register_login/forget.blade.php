@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon"
             href="asstes_client_login_regis/img/favicon.ico">
-
         <!-- ======= All CSS Plugins here ======== -->
         <link rel="stylesheet"
             href="asstes_client_login_regis/css/plugins/swiper-bundle.min.css">
@@ -17,86 +16,91 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
-            integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Plugin css -->
         <link rel="stylesheet"
             href="asstes_client_login_regis/css/vendor/bootstrap.min.css">
-
         <!-- Custom Style CSS -->
         <link rel="stylesheet" href="asstes_client_login_regis/css/style.css">
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
             integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
             crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+            integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+            integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
 
     <body>
-        <main class="main__content_wrapper" id="login">
+
+        <!-- Start header area -->
+
+        <!-- End header area -->
+
+        <main id="forgetPassword" class="main__content_wrapper">
+
+            <!-- Start breadcrumb section -->
+
+            <!-- End breadcrumb section -->
+
             <!-- Start login section  -->
-            <div class="login__section section--padding">
-                <div class="container">
+            <div class="login__section section--padding mt-5">
+                <div class="container  mt-5">
                     <div class="login__section--inner">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6">
+                        <div class="row row-cols-md-1 row-cols-1">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
                                 <div class="account__login">
                                     <div class="account__login--header mb-25">
                                         <h2
-                                            class="account__login--header__title mb-10">Đăng
-                                            Nhập</h2>
-                                        <p class="account__login--header__desc">Đăng
-                                            Nhập Tại Đây Nếu Bạn Đã Là Thành
-                                            Viên</p>
+                                            class="account__login--header__title mb-10">Quên
+                                            Mật Khẩu</h2>
+                                        <p class="account__login--header__desc">Nhập
+                                            vào email đăng nhập để lấy lại mật
+                                            khẩu</p>
                                     </div>
                                     <div class="account__login--inner">
                                         <label>
-                                            <input v-model="login.email"
+                                            <input v-model="payload.email"
                                                 class="account__login--input"
-                                                placeholder="Email Addres"
+                                                placeholder="Nhập vào email"
                                                 type="email">
                                         </label>
-                                        <label>
-                                            <input v-model="login.password"
-                                                class="account__login--input"
-                                                placeholder="Password"
-                                                type="password">
-                                        </label>
-
-                                        <button v-on:click="loginAcc()"
-                                            class="account__login--btn primary__btn">Login</button>
-
+                                        <div class="d-grid gap-2 col-6 mx-auto">
+                                            <button v-on:click="resetPassword()"
+                                                class="account__login--btn primary__btn"
+                                                type="button">Gửi</button>
+                                        </div>
                                         <div class="account__login--divide">
                                             <span
-                                                class="account__login--divide__text">DONT
-                                                HAVE A ACCOUNT ? </span>
+                                                class="account__login--divide__text">OR</span>
                                         </div>
                                         <div
                                             class="account__social d-flex justify-content-center mb-15">
-                                            <!-- <a
+                                            <a
                                                 class="account__social--link facebook"
-                                                target="_blank"
-                                                href="https://www.facebook.com">Facebook</a> -->
+                                                href="/login">Đăng Nhập</a>
                                             <a
                                                 class="account__social--link google"
-                                                href="/register">Sign
-                                                Up</a>
-                                            <!-- <a
-                                                class="account__social--link twitter"
-                                                target="_blank"
-                                                href="https://twitter.com">Twitter</a> -->
+                                                href="/register">Đăng Ký</a>
                                         </div>
-                                        <p class="account__log--signup__text">Forget
-                                            your password ? <a
-                                                href="/forgot-password"
-                                                type="button">Reset Password
-                                            </a></p>
                                     </div>
                                 </div>
                             </div>
@@ -127,15 +131,9 @@
             defer="defer"></script>
         <script src="asstes_client_login_regis/js/plugins/swiper-bundle.min.js"></script>
         <script src="asstes_client_login_regis/js/plugins/glightbox.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
         <!-- Customscript js -->
         <script src="asstes_client_login_regis/js/script.js"></script>
-        <script src="/JS_Client/login.js"></script>
+        <script src="/JS_Client/forget.js"></script>
     </body>
-
 </html>

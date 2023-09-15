@@ -38,7 +38,7 @@
     </head>
 
     <body>
-        <main class="main__content_wrapper" id="login">
+        <main class="main__content_wrapper" id="register">
             <!-- Start login section  -->
             <div class="login__section section--padding">
                 <div class="container">
@@ -46,57 +46,64 @@
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-6">
-                                <div class="account__login">
+                                <div class="account__login register">
                                     <div class="account__login--header mb-25">
                                         <h2
-                                            class="account__login--header__title mb-10">Đăng
-                                            Nhập</h2>
-                                        <p class="account__login--header__desc">Đăng
-                                            Nhập Tại Đây Nếu Bạn Đã Là Thành
+                                            class="account__login--header__title mb-10">Tạo
+                                            Tài Khoản</h2>
+                                        <p class="account__login--header__desc">Tạo
+                                            Tài Khoản Tại Đây Để Trở Thành Thành
                                             Viên</p>
                                     </div>
                                     <div class="account__login--inner">
                                         <label>
-                                            <input v-model="login.email"
-                                                class="account__login--input"
-                                                placeholder="Email Addres"
+                                            <input class="account__login--input"
+                                                v-model="tt_new.ho_va_ten"
+                                                placeholder="Họ Và Tên"
+                                                type="text">
+                                        </label>
+                                        <label>
+                                            <input class="account__login--input"
+                                                v-model="tt_new.ngay_sinh"
+                                                placeholder="Ngày Sinh"
+                                                type="date">
+                                        </label>
+                                        <label>
+                                            <input class="account__login--input"
+                                                v-model="tt_new.dia_chi"
+                                                placeholder="Địa Chỉ"
+                                                type="text">
+                                        </label>
+                                        <label>
+                                            <input class="account__login--input"
+                                                v-model="tt_new.email"
+                                                placeholder="Địa Chỉ Mail"
                                                 type="email">
                                         </label>
                                         <label>
-                                            <input v-model="login.password"
-                                                class="account__login--input"
+                                            <input class="account__login--input"
+                                                v-model="tt_new.password"
                                                 placeholder="Password"
                                                 type="password">
                                         </label>
-
-                                        <button v-on:click="loginAcc()"
-                                            class="account__login--btn primary__btn">Login</button>
-
-                                        <div class="account__login--divide">
-                                            <span
-                                                class="account__login--divide__text">DONT
-                                                HAVE A ACCOUNT ? </span>
-                                        </div>
-                                        <div
-                                            class="account__social d-flex justify-content-center mb-15">
-                                            <!-- <a
-                                                class="account__social--link facebook"
-                                                target="_blank"
-                                                href="https://www.facebook.com">Facebook</a> -->
-                                            <a
-                                                class="account__social--link google"
-                                                href="/register">Sign
-                                                Up</a>
-                                            <!-- <a
-                                                class="account__social--link twitter"
-                                                target="_blank"
-                                                href="https://twitter.com">Twitter</a> -->
-                                        </div>
-                                        <p class="account__log--signup__text">Forget
-                                            your password ? <a
-                                                href="/forgot-password"
-                                                type="button">Reset Password
-                                            </a></p>
+                                        <label>
+                                            <input class="account__login--input"
+                                                placeholder="Nhập lại mật khẩu"
+                                                type="password">
+                                        </label>
+                                        <label>
+                                            <input class="account__login--input"
+                                                v-model="tt_new.so_dien_thoai"
+                                                placeholder="Số điện thoại"
+                                                type="password">
+                                        </label>
+                                        <button
+                                            class="account__login--btn primary__btn mb-10"
+                                            v-on:click="themTaiKhoan()">Đăng
+                                            Ký</button>
+                                        <p class="account__login--signup__text">Have
+                                            a account ? <a href="/login"
+                                                type="button">Sign in now</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +142,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Customscript js -->
         <script src="asstes_client_login_regis/js/script.js"></script>
-        <script src="/JS_Client/login.js"></script>
+        <script src="/JS_Client/register.js"></script>
     </body>
 
 </html>

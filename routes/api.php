@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
 Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieDetail');
 Route::post('/admin/login', [APIAdminController::class, 'loginAdmin']);
-Route::post('/doi-mat-khau', [CustomerAccountController::class, 'matkhau'])->name('doimatkhau');
+// Route::post('/doi-mat-khau', [CustomerAccountController::class, 'matkhau'])->name('doimatkhau');
 Route::post('/reset-password', [CustomerAccountController::class, 'resetPassword'])->name('resetPassword');
 //
 Route::group(['prefix' => '/client'], function () {
@@ -59,6 +59,8 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/delete', [CustomerAccountController::class, 'destroy'])->name('taiKhoanDel');
         Route::post('/update', [CustomerAccountController::class, 'update'])->name('taiKhoanUpdate');
         Route::post('/login', [CustomerAccountController::class, 'login'])->name('taiKhoanLogin');
+        Route::post('/forget', [CustomerAccountController::class, 'forget']);
+        Route::post('/reset', [CustomerAccountController::class, 'changePassword']);
     });
     Route::group(['prefix' => '/don-vi'], function () {
         Route::post('/create', [APIDonViController::class, 'store'])->name('donViStore');

@@ -1,13 +1,11 @@
 $(document).ready(function () {
     new Vue({
-        el: '#app',
+        el: '#register',
         data: {
             tt_new: {
                 tinh_trang: 1,
                 is_block: 1,
             },
-            login: {},
-
         },
         created() {
         },
@@ -22,23 +20,14 @@ $(document).ready(function () {
                                 'tinh_trang': 1
                             }
                             toastr.success(res.data.message, 'Success !');
+                            setTimeout(function () {
+                                window.location.href = '/login';
+                            }, 700);
                         } else {
                             toastr.error('Lỗi đăng ký tài khoản', 'Error !');
                         }
                     });
             },
-            loginAcc() {
-                axios
-                    .post('/api/admin/danh-sach-account/login', this.login)
-                    .then((res) => {
-                        if (res.data.status) {
-                            toastr.success(res.data.message, 'Success !');
-                            window.location.href = '/';
-                        } else {
-                            toastr.error(res.data.message, 'Error !');
-                        }
-                    });
-            }
         },
     });
 });

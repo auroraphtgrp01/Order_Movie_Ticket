@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Auth;
 
 class APIPHIMController extends Controller {
     public function store( Request $request ) {
-        $id_chuc_nang = 6;
-        $user_login = Auth::guard( 'admin' )->user();
+        // $id_chuc_nang = 6;
+        // $user_login = Auth::guard( 'admin' )->user();
 
-        $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
-        ->where( 'id_chuc_nang', $id_chuc_nang )
-        ->first();
-        if ( !$check ) {
-            return response()->json( [
-                'status' => 0,
-                'message' => 'Bạn không có quyền cho chức năng này!',
-            ] );
-        }
+        // $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
+        // ->where( 'id_chuc_nang', $id_chuc_nang )
+        // ->first();
+        // if ( !$check ) {
+        //     return response()->json( [
+        //         'status' => 0,
+        //         'message' => 'Bạn không có quyền cho chức năng này!',
+        //     ] );
+        // }
 
         $data = $request->all();
         Phim::create( $data );
@@ -31,18 +31,18 @@ class APIPHIMController extends Controller {
     }
 
     public function update( Request $request ) {
-        $id_chuc_nang = 11;
-        $user_login = Auth::guard( 'admin' )->user();
+        // $id_chuc_nang = 11;
+        // $user_login = Auth::guard( 'admin' )->user();
 
-        $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
-        ->where( 'id_chuc_nang', $id_chuc_nang )
-        ->first();
-        if ( !$check ) {
-            return response()->json( [
-                'status' => 0,
-                'message' => 'Bạn không có quyền cho chức năng này!',
-            ] );
-        }
+        // $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
+        // ->where( 'id_chuc_nang', $id_chuc_nang )
+        // ->first();
+        // if ( !$check ) {
+        //     return response()->json( [
+        //         'status' => 0,
+        //         'message' => 'Bạn không có quyền cho chức năng này!',
+        //     ] );
+        // }
 
         $phim = Phim::find( $request->id );
         if ( $phim ) {
@@ -61,18 +61,18 @@ class APIPHIMController extends Controller {
     }
 
     public function data() {
-        $id_chuc_nang = 7;
-        $user_login = Auth::guard( 'admin' )->user();
+        // $id_chuc_nang = 7;
+        // $user_login = Auth::guard( 'admin' )->user();
 
-        $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
-        ->where( 'id_chuc_nang', $id_chuc_nang )
-        ->first();
-        if ( !$check ) {
-            return response()->json( [
-                'status' => 0,
-                'message' => 'Bạn không có quyền cho chức năng này!',
-            ] );
-        }
+        // $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
+        // ->where( 'id_chuc_nang', $id_chuc_nang )
+        // ->first();
+        // if ( !$check ) {
+        //     return response()->json( [
+        //         'status' => 0,
+        //         'message' => 'Bạn không có quyền cho chức năng này!',
+        //     ] );
+        // }
 
         $data = Phim::get();
         return response()->json( [
@@ -81,18 +81,18 @@ class APIPHIMController extends Controller {
     }
 
     public function status( Request $request ) {
-        $id_chuc_nang = 8;
-        $user_login = Auth::guard( 'admin' )->user();
+        // $id_chuc_nang = 8;
+        // $user_login = Auth::guard( 'admin' )->user();
 
-        $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
-        ->where( 'id_chuc_nang', $id_chuc_nang )
-        ->first();
-        if ( !$check ) {
-            return response()->json( [
-                'status' => 0,
-                'message' => 'Bạn không có quyền cho chức năng này!',
-            ] );
-        }
+        // $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
+        // ->where( 'id_chuc_nang', $id_chuc_nang )
+        // ->first();
+        // if ( !$check ) {
+        //     return response()->json( [
+        //         'status' => 0,
+        //         'message' => 'Bạn không có quyền cho chức năng này!',
+        //     ] );
+        // }
 
         $phim = Phim::find( $request->id );
         if ( $phim ) {
@@ -115,18 +115,18 @@ class APIPHIMController extends Controller {
     }
 
     public function info( Request $request ) {
-        $id_chuc_nang = 9;
-        $user_login = Auth::guard( 'admin' )->user();
+        // $id_chuc_nang = 9;
+        // $user_login = Auth::guard( 'admin' )->user();
 
-        $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
-        ->where( 'id_chuc_nang', $id_chuc_nang )
-        ->first();
-        if ( !$check ) {
-            return response()->json( [
-                'status' => 0,
-                'message' => 'Bạn không có quyền cho chức năng này!',
-            ] );
-        }
+        // $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
+        // ->where( 'id_chuc_nang', $id_chuc_nang )
+        // ->first();
+        // if ( !$check ) {
+        //     return response()->json( [
+        //         'status' => 0,
+        //         'message' => 'Bạn không có quyền cho chức năng này!',
+        //     ] );
+        // }
 
         $data = Phim::find( $request->id );
         if ( $data ) {
@@ -142,18 +142,18 @@ class APIPHIMController extends Controller {
     }
 
     public function destroy( Request $request ) {
-        $id_chuc_nang = 10;
-        $user_login = Auth::guard( 'admin' )->user();
+        // $id_chuc_nang = 10;
+        // $user_login = Auth::guard( 'admin' )->user();
 
-        $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
-        ->where( 'id_chuc_nang', $id_chuc_nang )
-        ->first();
-        if ( !$check ) {
-            return response()->json( [
-                'status' => 0,
-                'message' => 'Bạn không có quyền cho chức năng này!',
-            ] );
-        }
+        // $check = QuyenChucNang::where( 'id_quyen', $user_login->id_quyen )
+        // ->where( 'id_chuc_nang', $id_chuc_nang )
+        // ->first();
+        // if ( !$check ) {
+        //     return response()->json( [
+        //         'status' => 0,
+        //         'message' => 'Bạn không có quyền cho chức năng này!',
+        //     ] );
+        // }
 
         $data = Phim::find( $request->id );
         if ( $data ) {

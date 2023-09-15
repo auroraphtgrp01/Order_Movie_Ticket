@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\sendMailJob;
+use App\Mail\sendEmail;
 use App\Models\DonHang;
 use App\Models\LichChieu;
 use App\Models\MovieDetail;
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Mail;
 class APIMovieDetailController extends Controller
 {
     public function getFirst($sentence)
@@ -158,6 +160,19 @@ class APIMovieDetailController extends Controller
                 }
                 $donHang->tong_tien = $tongTien;
                 $donHang->save();
+                $ds_ve_xem_phim         =  VeXemPhim::where('id_don_hang', $donHang->ma_don_hang)
+                ->join('lich_chieus', 've_xem_phims.id_lich_chieu', 'lich_chieus.id')
+                ->join('phims', 'lich_chieus.id_phim', 'phims.id')
+                ->select('phims.ten_phim', 've_xem_phims.*')
+                ->get();
+                $xxx['ho_va_ten']       =  $login->ho_va_ten;
+                $xxx['ds_ve']	        =  $ds_ve_xem_phim;
+                $xxx['tong_tien']       =  $tongTien;
+                $xxx['noi_dung_ck']		=  'TTVXP' . $donHang->ma_don_hang;
+
+                // Mail::to($login->email)->send(new sendEmail('Thông tin đặt vé xem phim', 'client.mail.order',$xxx));
+                sendMailJob::dispatch($login->email, 'Thông tin đặt vé xem phim', 'client.mail.order', $xxx);
+
                 if ($count == 0) {
                     return response()->json([
                         'status' => -1,
