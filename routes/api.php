@@ -16,16 +16,23 @@ use App\Http\Controllers\APIThongKeController;
 use App\Http\Controllers\CustomerAccountController;
 use Illuminate\Support\Facades\Route;
 
+// ROUTE CLIENT
 Route::post('/homepage', [APIHomePageController::class, 'data'])->name('HomePageData');
 Route::post('/details', [APIMovieDetailController::class, 'data'])->name('MovieDetail');
-Route::post('/admin/login', [APIAdminController::class, 'loginAdmin']);
-// Route::post('/doi-mat-khau', [CustomerAccountController::class, 'matkhau'])->name('doimatkhau');
 Route::post('/reset-password', [CustomerAccountController::class, 'resetPassword'])->name('resetPassword');
-//
 Route::group(['prefix' => '/client'], function () {
     Route::post('/lich-chieu-theo-phim', [APILichChieuController::class, 'lich_chieu_theo_phim'])->name('lichChieuPhim');
     Route::post('/order', [APIVeXemPhimController::class, 'order']);
 });
+Route::post('/movie-details/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
+Route::group(['prefix' => '/movie-details', 'middleware' => 'APIClient'], function () {
+    Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
+    Route::post('/order', [APIMovieDetailController::class, 'order']);
+});
+// -----------------------------------------------------------------------------------------------------------------------------------
+// ROUTE ADMIN
+
+Route::post('/admin/login', [APIAdminController::class, 'loginAdmin']);
 Route::group(['prefix' => '/admin'], function () {
     // Quản lý phim
     Route::group(['prefix' => '/phim'], function () {
@@ -36,6 +43,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/delete', [APIPHIMController::class, 'destroy'])->name('phimDel');
         Route::post('/update', [APIPHIMController::class, 'update'])->name('phimUpdate');
     });
+    // Quản lý phòng chiếu
     Route::group(['prefix' => '/phong-chieu'], function () {
         Route::post('/create', [APIPhongChieuController::class, 'store'])->name('phongchieuStore');
         Route::post('/data', [APIPhongChieuController::class, 'data'])->name('phongchieuData');
@@ -44,13 +52,14 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/delete', [APIPhongChieuController::class, 'delete'])->name('phongchieuDelete');
         Route::post('/update', [APIPhongChieuController::class, 'update'])->name('phongchieuUpdate');
     });
+    // Quản lý ghế chiếu
     Route::group(['prefix' => '/ghe-chieu'], function () {
         Route::post('/create', [APIGheChieuController::class, 'store'])->name('gheChieuStore');
         Route::post('/info', [APIGheChieuController::class, 'info'])->name('infoPhongGhe');
         Route::post('/status', [APIGheChieuController::class, 'status'])->name('gheChieuStatus');
         Route::post('/update', [APIGheChieuController::class, 'update'])->name('gheChieuUpdate');
     });
-    // QUAN LY ACCOUNT
+    // Quản lý tài khoản
     Route::group(['prefix' => '/danh-sach-account'], function () {
         Route::post('/create', [CustomerAccountController::class, 'store'])->name('taiKhoanStore');
         Route::post('/data', [CustomerAccountController::class, 'data'])->name('taiKhoanData');
@@ -62,12 +71,14 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/forget', [CustomerAccountController::class, 'forget']);
         Route::post('/reset', [CustomerAccountController::class, 'changePassword']);
     });
+    // Quản lý đơn vị
     Route::group(['prefix' => '/don-vi'], function () {
         Route::post('/create', [APIDonViController::class, 'store'])->name('donViStore');
         Route::post('/data', [APIDonViController::class, 'data'])->name('donViData');
         Route::post('/del', [APIDonViController::class, 'destroy'])->name('donViDel');
         Route::post('/update', [APIDonViController::class, 'update'])->name('donViUpdate');
     });
+    // Quản lý dịch vụ
     Route::group(['prefix' => '/dich-vu'], function () {
         Route::post('/create', [APIDichVuController::class, 'store'])->name('dichVuStore');
         Route::post('/data', [APIDichVuController::class, 'data'])->name('dichVuData');
@@ -75,6 +86,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/update', [APIDichVuController::class, 'update'])->name('dichVuUpdate');
         Route::post('/delete', [APIDichVuController::class, 'delete'])->name('dichVuDelete');
     });
+    // Quản lý lịch chiếu
     Route::group(['prefix' => '/lich-chieu'], function () {
         Route::post('/store', [APILichChieuController::class, 'store'])->name('lichChieuStore');
         Route::post('/data', [APILichChieuController::class, 'data'])->name('lichChieuData');
@@ -83,6 +95,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/delete', [APILichChieuController::class, 'delete'])->name('lichChieuDelete');
         Route::post('/info', [APILichChieuController::class, 'info'])->name('lichChieuInfo');
     });
+    // Quản lý admin
     Route::group(['prefix' => '/admin-manage'], function () {
         Route::post('/data', [APIAdminController::class, 'data'])->name('adminData');
         Route::post('/store', [APIAdminController::class, 'store'])->name('adminStore');
@@ -90,6 +103,7 @@ Route::group(['prefix' => '/admin'], function () {
         Route::post('/status', [APIAdminController::class, 'status'])->name('adminStatus');
         Route::post('/update', [APIAdminController::class, 'update'])->name('adminUpdate');
     });
+    // Quản lý phân quyền
     Route::group(['prefix' => '/phan-quyen'], function () {
         Route::post('/data', [APIPhanQuyenController::class, 'data']);
         Route::post('/data-chuc-nang', [APIPhanQuyenController::class, 'dataChucNang']);
@@ -102,10 +116,5 @@ Route::group(['prefix' => '/admin'], function () {
     Route::group(['prefix' => '/thong-ke'], function () {
         Route::post('/bt-1', [APIThongKeController::class, 'bt1']);
     });
-});
-Route::post('/movie-details/dataset', [APIMovieDetailController::class, 'data'])->name('DataMovieSet');
-
-Route::group(['prefix' => '/movie-details', 'middleware' => 'APIClient'], function () {
-    Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
-    Route::post('/order', [APIMovieDetailController::class, 'order']);
+    Route::post('/logout', [APIAdminController::class, 'logout']);
 });

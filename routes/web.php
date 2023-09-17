@@ -19,7 +19,9 @@ use App\Models\DanhSachTaiKhoan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Testing\TestView;
 
-// Route::get('/test', [TestController::class, 'index']);
+
+
+// ROUTE CLIENT
 Route::get('/confirmation/{id}',[CustomerAccountController::class, 'confirmation']);
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/movie-detail/{slug}', [HomePageController::class, 'details']);
@@ -27,9 +29,13 @@ Route::get('/register', [CustomerAccountController::class, 'viewResgister']);
 Route::get('/login', [CustomerAccountController::class, 'viewLogin']);
 Route::get('/forgot-password', [CustomerAccountController::class, 'viewForgotPassword']);
 Route::get('/change-password/{id}', [CustomerAccountController::class, 'viewChangePassword']);
-// Route::get('/test', [TestViewController::class, 'index']);
 Route::get('/admin/login', [AdminController::class, 'loginView']);
+Route::get('/dang-ky', [AuthenticationController::class, 'signup']);
+Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
+Route::get('/index', [TestController::class, 'index']);
 //
+
+// ROUTE ADMIN
 Route::group(['prefix' => '/admin', 'middleware' => 'WebAdmin'], function () {
     Route::get('/', [AdminController::class, 'adminManage']);
     // Quản lý phim
@@ -67,6 +73,4 @@ Route::group(['prefix' => '/admin', 'middleware' => 'WebAdmin'], function () {
         Route::get('/', [ThongKeController::class, 'index']);
     });
 });
-Route::get('/dang-ky', [AuthenticationController::class, 'signup']);
-Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
-Route::get('/index', [TestController::class, 'index']);
+//

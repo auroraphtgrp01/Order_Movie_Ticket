@@ -68,6 +68,6 @@ class AdminController extends Controller
     }
     public function loginView()
     {
-        return view('admin.page.login');
+        return view('admin.page.login_page');
     }
 }

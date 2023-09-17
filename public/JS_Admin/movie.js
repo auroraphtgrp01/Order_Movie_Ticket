@@ -18,10 +18,7 @@ function loadData() {
                     '<td class="text-center align-middle"><img src="' + v.hinh_anh +
                     '"class="img-thumbnail" alt="..." style="width: 80px;">';
                 noi_dung += '</td>';
-                noi_dung += '<td class="text-center align-middle">' + v.thoi_luong + ' phút </td>';
-                noi_dung += '<td class="text-center align-middle">' + v.bat_dau + '</td>';
                 noi_dung += '<td class="text-center align-middle">' + v.the_loai + '</td>';
-                noi_dung += '<td class="text-center align-middle">' + v.rated + '</td>';
                 noi_dung += '<td class="text-center align-middle">';
                 if (v.hien_thi == 0) {
                     noi_dung +=

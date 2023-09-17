@@ -195,11 +195,11 @@ class CustomerAccountController extends Controller
     }
     public function viewResgister()
     {
-        return view('client_view.page.register_login.register');
+        return view('client.page.register_login.register');
     }
     public function viewLogin()
     {
-        return view('client_view.page.register_login.index');
+        return view('client.page.register_login.index');
     }
     public function login(Request $request)
     {
@@ -243,14 +243,14 @@ class CustomerAccountController extends Controller
     }
     public function viewForgotPassword()
     {
-        return view('client_view.page.register_login.forget');
+        return view('client.page.register_login.forget');
     }
 
     public function viewChangePassword($id)
     {
         $acc = CustomerAccount::where('tokenPassword', $id)->first();
         if($acc) {
-            return view('client_view.page.register_login.reset_password', compact('id'));
+            return view('client.page.register_login.reset_password', compact('id'));
         } else {
             toastr()->error('Liên Kết Không Tồn Tại !');
             return redirect('/');

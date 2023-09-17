@@ -102,10 +102,7 @@
                                 <th class="text-center align-middle" style="background-color:#7887d4">#</th>
                                 <th class="text-center align-middle" style="background-color:#7887d4">Tên Phim</th>
                                 <th class="text-center align-middle" style="background-color:#7887d4">Hình Ảnh</th>
-                                <th class="text-center align-middle" style="background-color:#7887d4">Thời Lượng</th>
-                                <th class="text-center align-middle" style="background-color:#7887d4">Ngôn Ngữ</th>
                                 <th class="text-center align-middle" style="background-color:#7887d4">Thể Loại</th>
-                                <th class="text-center align-middle" style="background-color:#7887d4">Rated</th>
                                 <th class="text-center align-middle" style="background-color:#7887d4">Hiển Thị</th>
                                 <th class="text-center align-middle" style="background-color:#7887d4">Action</th>
                             </thead>
@@ -143,7 +140,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
-                                            <input type="text" id="e_id">
+                                            <input hidden type="text" id="e_id">
                                             <div class="col-md-3"> <label for="" class="mb-2">Tên Phim:
                                                 </label>
                                                 <input id="e_ten_phim" type="text" class="form-control"

@@ -191,4 +191,19 @@ class APIAdminController extends Controller
             ]);
         }
     }
+    public function logout(Request $request){
+        $check = Auth::guard('admin')->check();
+        if($check){
+            Auth::guard('admin')->logout();
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đã đăng xuất thành công !'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Có lỗi xảy ra trong quá trình logout, vui lòng liên hệ admin !',
+            ]);
+        }
+    }
 }

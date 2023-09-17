@@ -49,9 +49,10 @@
 /*
     1. Base CSS
 */
+
 :root {
-    --primary-color: #212121;
-    --secondary-color: #ed1d24;
+    --primary-color: #37b2b6;
+    --secondary-color: #557A7B;
     --foreground-color: #121416;
     --foreground-sub-color: #898686;
     --body-text-color: #000000;
@@ -99,6 +100,7 @@ body {
 
 body {
     font-family: var(--open-sans-fonts);
+    /* font-family: 'Nunito', sans-serif; */
     font-size: var(--body-font-size, 1.5rem);
     font-weight: var(--body-font-weight);
     font-style: normal;
