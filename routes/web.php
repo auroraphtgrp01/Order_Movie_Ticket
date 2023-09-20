@@ -33,7 +33,9 @@ Route::get('/admin/login', [AdminController::class, 'loginView']);
 Route::get('/dang-ky', [AuthenticationController::class, 'signup']);
 Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
 Route::get('/index', [TestController::class, 'index']);
+Route::get('/movie-detail/{slug}/cart/{id_lich_chieu}', [HomePageController::class, 'cart']);
 //
+Route::get('/test', [TestViewController::class, 'index']);
 
 // ROUTE ADMIN
 Route::group(['prefix' => '/admin', 'middleware' => 'WebAdmin'], function () {

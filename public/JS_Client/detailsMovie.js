@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
     new Vue({
-        el: '#app_details',
+        el: '#movie_detail',
         data: {
             dataMovie: [],
             listRcm: [],
@@ -15,9 +15,14 @@ $(document).ready(function () {
         },
         created() {
             this.loadDataFromURL();
-
         },
         methods: {
+            generateHref(id) {
+                console.log(id);
+                var currentURL = window.location.href;
+                var href = currentURL + '/cart/' + id;
+                return href;
+            },
             datVe() {
                 axios
                     .post('/api/movie-details/order', payload = {
@@ -104,7 +109,6 @@ $(document).ready(function () {
                     .then((res) => {
                         if (res.data.status) {
                             this.veXemPhim = res.data.data;
-                            console.log(this.veXemPhim);
                             if (this.veXemPhim.length) {
                                 this.hang_doc = this.veXemPhim[0].hang_doc;
                                 this.hang_ngang = this.veXemPhim[0].hang_ngang;
@@ -134,7 +138,6 @@ $(document).ready(function () {
                 }
                 // this.dateTime = this.sortArrayByTime(this.dateTime);
                 this.dateTime = this.sortArrayByDate(this.dateTime);
-                console.log(this.dateTime);
 
                 let obj = {};
                 let arr = [];
@@ -151,7 +154,6 @@ $(document).ready(function () {
                     }
                 }
 
-                console.log(this.dateTime);
             },
             loadDataFromURL() {
                 var currentURL = window.location.href;

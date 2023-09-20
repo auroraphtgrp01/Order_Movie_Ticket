@@ -20,7 +20,8 @@ class HomePageController extends Controller
         $slug = Str::afterLast($url, '/');
         $movie = Phim::where('slug_phim', $slug)->first();
         if ($movie) {
-            return view('client.page.Homepage.details');
+            // return view('client.page.Homepage.details');
+            return view('client_new.page.detail_movie');
         } else {
             return redirect('/');
         }
@@ -36,7 +37,7 @@ class HomePageController extends Controller
         $phimSapChieu  = Phim::where('hien_thi', 1)
             ->whereDate('bat_dau', '>', $today)
             ->get();
-        return view('client.page.Homepage.homepage', compact('phimDangChieu', 'phimSapChieu'));
+        return view('client_new.page.homepage', compact('phimDangChieu', 'phimSapChieu'));
     }
     public function detail($id)
     {
@@ -51,5 +52,8 @@ class HomePageController extends Controller
         } else {
             return redirect('/');
         }
+    }
+    public function cart($slug, $id_lich_chieu){
+        return view('client_new.page.cart');
     }
 }

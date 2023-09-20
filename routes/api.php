@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\API\APIVeXemPhimController;
@@ -29,6 +29,7 @@ Route::group(['prefix' => '/movie-details', 'middleware' => 'APIClient'], functi
     Route::post('/get-ve', [APIMovieDetailController::class, 'getVe'])->name('MovieGetVe');
     Route::post('/order', [APIMovieDetailController::class, 'order']);
 });
+Route::post('/movie-detail/cart',[APIMovieDetailController::class, 'cart']);
 // -----------------------------------------------------------------------------------------------------------------------------------
 // ROUTE ADMIN
 

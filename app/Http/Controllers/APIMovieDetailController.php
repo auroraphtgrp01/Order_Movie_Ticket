@@ -195,4 +195,14 @@ class APIMovieDetailController extends Controller
             ]);
         }
     }
+    public function cart(Request $request) {
+        $slug = $request->slug;
+        $id_lich_chieu = $request->id_lich_chieu;
+        $check  = LichChieu::where('lich_chieus.id', $id_lich_chieu)
+        ->join('phims','lich_chieus.id_phim','phims.id')
+        ->join('phong_chieus','lich_chieus.id_phong', 'phong_chieus.id')
+        ->select('phims.ten_phim', 'lich_chieus.*','phong_chieus.hang_ngang','phong_chieus.hang_doc','phims.hinh_anh')
+        ->first();
+        return response()->json(['data'=>$check]);
+    }
 }

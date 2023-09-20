@@ -8,6 +8,6 @@ class TestViewController extends Controller
 {
     public function index()
     {
-        return view('adminPage.phong_chieu.index');
+        return view('client_new.page.cart');
     }
 }
