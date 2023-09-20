@@ -1,6 +1,7 @@
 @extends('client_new.share.masterpage')
 @section('content')
 <!-- Shop Detail Section -->
+
 <div id="movie_detail">
     <section class="shop-detail-section" style="padding-top: 70px">
         <div class="auto-container">

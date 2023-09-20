@@ -1,89 +1,24 @@
 @extends('client_new.share.masterpage')
 @section('content')
-<div id="movie_detail">
-    <div class="col-md-12"><h3 class="text-center mt-4"><b class="text-danger">ĐẶT
-        VÉ
-        XEM PHIM</b></h3></div>
-    <section class="shoping-cart-section" style="padding: 20px 0">
+<div id="payment">
+    <div class="row mt-2">
+        <div class="col-md-12 text-center mt-3" style="user-select: none;">
+            <div class="container">
+                <div class="alert alert-success p-0" role="alert">
+                    <h3 style="user-select: none;"><div class="text-danger"
+                        style="font-size: 1rem; user-select: none !important; margin-top: 10px;"><marquee behavior="" direction="">Cảm ơn bạn đã
+                            tin tưởng lựa chọn dịch vụ của chúng tôi - Vui lòng thanh toán hoá đơn bằng 1 trong 2 cách dưới đây</marquee></div></h3>
+
+                  </div>
+            </div>
+
+
+        </div>
+    </div>
+    <section class="shoping-cart-section" style="padding: 10px 0">
 
     <div class="auto-container">
     <div class="row clearfix">
-        <div class="cart-column col-lg-8 col-md-12 col-sm-12">
-            <div class="row">
-                <div class="col-12">
-                    <div
-                        class="card border">
-                        <div class="card-body">
-                            <template
-                                v-if="hang_doc == 0 && hang_ngang == 0">
-                                <h4 class="text-center"><b
-                                        class="text-danger">PHIM HIỆN CHƯA
-                                        ĐƯỢC TẠO GHẾ</b></h4>
-                            </template>
-                            <table class="table table-bordered" id="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="100%"
-                                            class="bg-success text-center align-middle">
-                                            <h5 class="text-white"><b>MÀN
-                                                    CHIẾU</b></h5>
-                                        </th>
-                                    </tr>
-                                    <tr style="height: 20px">
-                                        <td colspan="100%"></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <template v-for="i in hang_doc">
-                                        <tr>
-                                            <template
-                                                v-for="j in hang_ngang">
-                                                <th
-                                                    class="text-center align-middle">
-                                                    <template
-                                                        v-for="(v, k) in veXemPhim">
-                                                        <template
-                                                            v-if="k == ((i - 1) * hang_ngang + j - 1)">
-                                                            <div
-                                                                style="cursor: pointer;">
-                                                                <template
-                                                                    v-if="v.tinh_trang == 0">
-                                                                    <i
-                                                                        v-if="v.choose == 1"
-                                                                        v-on:click="v.choose = 0;unchooseTicket(v)"
-                                                                        class="text-success fa-solid fa-couch fa-2x"></i>
-                                                                    <i
-                                                                        v-if="v.choose == 0"
-                                                                        v-on:click="v.choose = 1;  chooseTicket(v)"
-                                                                        class="fa-solid fa-couch fa-2x"></i>
-                                                                </template>
-                                                                <template
-                                                                    v-else>
-                                                                    <i
-                                                                        class="text-danger fa-solid fa-couch fa-2x"></i>
-                                                                </template>
-                                                                <br>
-                                                                <span>
-                                                                    @{{
-                                                                    v.so_ghe
-                                                                    }}
-
-                                                                </span>
-                                                            </div>
-                                                        </template>
-                                                    </template>
-                                                </th>
-                                            </template>
-                                        </tr>
-                                    </template>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="total-column col-lg-4 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-body">
@@ -104,22 +39,22 @@
                                <div class="col-md-8">
                                 <div class="col-md-12 mb-1">
                                     <div class="col-md-12 mb-1">
-                                        <b>TÊN PHIM: </b> <b class="text-danger">@{{dataCart.ten_phim}}</b>
+                                        <b>TÊN PHIM: </b> <b class="text-danger">@{{dataMovie.ten_phim}}</b>
                                     </div>
-                                    <b>NGÀY CHIẾU: </b> <b class="text-danger">@{{formatDate(dataCart.gio_bat_dau)}}</b>
+                                    <b>NGÀY CHIẾU: </b> <b class="text-danger">@{{formatDate(dataMovie.gio_bat_dau)}}</b>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <b>GIỜ BẮT ĐẦU: </b> <b class="text-danger">@{{formatTime(dataCart.gio_bat_dau)}}</b>
+                                    <b>GIỜ BẮT ĐẦU: </b> <b class="text-danger">@{{formatTime(dataMovie.gio_bat_dau)}}</b>
                                 </div>
                                 <div class="col-md-12 mb-1">
-                                    <b>GIỜ KẾT THÚC </b> <b class="text-danger">@{{formatTime(dataCart.gio_ket_thuc)}}</b>
+                                    <b>GIỜ KẾT THÚC </b> <b class="text-danger">@{{formatTime(dataMovie.gio_ket_thuc)}}</b>
                                 </div>
                                 <div class="col-md-12 mb-1">
                                     <b>RẠP:</b> <b class="text-danger">AURORAPHTGRP CINEMA</b>
                                 </div>
                                </div>
                                <div class="col-md-4">
-                                <img v-bind:src="dataCart.hinh_anh" class="img-thumbnail" style="height: 150px; width: 350px; object-fit: cover;" alt="">
+                                <img v-bind:src="dataMovie.hinh_anh" class="img-thumbnail" style="height: 150px; width: 350px; object-fit: cover;" alt="">
                                </div>
                             </div>
                             <div class="row">
@@ -131,7 +66,7 @@
                                             <th class="text-center align-middle text-bg-danger">GIÁ TIỀN</th>
                                         </thead>
                                         <tbody>
-                                            <template v-for="(v,k) in listCart">
+                                            <template v-for="(v,k) in dataCart">
                                                 <tr class="fadeIn">
                                                     <th class="text-center align-middle text-danger"  style="transition: 1s linear;">@{{k+1}}</th>
                                                     <th class="text-center align-middle"  style="transition: 1s linear;">@{{v.so_ghe}}</th>
@@ -144,10 +79,13 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="text-end">
-                                    <button class="btn btn-success w-100" v-on:click="paymentClick()"
-                                       ><b>THANH TOÁN</b></button>
+                                    <div class="col-md-12 mt-2">
+                                        <button class="btn btn-success mt-2" v-on:click="checkPaid()"><b>XÁC NHẬN ĐÃ THANH
+                                                TOÁN</b></button>
+                                        <a href="/" class="btn btn-danger mt-2" data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                            style><b>HUỶ BỎ</b></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,6 +93,98 @@
                 </div>
             </div>
         </div>
+        <div class="cart-column col-lg-8 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-12">
+                    <div
+                        class="">
+                        <div class="card-body">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="inner-column">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <th colspan="100%" class="bg-success text-center align-middle">
+                                                                        <h5 class="text-white"><b>PHƯƠNG THỨC THANH TOÁN</b></h5>
+                                                                    </th>
+                                                                </thead>
+                                                            </table>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <h6 class="text-center"><b class="text-success"
+                                                                            style="user-select: none !important">THÔNG TIN CHUYỂN
+                                                                            KHOẢN</b></h6>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 text-start">
+                                                                            <h7 class><b class="text-danger"
+                                                                                    style="user-select: none !important">SỐ TÀI KHOẢN:</b></h7>
+                                                                            <b
+                                                                                class="text-primary">04172252601</b>
+                                                                            <br>
+                                                                            <h7 class><b class="text-danger"
+                                                                                    style="user-select: none !important">CHỦ TÀI KHOẢN:</b></h7>
+                                                                            <b
+                                                                                class="text-primary">LE MINH TUAN</b>
+                                                                            <br>
+                                                                            <h7 class><b class="text-danger"
+                                                                                    style="user-select: none !important">NGÂN HÀNG:</b></h7>
+                                                                            <b class="text-primary">TP BANK</b>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-12 mt-2">
+                                                                <div class="card">
+                                                                    <div class="card-body  text-center">
+                                                                        <h7 v-if="(checkPayment == 1)" class="text-center"style="user-select: none !important" ><b class="text-primary">ĐANG CHỜ XÁC
+                                                                                NHẬN . . . @{{countDown}} giây</b></h7>
+                                                                       <div v-if="(checkPayment==2)">
+                                                                         <h7 class="text-center"><b class="text-success"
+                                                                                style="user-select: none !important">THANH TOÁN THÀNH
+                                                                                CÔNG !</b></h7> <br>
+                                                                        <h7 class="text-center" style="font-size: 0.8rem;"><b
+                                                                                class="text-primary" style="user-select: none !important">THÔNG
+                                                                                TIN CHI
+                                                                                TIẾT SẼ ĐƯỢC GỬI QUA EMAIL CỦA BẠN</b></h7>
+                                                                       </div>
+                                                                        <h7 v-if="(checkPayment == 0)" class="text-center" style="font-size: 1rem;"><b
+                                                                                class="text-danger" style="user-select: none !important">VUI LÒNG BẤM VÀO XÁC NHẬN ĐÃ THANH TOÁN SAU KHI THANH TOÁN ĐỂ HỆ THỐNG KIỂM TRA</b></h7>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <img src="/assets_client/images/qrpay.png" style="width: 300px;"
+                                                                class="img-thumbnail" alt>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     </div>
     </section>
@@ -279,7 +309,7 @@
                                                         NHẬN . . .</b></h7> <br> -->
                                                 <h7 class="text-center"><b class="text-success"
                                                         style="user-select: none !important">THANH TOÁN THÀNH
-                                                        CÔNG !</b></h7> <br>
+                                                        CÔNG ! </b></h7> <br>
                                                 <h7 class="text-center" style="font-size: 0.8rem;"><b
                                                         class="text-primary" style="user-select: none !important">THÔNG
                                                         TIN CHI
@@ -310,5 +340,5 @@
 
 @endsection
 @section('js')
-<script src="/JS_Client/cart.js"></script>
+<script src="/JS_Client/payment.js"></script>
 @endsection

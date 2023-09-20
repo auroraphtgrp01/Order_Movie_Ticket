@@ -30,6 +30,8 @@ Route::group(['prefix' => '/movie-details', 'middleware' => 'APIClient'], functi
     Route::post('/order', [APIMovieDetailController::class, 'order']);
 });
 Route::post('/movie-detail/cart',[APIMovieDetailController::class, 'cart']);
+Route::post('/movie-detail/cart/payment',[APIMovieDetailController::class, 'payment']);
+Route::post('/payment',[APIMovieDetailController::class, 'paymentOrd']);
 // -----------------------------------------------------------------------------------------------------------------------------------
 // ROUTE ADMIN
 

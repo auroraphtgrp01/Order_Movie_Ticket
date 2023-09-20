@@ -35,7 +35,8 @@ $(document).ready(function () {
             chooseTicket(payload) {
                 this.listCart.push({
                     'so_ghe': payload.so_ghe,
-                    'gia_ve': payload.gia_ve
+                    'gia_ve': payload.gia_ve,
+                    'id_ve': payload.id
                 });
                 this.total += payload.gia_ve;
                 console.log(this.listCart);
@@ -224,7 +225,24 @@ $(document).ready(function () {
                 }
 
             },
-
+            paymentClick() {
+                let payload = {
+                    'movie': this.dataCart,
+                    'cart': this.listCart,
+                }
+                axios
+                    .post('/api/movie-detail/cart/payment', payload)
+                    .then((res) => {
+                        window.location.href = res.data.url;
+                    })
+                    .catch((res) => {
+                        $.each(res.response.data.errors, function (k, v) {
+                            toastr.error(v[0], 'Error');
+                        });
+                    });
+            }
         },
     });
 });
+
+

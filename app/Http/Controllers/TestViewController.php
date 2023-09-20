@@ -8,6 +8,6 @@ class TestViewController extends Controller
 {
     public function index()
     {
-        return view('client_new.page.cart');
+        return view('client_new.page.payment');
     }
 }

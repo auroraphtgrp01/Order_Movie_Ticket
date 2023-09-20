@@ -205,4 +205,31 @@ class APIMovieDetailController extends Controller
         ->first();
         return response()->json(['data'=>$check]);
     }
+    public function payment(Request $request) {
+        $data_json = json_encode($request->all());
+        $data_base64= base64_encode($data_json);
+        $url = "/payment?ticket=" . urlencode($data_base64);
+        return response()->json(['url'=>$url]);
+           }
+    public function paymentOrd(Request $request){
+        $ticket ='';
+        $url = $request->url;
+        $url_parts = parse_url($url);
+        if (isset($url_parts['query'])) {
+            $query_string = $url_parts['query'];
+            $decoded_query = urldecode($query_string);
+            $query_parameters = [];
+            parse_str($decoded_query, $query_parameters);
+            if (isset($query_parameters['ticket'])) {
+                $ticket = $query_parameters['ticket'];
+            }
+    }
+    $data = json_decode(base64_decode($ticket), true);
+    $movie = $data['movie'];
+    $tickets = $data['cart'];
+    return response()->json([
+        'movie'=>$movie,
+        'tickets'=>$tickets,
+    ]);
+}
 }

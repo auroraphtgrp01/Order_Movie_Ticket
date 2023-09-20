@@ -56,4 +56,7 @@ class HomePageController extends Controller
     public function cart($slug, $id_lich_chieu){
         return view('client_new.page.cart');
     }
+    public function payment(){
+        return view('client_new.page.payment');
+    }
 }
