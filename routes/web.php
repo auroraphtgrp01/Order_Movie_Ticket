@@ -37,7 +37,7 @@ Route::get('/movie-detail/{slug}/cart/{id_lich_chieu}', [HomePageController::cla
 Route::get('/payment', [HomePageController::class, 'payment']);
 
 //
-Route::get('/test', [TestViewController::class, 'index']);
+Route::get('/test', [TestViewController::class, 'paymentCheck']);
 
 // ROUTE ADMIN
 Route::group(['prefix' => '/admin', 'middleware' => 'WebAdmin'], function () {

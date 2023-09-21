@@ -225,10 +225,22 @@ $(document).ready(function () {
                 }
 
             },
+            generateRandomString(length) {
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let result = '';
+
+                for (let i = 0; i < length; i++) {
+                    const randomIndex = Math.floor(Math.random() * characters.length);
+                    result += characters.charAt(randomIndex);
+                }
+
+                return result;
+            },
             paymentClick() {
                 let payload = {
                     'movie': this.dataCart,
                     'cart': this.listCart,
+                    'hash': this.generateRandomString(10),
                 }
                 axios
                     .post('/api/movie-detail/cart/payment', payload)
@@ -239,6 +251,22 @@ $(document).ready(function () {
                         $.each(res.response.data.errors, function (k, v) {
                             toastr.error(v[0], 'Error');
                         });
+                    });
+            },
+            orderClick() {
+                axios
+                    .post('/api/movie-details/order', payload = {
+                        'order': this.veXemPhim
+                    })
+                    .then((res) => {
+                        if (res.data.status == 1) {
+                            toastr.success(res.data.message, 'Success');
+                            $('#veModal').modal('hide');
+                        } else if (res.data.status == -1) {
+                            toastr.error(res.data.message, 'Error');
+                        } else {
+                            toastr.error(res.data.message, 'Error');
+                        }
                     });
             }
         },

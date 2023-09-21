@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\sendMailJob;
 use App\Mail\sendEmail;
 use App\Models\CustomerAccount;
 use App\Models\QuyenChucNang;
@@ -27,7 +28,8 @@ class CustomerAccountController extends Controller
         CustomerAccount::create($data);
         $mail['name'] = $request->ho_va_ten;
         $mail['token'] = 'http://127.0.0.1:8000/confirmation/' . $data['hashID'];
-        Mail::to($request->email)->send(new sendEmail('Đăng ký tài khoản thành công', 'client.mail.create_account', $mail));
+        // Mail::to($request->email)->send(new sendEmail('Đăng ký tài khoản thành công', 'client.mail.create_account', $mail));
+        sendMailJob::dispatch($request->email, 'Đăng ký tài khoản thành công', 'client.mail.create_account', $mail);
         return response()->json([
             'status' => true,
             'message' => 'Đã thêm mới thành công'

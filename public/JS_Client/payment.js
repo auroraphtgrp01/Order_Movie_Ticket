@@ -8,9 +8,11 @@ $(document).ready(function () {
             total: 0,
             checkPayment: 0,
             countDown: 60,
+            paymentInfo: {},
+            hash: '',
         },
         created() {
-            this.loadData();
+            this.loadData_Payment();
         },
         methods: {
             formatCurrency(number) {
@@ -29,19 +31,47 @@ $(document).ready(function () {
                 const minutes = dateTime.getMinutes().toString().padStart(2, '0');
                 return `${hours}:${minutes}`;
             },
-            loadData() {
-                $url = window.location.href;
-                let payload = {
-                    'url': $url,
+            async loadData() {
+                try {
+                    const url = window.location.href;
+                    const payload = {
+                        'url': url,
+                    }
+                    const response = await axios.post('/api/payment', payload);
+                    this.dataMovie = response.data.movie;
+                    this.dataCart = response.data.tickets;
+                    this.hash = response.data.hasdID;
+                    console.log(this.hash);
+                    this.dataCart.forEach((value, key) => {
+                        this.total += value.gia_ve;
+                    });
+                } catch (error) {
+                    $.each(error.response.data.errors, function (k, v) {
+                        toastr.error(v[0], 'Error');
+                    });
                 }
+            },
+
+            async loadData_Payment() {
+                await this.loadData();
+                this.paymentCreate();
+            },
+
+            checkPaid() {
+                this.paymentCheck();
+                // setTimeout(() => { this.checkPayment = 1; }, 500)
+                // const count = setInterval(() => {
+                //     this.countDown--; if (this.countDown == 0) {
+                //         clearInterval(count);
+                //     }
+                // }, 1000);
+
+            },
+            paymentCheck() {
                 axios
-                    .post('/api/payment', payload)
+                    .post('/api/payment/check', this.paymentInfo)
                     .then((res) => {
-                        this.dataMovie = res.data.movie;
-                        this.dataCart = res.data.tickets;
-                        this.dataCart.forEach((value, key) => {
-                            this.total += value.gia_ve;
-                        });
+
                     })
                     .catch((res) => {
                         $.each(res.response.data.errors, function (k, v) {
@@ -49,14 +79,17 @@ $(document).ready(function () {
                         });
                     });
             },
-            checkPaid() {
-                setTimeout(() => { this.checkPayment = 1; }, 500)
-                const count = setInterval(() => {
-                    this.countDown--; if (this.countDown == 0) {
-                        clearInterval(count);
-                    }
-                }, 1000);
-
+            paymentCreate() {
+                console.log(this.dataCart);
+                axios
+                    .post('/api/movie-details/order', payload = {
+                        'order': this.dataCart,
+                        'hash': this.hash
+                    })
+                    .then((res) => {
+                        this.paymentInfo = res.data.data;
+                        console.log(this.paymentInfo);
+                    });
             }
         },
     });

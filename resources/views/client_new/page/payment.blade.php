@@ -136,7 +136,10 @@
                                                                             <br>
                                                                             <h7 class><b class="text-danger"
                                                                                     style="user-select: none !important">NGÂN HÀNG:</b></h7>
-                                                                            <b class="text-primary">TP BANK</b>
+                                                                            <b class="text-primary">TP BANK</b> <br>
+                                                                            <h7 class><b class="text-danger"
+                                                                                style="user-select: none !important">NỘI DUNG CHUYỂN KHOẢN:</b></h7> <br>
+                                                                        <b class="text-primary">@{{paymentInfo.hashCode}}</b>
                                                                         </div>
                                                                     </div>
                                                                 </div>

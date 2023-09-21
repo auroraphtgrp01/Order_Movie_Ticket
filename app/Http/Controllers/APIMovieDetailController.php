@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 class APIMovieDetailController extends Controller
 {
     public function getFirst($sentence)
@@ -138,52 +139,52 @@ class APIMovieDetailController extends Controller
     {
         $login =  Auth::guard('client')->user();
         if ($login) {
-
             DB::beginTransaction();
             try {
-                $donHang = DonHang::create([
-                    'id_khach_hang' => $login->id,
-                ]);
-                $donHang->ma_don_hang = $donHang->id + 2937;
-                $donHang->save();
-                $tongTien = 0;
-                $count = 0;
-                foreach ($request->order as $key => $value) {
-                    if ($value['choose']) {
-                        $count++;
-                        $ve = VeXemPhim::find($value['id']);
-                        $ve->id_don_hang = $donHang->ma_don_hang;
-                        $ve->tinh_trang = \App\Models\VeXemPhim::VE_DANG_GIU_CHO;
-                        $ve->save();
-                        $tongTien += $ve->gia_ve;
+                $checkHash = DonHang::where('hashCheck', $request->hash)->first();
+                if(!$checkHash){
+                    $donHang = DonHang::create([
+                        'id_khach_hang' => $login->id,
+                    ]);
+                    $donHang->hashCheck = $request->hash;
+                    $donHang->ma_don_hang = $donHang->id + 2937;
+                    $donHang->hashCode = 'AURORAPHTGRPCINEMA'.$donHang->ma_don_hang .strval(rand(1, 999999));
+                    $donHang->save();
+                    $tongTien = 0;
+                    foreach ($request->order as $key => $value) {
+                            $ve = VeXemPhim::find($value['id_ve']);
+                            $ve->id_don_hang = $donHang->ma_don_hang;
+                            $ve->tinh_trang = \App\Models\VeXemPhim::VE_DANG_GIU_CHO;
+                            $ve->save();
+                            $tongTien += $ve->gia_ve;
                     }
-                }
-                $donHang->tong_tien = $tongTien;
-                $donHang->save();
-                $ds_ve_xem_phim         =  VeXemPhim::where('id_don_hang', $donHang->ma_don_hang)
-                ->join('lich_chieus', 've_xem_phims.id_lich_chieu', 'lich_chieus.id')
-                ->join('phims', 'lich_chieus.id_phim', 'phims.id')
-                ->select('phims.ten_phim', 've_xem_phims.*')
-                ->get();
-                $xxx['ho_va_ten']       =  $login->ho_va_ten;
-                $xxx['ds_ve']	        =  $ds_ve_xem_phim;
-                $xxx['tong_tien']       =  $tongTien;
-                $xxx['noi_dung_ck']		=  'TTVXP' . $donHang->ma_don_hang;
-
-                // Mail::to($login->email)->send(new sendEmail('Thông tin đặt vé xem phim', 'client.mail.order',$xxx));
-                sendMailJob::dispatch($login->email, 'Thông tin đặt vé xem phim', 'client.mail.order', $xxx);
-
-                if ($count == 0) {
+                    $donHang->tong_tien = $tongTien;
+                    $donHang->save();
+                    DB::commit();
                     return response()->json([
-                        'status' => -1,
-                        'message' => 'Vui Lòng Chọn Ghế !'
+                        'status' => 1,
+                        'data' => $donHang,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => 0,
+                        'data' => $checkHash,
                     ]);
                 }
-                DB::commit();
-                return response()->json([
-                    'status' => 1,
-                    'message' => 'Đã Đặt Vé Thành Công !'
-                ]);
+                // $ds_ve_xem_phim         =  VeXemPhim::where('id_don_hang', $donHang->ma_don_hang)
+                // ->join('lich_chieus', 've_xem_phims.id_lich_chieu', 'lich_chieus.id')
+                // ->join('phims', 'lich_chieus.id_phim', 'phims.id')
+                // ->select('phims.ten_phim', 've_xem_phims.*')
+                // ->get();
+                // $xxx['ho_va_ten']       =  $login->ho_va_ten;
+                // $xxx['ds_ve']	        =  $ds_ve_xem_phim;
+                // $xxx['tong_tien']       =  $tongTien;
+                // $xxx['noi_dung_ck']		=  'TTVXP' . $donHang->ma_don_hang;
+
+                // // Mail::to($login->email)->send(new sendEmail('Thông tin đặt vé xem phim', 'client.mail.order',$xxx));
+                // sendMailJob::dispatch($login->email, 'Thông tin đặt vé xem phim', 'client.mail.order', $xxx);
+
+
             } catch (Exception $e) {
                 Log::error($e);
                 DB::rollBack();
@@ -227,9 +228,11 @@ class APIMovieDetailController extends Controller
     $data = json_decode(base64_decode($ticket), true);
     $movie = $data['movie'];
     $tickets = $data['cart'];
+    $hash = $data['hash'];
     return response()->json([
         'movie'=>$movie,
         'tickets'=>$tickets,
+        'hasdID' => $hash,
     ]);
 }
 }

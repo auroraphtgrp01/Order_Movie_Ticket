@@ -14,6 +14,7 @@ use App\Http\Controllers\APIPHIMController;
 use App\Http\Controllers\APIPhongChieuController;
 use App\Http\Controllers\APIThongKeController;
 use App\Http\Controllers\CustomerAccountController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 // ROUTE CLIENT
@@ -32,6 +33,7 @@ Route::group(['prefix' => '/movie-details', 'middleware' => 'APIClient'], functi
 Route::post('/movie-detail/cart',[APIMovieDetailController::class, 'cart']);
 Route::post('/movie-detail/cart/payment',[APIMovieDetailController::class, 'payment']);
 Route::post('/payment',[APIMovieDetailController::class, 'paymentOrd']);
+Route::post('/payment/check', [PaymentController::class, 'paymentCheck']);
 // -----------------------------------------------------------------------------------------------------------------------------------
 // ROUTE ADMIN
 
