@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     public function paymentCheck(Request $request){
-        // dd(json_encode($request->all()));
+    //    return response()->json([
+    //     'data' => $request->all(),
+    //    ]);
         $des = $request->hashCode;
         $client = new Client();
         $payload = [
@@ -28,6 +30,14 @@ class PaymentController extends Controller
             $arr = [];
             $checkPay = false;
             $data = json_decode($response->getBody(), true);
+            $checkPay = ThanhToan::join('don_hangs', 'thanh_toans.id_don_hang', '=', 'don_hangs.id')
+                    ->where('don_hangs.id', $request->id)->first();
+                    if($checkPay){ 
+                        return response()->json([
+                            'status' => 1,
+                            'message' => 'Thanh Toán Thành Công !'
+                        ]);
+                    } 
                 if(isset ($data['transactionHistoryList'])){
                     foreach($data['transactionHistoryList'] as $key => $value){
                         $check = ThanhToan::where('refNo', $value['refNo'])->first();
@@ -39,11 +49,10 @@ class PaymentController extends Controller
                                 'id_don_hang' => $request->id,
                             ]);
                         }
-                        $des = $request->hashCode;
                         $input = $value['description'];
                         if (preg_match('/CUSTOMER\s(.*?)\s  M/i', $input, $matches)) {
                             $result = $matches[1];
-                            if($result == $des)  {
+                            if($result == $request->hashCode)  {
                                 return response()->json([
                                     'status' => 1,
                                     'message' => 'Thanh toán thành công'

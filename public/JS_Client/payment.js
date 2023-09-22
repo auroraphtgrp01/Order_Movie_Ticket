@@ -7,7 +7,7 @@ $(document).ready(function () {
             dataCart: {},
             total: 0,
             checkPayment: 0,
-            countDown: 60,
+            countDown: 10,
             paymentInfo: {},
             hash: '',
         },
@@ -58,20 +58,32 @@ $(document).ready(function () {
             },
 
             checkPaid() {
+                let k = 1;
                 this.paymentCheck();
-                // setTimeout(() => { this.checkPayment = 1; }, 500)
-                // const count = setInterval(() => {
-                //     this.countDown--; if (this.countDown == 0) {
-                //         clearInterval(count);
-                //     }
-                // }, 1000);
+                setTimeout(() => { this.checkPayment = 1; }, 500)
+                const count = setInterval(() => {
+                    this.countDown--;
+                    if (this.countDown == 0) {
+                        this.countDown = 10;
+                        if (this.checkPayment == 1) {
+                            this.paymentCheck();
+                            k++;
+                        }
 
+                    }
+                    if (this.checkPayment == 2 || k == 5) {
+                        clearInterval(count);
+                    }
+                }, 1000);
             },
             paymentCheck() {
                 axios
                     .post('/api/payment/check', this.paymentInfo)
                     .then((res) => {
-
+                        if (res.data.status == 1) {
+                            toastr.success('Thanh toán thành công', 'Success');
+                            this.checkPayment = 2;
+                        }
                     })
                     .catch((res) => {
                         $.each(res.response.data.errors, function (k, v) {
