@@ -127,16 +127,16 @@
                                                                             <h7 class><b class="text-danger"
                                                                                     style="user-select: none !important">SỐ TÀI KHOẢN:</b></h7>
                                                                             <b
-                                                                                class="text-primary">04172252601</b>
+                                                                                class="text-primary">5040109082003</b>
                                                                             <br>
                                                                             <h7 class><b class="text-danger"
                                                                                     style="user-select: none !important">CHỦ TÀI KHOẢN:</b></h7>
                                                                             <b
-                                                                                class="text-primary">LE MINH TUAN</b>
+                                                                                class="text-primary">HUYNH HUY HOANG</b>
                                                                             <br>
                                                                             <h7 class><b class="text-danger"
                                                                                     style="user-select: none !important">NGÂN HÀNG:</b></h7>
-                                                                            <b class="text-primary">TP BANK</b> <br>
+                                                                            <b class="text-primary">MBBANK</b> <br>
                                                                             <h7 class><b class="text-danger"
                                                                                 style="user-select: none !important">NỘI DUNG CHUYỂN KHOẢN:</b></h7> <br>
                                                                         <b class="text-primary">@{{paymentInfo.hashCode}}</b>
@@ -158,30 +158,34 @@
                                                                                 class="text-primary" style="user-select: none !important">THÔNG
                                                                                 TIN CHI
                                                                                 TIẾT SẼ ĐƯỢC GỬI QUA EMAIL CỦA BẠN</b></h7>
-                                                                                                                                               </div>
-                                                                                                                                             
+                                                                   </div>
                                                                         <h7 v-if="(checkPayment == 0)" class="text-center" style="font-size: 1rem;"><b
                                                                                 class="text-danger" style="user-select: none !important">VUI LÒNG BẤM VÀO XÁC NHẬN ĐÃ THANH TOÁN SAU KHI THANH TOÁN ĐỂ HỆ THỐNG KIỂM TRA</b></h7>
                                                                         <h7 v-if="(checkPayment == -1)" class="text-center" style="font-size: 1rem;"><b
                                                                                 class="text-danger" style="user-select: none !important"> <b> THANH TOÁN CHƯA ĐƯỢC THỰC HIỆN HOẶC CÓ LỖI <br> TRONG QUÁ TRÌNH XÁC THỰC - VUI LÒNG LIÊN HỆ NHÀ PHÁT TRIỂN ĐỂ GIẢI QUYẾT</b></b></h7>
+                                                                                <h7 v-if="(checkPayment == -2)" class="text-center" style="font-size: 1rem;"><b
+                                                                                    class="text-primary" style="user-select: none !important"> <span> ĐƠN HÀNG CHƯA ĐƯỢC THANH TOÁN <br> BẠN ĐÃ THANH TOÁN KHÔNG ĐỦ SỐ TIỀN CỦA ĐƠN HÀNG <br> VUI LÒNG LIÊN HỆ NHÀ PHÁT TRIỄN ĐỂ GIẢI QUYẾT 
+                                                                                        <br> SỐ TIỀN TỔNG ĐƠN HÀNG: <b class="text-danger"> @{{formatCurrency(total)}}</b>
+                                                                                        <br> SỐ TIỀN ĐÃ THANH TOÁN:   <b class="text-danger">@{{formatCurrency(amountMoney)}}</b>
+                                                                                        <br> SỐ TIỀN THIẾU CÒN LẠI:  <b class="text-danger">@{{formatCurrency(total-amountMoney)}}</b>
+
+                                                                                    </span></b></h7>   
+                                                                                    <!-- <h7 v-if="(checkPayment == -10)" class="text-center" style="font-size: 1rem;"><b
+                                                                                        class="text-success" style="user-select: none !important">ĐƠN HÀNG ĐÃ ĐƯỢC THANH TOÁN THÀNH CÔNG !!!</b></h7> -->
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <img src="/assets_client/images/qrpay.png" style="width: 300px;"
+                                                            <img v-bind:src="qrpay" style="width: 500px; height: 300px;"
                                                                 class="img-thumbnail" alt>
                                                         </div>
                                                     </div>
-
                                                 </div>
-
                                             </div>
-
                                         </div>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -189,8 +193,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     </div>
     </section>
@@ -287,16 +289,16 @@
                                                     <h7 class><b class="text-danger"
                                                             style="user-select: none !important">SỐ TÀI KHOẢN:</b></h7>
                                                     <b
-                                                        class="text-primary">04172252601</b>
+                                                        class="text-primary">5040109082003</b>
                                                     <br>
                                                     <h7 class><b class="text-danger"
                                                             style="user-select: none !important">CHỦ TÀI KHOẢN:</b></h7>
                                                     <b
-                                                        class="text-primary">LE MINH TUAN</b>
+                                                        class="text-primary">HUYNH HUY HOANG</b>
                                                     <br>
                                                     <h7 class><b class="text-danger"
                                                             style="user-select: none !important">NGÂN HÀNG:</b></h7>
-                                                    <b class="text-primary">TP BANK</b>
+                                                    <b class="text-primary">MB BANK</b>
                                                 </div>
                                             </div>
                                         </div>

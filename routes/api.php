@@ -34,6 +34,7 @@ Route::post('/movie-detail/cart',[APIMovieDetailController::class, 'cart']);
 Route::post('/movie-detail/cart/payment',[APIMovieDetailController::class, 'payment']);
 Route::post('/payment',[APIMovieDetailController::class, 'paymentOrd']);
 Route::post('/payment/check', [PaymentController::class, 'paymentCheck']);
+Route::post('/payment/qrpay', [PaymentController::class, 'qrPay']);
 // -----------------------------------------------------------------------------------------------------------------------------------
 // ROUTE ADMIN
 

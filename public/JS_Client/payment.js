@@ -11,6 +11,9 @@ $(document).ready(function () {
             paymentInfo: {},
             hash: '',
             checkButton: 1,
+            amountMoney: 0,
+            qrpay: '',
+            hashCode: '',
         },
         created() {
             this.loadData_Payment();
@@ -42,6 +45,8 @@ $(document).ready(function () {
                     this.dataMovie = response.data.movie;
                     this.dataCart = response.data.tickets;
                     this.hash = response.data.hasdID;
+                    console.log('hash' + this.dataCart.hashCode);
+
                     console.log(this.hash);
                     this.dataCart.forEach((value, key) => {
                         this.total += value.gia_ve;
@@ -79,6 +84,12 @@ $(document).ready(function () {
                             this.checkPayment = -1;
                             clearInterval(count);
                         }
+                        if (this.checkPayment == -2) {
+                            clearInterval(count);
+                        }
+                        if (this.checkPayment == -10) {
+                            clearInterval(count);
+                        }
                     }, 1000);
                 }
             },
@@ -91,6 +102,13 @@ $(document).ready(function () {
                             this.checkPayment = 2;
                             this.checkButton = 0;
                         }
+                        if (res.data.status == -1) {
+                            this.checkPayment = -2;
+                            this.amountMoney = res.data.amount_pay;
+                        }
+                        // if (res.data.status == 11) {
+                        //     this.checkPayment == -10;
+                        // }
                     })
                     .catch((res) => {
                         $.each(res.response.data.errors, function (k, v) {
@@ -107,9 +125,32 @@ $(document).ready(function () {
                     })
                     .then((res) => {
                         this.paymentInfo = res.data.data;
-                        console.log(this.paymentInfo);
+                        this.hashCode = res.data.data.hashCode;
+                        this.qrPay();
                     });
-            }
+            },
+            qrPay() {
+                console.log('hashcode: ' + this.hashCode);
+                payload = {
+                    "accountNo": 5040109082003,
+                    "accountName": "HUYNH HUY HOANG",
+                    "acqId": 970422,
+                    "amount": this.total,
+                    "addInfo": this.hashCode,
+                    "format": "text",
+                    "template": "compact"
+                }
+                axios
+                    .post('https://api.vietqr.io/v2/generate', payload)
+                    .then((res) => {
+                        this.qrpay = res.data.data.qrDataURL;
+                    })
+                    .catch((res) => {
+                        $.each(res.response.data.errors, function (k, v) {
+                            toastr.error(v[0], 'Error');
+                        });
+                    });
+            },
         },
     });
 });
