@@ -13,5 +13,6 @@ class ThanhToan extends Model
         'refNo',
         'creditAmount',
         'description',
+        'id_don_hang'
     ];
 }

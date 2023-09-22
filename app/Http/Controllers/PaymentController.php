@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class PaymentController extends Controller
 {
     public function paymentCheck(Request $request){
+        // dd(json_encode($request->all()));
         $des = $request->hashCode;
         $client = new Client();
         $payload = [
@@ -29,24 +30,36 @@ class PaymentController extends Controller
             $data = json_decode($response->getBody(), true);
                 if(isset ($data['transactionHistoryList'])){
                     foreach($data['transactionHistoryList'] as $key => $value){
-                        // $check = ThanhToan::where('refNo', $value['refNo'])->first();
-
+                        $check = ThanhToan::where('refNo', $value['refNo'])->first();
+                        if(!$check){
                             $payment = ThanhToan::create([
                                 'refNo' => $value['refNo'],
                                 'creditAmount' => $value['creditAmount'],
                                 'description' => $value['description'],
                                 'id_don_hang' => $request->id,
                             ]);
-                            dd($payment);
-
-                        $pattern = '/CUSTOMER\s(.*?)\sMa giao dich/i';
+                        }
+                        $des = $request->hashCode;
                         $input = $value['description'];
-                        if (preg_match($pattern, $input, $matches)) {
-                            $customerInfo = $matches[1];
-                            if($customerInfo == $des) {
+                        if (preg_match('/CUSTOMER\s(.*?)\s  M/i', $input, $matches)) {
+                            $result = $matches[1];
+                            if($result == $des)  {
+                                return response()->json([
+                                    'status' => 1,
+                                    'message' => 'Thanh toán thành công'
+                                ]);
+                            } else {
+                                return response()->json([
+                                    'status' => 0,
+                                    'message' => 'Thanh toán thất bại'
+                                ]);
                             }
                         }
                     }
+                    // return response()->json([
+                    //     'status' => 1,
+                    //     'data' => $data
+                    // ]);
                 }
         } catch(Exception $e){
 
