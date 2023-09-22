@@ -158,9 +158,12 @@
                                                                                 class="text-primary" style="user-select: none !important">THÔNG
                                                                                 TIN CHI
                                                                                 TIẾT SẼ ĐƯỢC GỬI QUA EMAIL CỦA BẠN</b></h7>
-                                                                       </div>
+                                                                                                                                               </div>
+                                                                                                                                             
                                                                         <h7 v-if="(checkPayment == 0)" class="text-center" style="font-size: 1rem;"><b
                                                                                 class="text-danger" style="user-select: none !important">VUI LÒNG BẤM VÀO XÁC NHẬN ĐÃ THANH TOÁN SAU KHI THANH TOÁN ĐỂ HỆ THỐNG KIỂM TRA</b></h7>
+                                                                        <h7 v-if="(checkPayment == -1)" class="text-center" style="font-size: 1rem;"><b
+                                                                                class="text-danger" style="user-select: none !important"> <b> THANH TOÁN CHƯA ĐƯỢC THỰC HIỆN HOẶC CÓ LỖI <br> TRONG QUÁ TRÌNH XÁC THỰC - VUI LÒNG LIÊN HỆ NHÀ PHÁT TRIỂN ĐỂ GIẢI QUYẾT</b></b></h7>
                                                                     </div>
                                                                 </div>
                                                             </div>

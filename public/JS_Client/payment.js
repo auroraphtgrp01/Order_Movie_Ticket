@@ -7,9 +7,10 @@ $(document).ready(function () {
             dataCart: {},
             total: 0,
             checkPayment: 0,
-            countDown: 10,
+            countDown: 60,
             paymentInfo: {},
             hash: '',
+            checkButton: 1,
         },
         created() {
             this.loadData_Payment();
@@ -58,23 +59,28 @@ $(document).ready(function () {
             },
 
             checkPaid() {
-                let k = 1;
-                this.paymentCheck();
-                setTimeout(() => { this.checkPayment = 1; }, 500)
-                const count = setInterval(() => {
-                    this.countDown--;
-                    if (this.countDown == 0) {
-                        this.countDown = 10;
-                        if (this.checkPayment == 1) {
+                if (this.checkButton == 1) {
+                    let countSecond = 10;
+                    let k = 1;
+                    this.paymentCheck();
+                    setTimeout(() => { this.checkPayment = 1; }, 500)
+                    const count = setInterval(() => {
+                        this.countDown--;
+                        countSecond--;
+                        if (countSecond == 0 && this.checkPayment == 1) {
+                            countSecond = 10;
                             this.paymentCheck();
                             k++;
                         }
-
-                    }
-                    if (this.checkPayment == 2 || k == 5) {
-                        clearInterval(count);
-                    }
-                }, 1000);
+                        if (this.checkPayment == 2 || this.countDown == 0) {
+                            clearInterval(count);
+                        }
+                        if (k == 5) {
+                            this.checkPayment = -1;
+                            clearInterval(count);
+                        }
+                    }, 1000);
+                }
             },
             paymentCheck() {
                 axios
@@ -83,6 +89,7 @@ $(document).ready(function () {
                         if (res.data.status == 1) {
                             toastr.success('Thanh toán thành công', 'Success');
                             this.checkPayment = 2;
+                            this.checkButton = 0;
                         }
                     })
                     .catch((res) => {
