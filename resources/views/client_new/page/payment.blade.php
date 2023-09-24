@@ -164,12 +164,12 @@
                                                                         <h7 v-if="(checkPayment == -1)" class="text-center" style="font-size: 1rem;"><b
                                                                                 class="text-danger" style="user-select: none !important"> <b> THANH TOÁN CHƯA ĐƯỢC THỰC HIỆN HOẶC CÓ LỖI <br> TRONG QUÁ TRÌNH XÁC THỰC - VUI LÒNG LIÊN HỆ NHÀ PHÁT TRIỂN ĐỂ GIẢI QUYẾT</b></b></h7>
                                                                                 <h7 v-if="(checkPayment == -2)" class="text-center" style="font-size: 1rem;"><b
-                                                                                    class="text-primary" style="user-select: none !important"> <span> ĐƠN HÀNG CHƯA ĐƯỢC THANH TOÁN <br> BẠN ĐÃ THANH TOÁN KHÔNG ĐỦ SỐ TIỀN CỦA ĐƠN HÀNG <br> VUI LÒNG LIÊN HỆ NHÀ PHÁT TRIỄN ĐỂ GIẢI QUYẾT 
+                                                                                    class="text-primary" style="user-select: none !important"> <span> ĐƠN HÀNG CHƯA ĐƯỢC THANH TOÁN <br> BẠN ĐÃ THANH TOÁN KHÔNG ĐỦ SỐ TIỀN CỦA ĐƠN HÀNG <br> VUI LÒNG LIÊN HỆ NHÀ PHÁT TRIỄN ĐỂ GIẢI QUYẾT
                                                                                         <br> SỐ TIỀN TỔNG ĐƠN HÀNG: <b class="text-danger"> @{{formatCurrency(total)}}</b>
                                                                                         <br> SỐ TIỀN ĐÃ THANH TOÁN:   <b class="text-danger">@{{formatCurrency(amountMoney)}}</b>
                                                                                         <br> SỐ TIỀN THIẾU CÒN LẠI:  <b class="text-danger">@{{formatCurrency(total-amountMoney)}}</b>
 
-                                                                                    </span></b></h7>   
+                                                                                    </span></b></h7>
                                                                                     <!-- <h7 v-if="(checkPayment == -10)" class="text-center" style="font-size: 1rem;"><b
                                                                                         class="text-success" style="user-select: none !important">ĐƠN HÀNG ĐÃ ĐƯỢC THANH TOÁN THÀNH CÔNG !!!</b></h7> -->
                                                                     </div>

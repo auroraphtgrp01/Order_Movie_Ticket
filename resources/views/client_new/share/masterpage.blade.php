@@ -7,7 +7,7 @@
         @include('client_new.share.head')
     </head>
 
-    <body>
+    <body style="background-color: #0e1317;">
 
         <div class="page-wrapper" id="homepage">
             <div class="loader-wrap">

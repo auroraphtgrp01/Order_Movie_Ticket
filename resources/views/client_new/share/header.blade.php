@@ -1,5 +1,5 @@
 <header class="main-header"
-    style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);">
+    style="box-shadow: 0px 2px 3px rgba(255, 255, 255, 0.05);">
 
     <!-- Header Lower -->
     <div class="header-lower">
@@ -12,7 +12,7 @@
                     style="margin-left: -50px;">
                     <!-- Logo -->
                     <div class="logo ms-2">
-                        <a href="index.html" class
+                        <a href="/" class
                             style="margin-left: 100px;"><img
                                 style="width: 130px; transform: scale(1.5);"
                                 src="/assets_client/images/logo.png"
@@ -55,8 +55,8 @@
                                     </li>
                                 </ul>
                             </li> -->
-                                <li><a href="/">Trang Chủ</a></li>
-                                <li class="dropdown"><a href="#">Shop</a>
+                                <li><a href="/"><b>Trang Chủ</b></a></li>
+                                <!-- <li class="dropdown"><a href="#">Shop</a>
                                     <ul>
                                         <li><a href="shop.html">Our
                                                 Products</a></li>
@@ -81,7 +81,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact
-                                        us</a></li>
+                                        us</a></li> -->
                             </ul>
                         </div>
 
@@ -97,36 +97,53 @@
                         class="options-box d-flex align-items-center">
 
                         <!-- Search Box -->
-                        <div class="search-box-outer">
+                        <!-- <div class="search-box-outer">
                             <div class="search-box-btn"><span
                                     class="flaticon-search-1"></span></div>
-                        </div>
+                        </div> -->
 
                         <!-- User Box -->
-                        <a class="user-box flaticon-user-3"
-                            href="contact.html"></a>
+                        <!-- <a class="user-box flaticon-user-3"
+                            href="contact.html"></a> -->
 
                         <!-- Like Box -->
-                        <div class="like-box">
+                        <!-- <div class="like-box">
                             <a class="user-box flaticon-heart"
                                 href="contact.html"></a>
                             <span class="total-like">0</span>
-                        </div>
+                        </div> -->
 
                     </div>
 
                     <!-- Cart Box -->
-                    <div class="cart-box">
+                    <!-- <div class="cart-box">
                         <div class="box-inner">
                             <div class
                                 style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
                                 <img
-                                    src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/366670743_1504730726732988_8894476486680721584_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a2f6c7&_nc_ohc=yXWDQD9XQ6EAX9ql83z&_nc_ht=scontent.fhan20-1.fna&oh=00_AfDEij4AbpYc1IlJuTgr0MmRHsYvbGY44tvUzZ0LOKMhcQ&oe=650C2208"
+                                    src="/assets_client/images/avatar.png"
                                     alt="avatar"
                                     style="border-radius: 30px;">
                             </div>
                             Lê Minh Tuấn<br>
                             <a class="phone" href>Đăng Xuất</a>
+                        </div>
+                    </div> -->
+                    <div class="cart-box">
+                        <div class="box-inner p-0">
+                            <!-- <div class
+                                style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
+                                <img
+                                    src="/assets_client/images/avatar.png"
+                                    alt="avatar"
+                                    style="border-radius: 30px;">
+                            </div>
+                            Anonymous<br>
+                            <a class="phone" href>Đăng Xuất</a> -->
+                            <a href="/login"
+                                class="btn btn-outline-danger phone p-2"><b
+                                    class>Đăng
+                                    Nhập</b></a>
                         </div>
                     </div>
                     <!-- End Cart Box -->
@@ -141,7 +158,7 @@
     </div>
     <!-- End Header Lower -->
     <!-- Sticky Header  -->
-    <div class="sticky-header">
+    <div class="sticky-header" style="background-color: #0e1317;">
         <div class="auto-container">
             <div
                 class="d-flex justify-content-between align-items-center">

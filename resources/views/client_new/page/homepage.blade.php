@@ -7,112 +7,114 @@
 
 <!-- Main Section -->
 <section class="main-slider">
-    <div class="main-slider-carousel owl-carousel owl-theme">
+    <div class="container">
+        <div class="main-slider-carousel owl-carousel owl-theme">
 
-        <div class="slide">
-            <div class="image-layer p-3"
-                style="background-image: url(/assets_client/images/main-slider/image-2.png)"></div>
-            <div class="auto-container">
-                <!-- Content Column -->
-                <div class="content-box hover-slider"
-                    style="width: 400px;">
-                    <img
-                        src="https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/i/n/insidious_5_poster_2_1080x1350.jpg"
-                        style="width: 400px; height: 500px; position: absolute; z-index: 1; filter: brightness(0.6)"
-                        class="res-img"
-                        alt>
-                    <div class="box-inner" style="height: 500px;">
-                        <div class="vector-icon"
-                            style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
-                        <div class="vector-icon-two"
-                            style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
-                        <div class="vector-icon-three"
-                            style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
-                        <div class="title text-white">PHIM HOT 2023</div>
-                        <h1 class="text-white" style="z-index: 2;">CỬA
-                            ĐỎ <br> VÔ ĐỊNH</h1>
-                        <h1 class="text-white"
-                            style="z-index: 4; font-size: 0.9rem">
-                            Kinh Dị,
-                            Kịch Tính</h1>
-                        <a href="shop-detail.html"
-                            class="shop-now text-white btn btn-success d-flex"
-                            style="z-index: 2; width: 150px;"><span
-                                class="ms-3">Đặt vé ngay</span></a>
+            <div class="slide">
+                <div class="image-layer p-3"
+                    style="background-image: url(/assets_client/images/main-slider/image-2.png)"></div>
+                <div class="auto-container">
+                    <!-- Content Column -->
+                    <div class="content-box hover-slider"
+                        style="width: 400px;">
+                        <img
+                            src="https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/i/n/insidious_5_poster_2_1080x1350.jpg"
+                            style=" position: absolute; z-index: 1; filter: brightness(0.6)"
+                            class="res-img"
+                            alt>
+                        <div class="box-inner" style>
+                            <div class="vector-icon"
+                                style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
+                            <div class="vector-icon-two"
+                                style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
+                            <div class="vector-icon-three"
+                                style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
+                            <div class="title text-white">PHIM HOT 2023</div>
+                            <h1 class="text-white" style="z-index: 2;">CỬA
+                                ĐỎ <br> VÔ ĐỊNH</h1>
+                            <h1 class="text-white"
+                                style="z-index: 4; font-size: 0.9rem">
+                                Kinh Dị,
+                                Kịch Tính</h1>
+                            <a href="shop-detail.html"
+                                class="shop-now text-white btn btn-success d-flex"
+                                style="z-index: 2; width: 150px;"><span
+                                    class="ms-3">Đặt vé ngay</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="slide">
-            <div class="image-layer p-3"
-                style="background-image: url(/assets_client/images/main-slider/image-3.png)"></div>
-            <div class="auto-container">
-                <!-- Content Column -->
-                <div class="content-box hover-slider"
-                    style="width: 400px;">
-                    <img
-                        src="https://www.venuscinema.vn/uploaded/phim/ma%20so%20truc%20quy.jpg"
-                        style="width: 400px; height: 500px; position: absolute; z-index: 1; filter: brightness(0.6)"
-                        class="res-img"
-                        alt>
-                    <div class="box-inner" style="height: 500px;">
-                        <div class="vector-icon"
-                            style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
-                        <div class="vector-icon-two"
-                            style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
-                        <div class="vector-icon-three"
-                            style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
-                        <div class="title text-white">PHIM HOT 2023</div>
-                        <h1 class="text-white" style="z-index: 2;">MA
-                            SƠ <br> TRỤC QUỶ</h1>
-                        <h1 class="text-white"
-                            style="z-index: 4; font-size: 0.9rem">
-                            Kinh Dị,
-                            Kịch Tính</h1>
-                        <a href="shop-detail.html"
-                            class="shop-now text-white btn btn-success d-flex"
-                            style="z-index: 2; width: 150px;"><span
-                                class="ms-3">Đặt vé ngay</span></a>
+            <div class="slide">
+                <div class="image-layer p-3"
+                    style="background-image: url(/assets_client/images/main-slider/image-3.png)"></div>
+                <div class="auto-container">
+                    <!-- Content Column -->
+                    <div class="content-box hover-slider"
+                        style="width: 400px;">
+                        <img
+                            src="https://www.venuscinema.vn/uploaded/phim/ma%20so%20truc%20quy.jpg"
+                            style=" position: absolute; z-index: 1; filter: brightness(0.6)"
+                            class="res-img"
+                            alt>
+                        <div class="box-inner" style>
+                            <div class="vector-icon"
+                                style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
+                            <div class="vector-icon-two"
+                                style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
+                            <div class="vector-icon-three"
+                                style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
+                            <div class="title text-white">PHIM HOT 2023</div>
+                            <h1 class="text-white" style="z-index: 2;">MA
+                                SƠ <br> TRỤC QUỶ</h1>
+                            <h1 class="text-white"
+                                style="z-index: 4; font-size: 0.9rem">
+                                Kinh Dị,
+                                Kịch Tính</h1>
+                            <a href="shop-detail.html"
+                                class="shop-now text-white btn btn-success d-flex"
+                                style="z-index: 2; width: 150px;"><span
+                                    class="ms-3">Đặt vé ngay</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="slide">
-            <div class="image-layer p-3"
-                style="background-image: url(/assets_client/images/main-slider/image-1.png)"></div>
-            <div class="auto-container">
-                <!-- Content Column -->
-                <div class="content-box hover-slider"
-                    style="width: 400px;">
-                    <img
-                        src="https://dcine.vn/Areas/Admin/Content/Fileuploads/images/POSTER/vuemdayyeuPOSTER-01.jpg	"
-                        style="width: 400px; height: 500px; position: absolute; z-index: 1; filter: brightness(0.6)"
-                        class="res-img"
-                        alt>
-                    <div class="box-inner" style="height: 500px;">
-                        <div class="vector-icon"
-                            style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
-                        <div class="vector-icon-two"
-                            style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
-                        <div class="vector-icon-three"
-                            style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
-                        <div class="title text-white">PHIM HOT 2023</div>
-                        <h1 class="text-white" style="z-index: 2;">VÚ
-                            EM <br> DẠY YÊU</h1>
-                        <h1 class="text-white"
-                            style="z-index: 4; font-size: 0.9rem">
-                            Tình Cảm,
-                            Vui Nhọn</h1>
-                        <a href="shop-detail.html"
-                            class="shop-now text-white btn btn-success d-flex"
-                            style="z-index: 2; width: 150px;"><span
-                                class="ms-3">Đặt vé ngay</span></a>
+            <div class="slide">
+                <div class="image-layer p-3"
+                    style="background-image: url(/assets_client/images/main-slider/image-1.png)"></div>
+                <div class="auto-container">
+                    <!-- Content Column -->
+                    <div class="content-box hover-slider"
+                        style="width: 400px;">
+                        <img
+                            src="https://dcine.vn/Areas/Admin/Content/Fileuploads/images/POSTER/vuemdayyeuPOSTER-01.jpg	"
+                            style=" position: absolute; z-index: 1; filter: brightness(0.6)"
+                            class="res-img"
+                            alt>
+                        <div class="box-inner" style>
+                            <div class="vector-icon"
+                                style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
+                            <div class="vector-icon-two"
+                                style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
+                            <div class="vector-icon-three"
+                                style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
+                            <div class="title text-white">PHIM HOT 2023</div>
+                            <h1 class="text-white" style="z-index: 2;">VÚ
+                                EM <br> DẠY YÊU</h1>
+                            <h1 class="text-white"
+                                style="z-index: 4; font-size: 0.9rem">
+                                Tình Cảm,
+                                Vui Nhọn</h1>
+                            <a href="shop-detail.html"
+                                class="shop-now text-white btn btn-success d-flex"
+                                style="z-index: 2; width: 150px;"><span
+                                    class="ms-3">Đặt vé ngay</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- End Slide One -->
+            <!-- End Slide One -->
+        </div>
     </div>
 </section>
 <!-- End Main Section -->
