@@ -14,7 +14,7 @@
                     <div class="logo ms-2">
                         <a href="/" class
                             style="margin-left: 100px;"><img
-                                style="width: 130px; transform: scale(1.5);"
+                                style="width: 130px; transform: scale(1.4);"
                                 src="/assets_client/images/logo.png"
                                 alt
                                 title>
@@ -40,7 +40,8 @@
                         <div
                             class="navbar-collapse collapse clearfix"
                             id="navbarSupportedContent">
-                            <ul class="navigation clearfix">
+                            <ul class="navigation clearfix"
+                                style="height: 70px;">
                                 <!-- <li class="dropdown"><a href="#">Home</a>
                                 <ul>
                                     <li><a href="index.html">Homepage One</a></li>
@@ -55,7 +56,7 @@
                                     </li>
                                 </ul>
                             </li> -->
-                                <li><a href="/"><b>Trang Chủ</b></a></li>
+                                <!-- <li><a href="/"><b>Trang Chủ</b></a></li> -->
                                 <!-- <li class="dropdown"><a href="#">Shop</a>
                                     <ul>
                                         <li><a href="shop.html">Our
@@ -116,8 +117,8 @@
                     </div>
 
                     <!-- Cart Box -->
-                    <!-- <div class="cart-box">
-                        <div class="box-inner">
+                    <div class="cart-box">
+                        <div class="box-inner" style="text-transform: none;">
                             <div class
                                 style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
                                 <img
@@ -125,27 +126,18 @@
                                     alt="avatar"
                                     style="border-radius: 30px;">
                             </div>
-                            Lê Minh Tuấn<br>
-                            <a class="phone" href>Đăng Xuất</a>
+                            <b class style="color: #ED3232;">Lê Minh Tuấn</b><br>
+                            <a class="phone text-hover" href><b>Đăng Xuất</b></a>
                         </div>
-                    </div> -->
-                    <div class="cart-box">
+                    </div>
+                    <!-- <div class="cart-box">
                         <div class="box-inner p-0">
-                            <!-- <div class
-                                style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
-                                <img
-                                    src="/assets_client/images/avatar.png"
-                                    alt="avatar"
-                                    style="border-radius: 30px;">
-                            </div>
-                            Anonymous<br>
-                            <a class="phone" href>Đăng Xuất</a> -->
                             <a href="/login"
                                 class="btn btn-outline-danger phone p-2"><b
                                     class>Đăng
                                     Nhập</b></a>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- End Cart Box -->
                     <!-- Mobile Navigation Toggler -->
                     <div class="mobile-nav-toggler"><span
@@ -166,7 +158,7 @@
                 <div class="logo">
                     <a href="index.html" style="margin-left: 100px;"
                         title><img
-                            style="width: 130px; transform: scale(1.5);"
+                            style="width: 130px; transform: scale(1.2);"
                             q
                             src="/assets_client/images/logo-small.png"
                             alt title></a>
@@ -177,7 +169,21 @@
                     <!-- Main Menu -->
                     <nav class="main-menu">
                         <!--Keep This Empty / Menu will come through Javascript-->
+                        <div class="cart-box">
+                            <div class="box-inner" style="text-transform: none;">
+                                <div class
+                                    style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
+                                    <img
+                                        src="/assets_client/images/avatar.png"
+                                        alt="avatar"
+                                        style="border-radius: 30px;">
+                                </div>
+                                <b class style="color: #ED3232;">Lê Minh Tuấn</b><br>
+                                <a class="phone text-hover" href><b>Đăng Xuất</b></a>
+                            </div>
+                        </div>
                     </nav>
+
                     <!-- Main Menu End-->
 
                     <!-- Mobile Navigation Toggler -->

@@ -1,143 +1,22 @@
 @extends('client_new.share.masterpage')
 @section('content')
-
-<!-- Sidebar Cart Item -->
-
-<!-- END sidebar widget item -->
-
-<!-- Main Section -->
 <section class="main-slider">
     <div class="container">
         <div class="main-slider-carousel owl-carousel owl-theme">
-
-            <div class="slide">
-                <div class="image-layer p-3"
-                    style="background-image: url(/assets_client/images/main-slider/image-2.png)"></div>
-                <div class="auto-container">
-                    <!-- Content Column -->
-                    <div class="content-box hover-slider"
-                        style="width: 400px;">
-                        <img
-                            src="https://www.cgv.vn/media/catalog/product/cache/1/image/c5f0a1eff4c394a251036189ccddaacd/i/n/insidious_5_poster_2_1080x1350.jpg"
-                            style=" position: absolute; z-index: 1; filter: brightness(0.6)"
-                            class="res-img"
-                            alt>
-                        <div class="box-inner" style>
-                            <div class="vector-icon"
-                                style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
-                            <div class="vector-icon-two"
-                                style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
-                            <div class="vector-icon-three"
-                                style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
-                            <div class="title text-white">PHIM HOT 2023</div>
-                            <h1 class="text-white" style="z-index: 2;">CỬA
-                                ĐỎ <br> VÔ ĐỊNH</h1>
-                            <h1 class="text-white"
-                                style="z-index: 4; font-size: 0.9rem">
-                                Kinh Dị,
-                                Kịch Tính</h1>
-                            <a href="shop-detail.html"
-                                class="shop-now text-white btn btn-success d-flex"
-                                style="z-index: 2; width: 150px;"><span
-                                    class="ms-3">Đặt vé ngay</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="image-layer p-3"
-                    style="background-image: url(/assets_client/images/main-slider/image-3.png)"></div>
-                <div class="auto-container">
-                    <!-- Content Column -->
-                    <div class="content-box hover-slider"
-                        style="width: 400px;">
-                        <img
-                            src="https://www.venuscinema.vn/uploaded/phim/ma%20so%20truc%20quy.jpg"
-                            style=" position: absolute; z-index: 1; filter: brightness(0.6)"
-                            class="res-img"
-                            alt>
-                        <div class="box-inner" style>
-                            <div class="vector-icon"
-                                style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
-                            <div class="vector-icon-two"
-                                style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
-                            <div class="vector-icon-three"
-                                style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
-                            <div class="title text-white">PHIM HOT 2023</div>
-                            <h1 class="text-white" style="z-index: 2;">MA
-                                SƠ <br> TRỤC QUỶ</h1>
-                            <h1 class="text-white"
-                                style="z-index: 4; font-size: 0.9rem">
-                                Kinh Dị,
-                                Kịch Tính</h1>
-                            <a href="shop-detail.html"
-                                class="shop-now text-white btn btn-success d-flex"
-                                style="z-index: 2; width: 150px;"><span
-                                    class="ms-3">Đặt vé ngay</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="image-layer p-3"
-                    style="background-image: url(/assets_client/images/main-slider/image-1.png)"></div>
-                <div class="auto-container">
-                    <!-- Content Column -->
-                    <div class="content-box hover-slider"
-                        style="width: 400px;">
-                        <img
-                            src="https://dcine.vn/Areas/Admin/Content/Fileuploads/images/POSTER/vuemdayyeuPOSTER-01.jpg	"
-                            style=" position: absolute; z-index: 1; filter: brightness(0.6)"
-                            class="res-img"
-                            alt>
-                        <div class="box-inner" style>
-                            <div class="vector-icon"
-                                style="background-image: url(/assets_client/images/main-slider/vector-1.png)"></div>
-                            <div class="vector-icon-two"
-                                style="background-image: url(/assets_client/images/main-slider/vector-2.png)"></div>
-                            <div class="vector-icon-three"
-                                style="background-image: url(/assets_client/images/main-slider/vector-3.png)"></div>
-                            <div class="title text-white">PHIM HOT 2023</div>
-                            <h1 class="text-white" style="z-index: 2;">VÚ
-                                EM <br> DẠY YÊU</h1>
-                            <h1 class="text-white"
-                                style="z-index: 4; font-size: 0.9rem">
-                                Tình Cảm,
-                                Vui Nhọn</h1>
-                            <a href="shop-detail.html"
-                                class="shop-now text-white btn btn-success d-flex"
-                                style="z-index: 2; width: 150px;"><span
-                                    class="ms-3">Đặt vé ngay</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- End Slide One -->
+            <div><img src="/assets_client/images/background/6.jpg" alt></div>
+            <div><img src="/assets_client/images/background/1.png" alt></div>
+            <div><img src="/assets_client/images/background/2.jpg" alt></div>
+            <div><img src="/assets_client/images/background/3.jpg" alt></div>
+            <div><img src="/assets_client/images/background/5.jpg" alt></div>
+            <div><img src="/assets_client/images/background/4.jpg" alt></div>
         </div>
     </div>
 </section>
-<!-- End Main Section -->
-
-<!-- Featured Section -->
-<section class="featured-section">
-    <div class="vector-layer"
-        style="background-image: url(/assets_client/images/icons/vector-1.png)"></div>
+<section class="products-section mt-5">
     <div class="auto-container">
-        <div class="inner-container">
-            <div class="row clearfix">
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Featured Section -->
-
-<!-- Movie -->
-<section class="products-section">
-    <div class="auto-container">
-        <!-- Sec Title -->
         <div class="sec-title">
-            <h4><strong style="font-size: 2rem;">PHIM SẮP CHIẾU</strong></h4>
+            <h4><strong style="font-size: 2.2rem;" class="text-danger">PHIM SẮP
+                    CHIẾU</strong></h4>
         </div>
         <div class="four-item-carousel owl-carousel owl-theme">
             @foreach ($phimSapChieu as $key => $value)
@@ -152,10 +31,10 @@
                             </div>
                         </a>
                         <div class="cart-box text-center mb-1">
-                            <a class="cart" href="#">Trailer</a>
-                            <a class="cart"
-                                href="/movie-detail/{{ $value->slug_phim }}">Đặt
-                                vé </a>
+                            <a class="cart" href="#" style><b>Trailer</b></a>
+                            <a class="cart" style
+                                href="/movie-detail/{{ $value->slug_phim }}"><b>Đặt
+                                    vé </b></a>
                         </div>
                     </div>
                     <div class="lower-content">
@@ -167,32 +46,25 @@
         </div>
     </div>
 </section>
-
-<section class="sale-section">
-    <div class="auto-container">
-    </div>
-</section>
-
-<!-- PHIM NHIỀU NGƯỜI XEM NHẤT -->
 <section class="collection-section">
     <div class="auto-container">
-        <div class="inner-container">
+        <div class="inner-container"
+            style="border-radius: 20px; background: rgb(255,153,102);
+            background: linear-gradient(90deg, rgba(255,153,102,1) 0%, rgba(255,94,98,1) 100%);">
             <div class="pattern-layer"
                 style="background-image: url(/assets_client/images/icons/pattern-1.png)"></div>
-            <div class="shape-layer"
-                style="background-image: url(/assets_client/images/background/pattern-1.png)"></div>
             <div class="row clearfix">
                 <div
                     class="title-column col-lg-6 col-md-12 col-sm-12">
-                    <div class="title">PHIM NHIỀU NGƯỜI XEM NHẤT
-                        2023</div>
+                    <div class="title text-danger fs-2"><b>PHIM NHIỀU NGƯỜI XEM
+                            NHẤT
+                            2023</b></div>
                     <h2></h2>
-                    <div class="deals">NGƯỜI NHỆN: DU HÀNH VŨ TRỤ
+                    <div class="deals text-white">NGƯỜI NHỆN: DU HÀNH VŨ TRỤ
                         NHỆN</div>
                     <a class="shop-now" href="shop-detail.html"><button
                             class="btn btn-danger"><strong>ĐẶT VÉ
                                 NGAY</strong></button></a>
-                    <!-- Arrow -->
                     <div class="arrow">
                         <img
                             src="/assets_client/images/icons/arrow-1.png"
@@ -214,18 +86,11 @@
         </div>
     </div>
 </section>
-<!--  PHIM NHIỀU NGƯỜI XEM NHẤT-->
-
-<!-- Products Section Three -->
 <section class="products-section-three">
     <div class="auto-container">
-        <!-- Sec Title -->
         <div class="sec-title">
             <h4><span>PHIM HAY </span> DÀNH CHO BẠN !</h4>
         </div>
-
-        <!-- MixitUp Galery -->
-
         <div class="mixitup-gallery">
             <!-- Filter -->
             <div class="filters">
@@ -234,10 +99,7 @@
                         data-filter="all"></li>
                 </ul>
             </div>
-
             <div class="filter-list row clearfix">
-
-                <!-- Shop Item -->
                 @foreach ($phimSapChieu as $key => $value)
                 <div
                     class="shop-item mix music photography col-lg-3 col-md-6 col-sm-12">
@@ -253,37 +115,26 @@
                             </a>
                             <div class="cart-box text-center mb-1">
                                 <a class="cart"
-                                    href="/movie-detail/{{ $value->slug_phim }}">Trailer</a>
+                                    href="/movie-detail/{{ $value->slug_phim }}"><b>Trailer</b></a>
                                 <a class="cart"
                                     href="/movie-detail/{{ $value->slug_phim }}">Đặt
                                     vé </a>
                             </div>
                         </div>
                         <div class="lower-content">
-                            <h6><a href="/movie-detail/{{ $value->slug_phim }}"><b>PHIM
-                                        ĐIỆN ẢNH DORAEMON: NOBITA VÀ
-                                        VÙNG
-                                        ĐẤT LÝ TƯỞNG TRÊN BẦU TRỜI</b></a></h6>
+                            <h6><a href="/movie-detail/{{ $value->slug_phim }}"><b>{{$value->ten_phim}}</b></a></h6>
                         </div>
                     </div>
                 </div>
                 @endforeach
-
             </div>
-
-            <!-- Button Box -->
-
         </div>
     </div>
 </section>
-<!-- End Products Section Three -->
-
-<!-- Sponsors Section -->
 <section class="sponsors-section">
     <div class="auto-container">
         <div class="inner-container">
             <div class="sponsors-outer">
-                <!-- Sponsors Carousel -->
                 <ul class="sponsors-carousel owl-carousel owl-theme">
                     <li class="slide-item"><figure class="image-box"><a
                                 href="#"><img
@@ -338,18 +189,13 @@
         </div>
     </div>
 </section>
-<!-- End Sponsors Section -->
-
-<!-- News Section -->
 <section class="news-section">
     <div class="auto-container">
         <div class="news-carousel owl-carousel owl-theme">
-
-            <!-- News Block -->
             <div class="news-block">
                 <div class="inner-box">
                     <div class="image">
-                        <div class="tag">BLOG</div>
+                        <div class="tag text-bg-danger">BLOG</div>
                         <a href="blog-detail.html"><img
                                 src="/assets_client/images/resource/news-1.jpg"
                                 alt /></a>
@@ -373,7 +219,7 @@
             <div class="news-block">
                 <div class="inner-box">
                     <div class="image">
-                        <div class="tag">BLOG</div>
+                        <div class="tag text-bg-danger">BLOG</div>
                         <a href="blog-detail.html"><img
                                 src="/assets_client/images/resource/news-2.jpg"
                                 alt /></a>
@@ -399,9 +245,6 @@
         </div>
     </div>
 </section>
-<!-- End News Section -->
-
-<!-- Testimonial Section -->
 <section class="testimonial-section">
     <div class="pattern-layer"
         style="background-image: url(/assets_client/images/background/pattern-3.png)"></div>
@@ -412,12 +255,9 @@
             <div class="vector-layer"
                 style="background-image: url(/assets_client/images/background/pattern-2.png)"></div>
             <div class="single-item-carousel owl-carousel owl-theme">
-
-                <!-- Testimonial Block -->
                 <div class="testimonial-block">
                     <div class="inner-box">
                         <div class="row clearfix">
-                            <!-- Image Column -->
                             <div
                                 class="image-column col-lg-4 col-md-12 col-sm-12">
                                 <div class="inner-column">
@@ -427,7 +267,6 @@
                                         <img
                                             src="/assets_client/images/resource/author-2.png"
                                             alt />
-                                        <!-- Social Box -->
                                         <ul class="social-box">
                                             <li><a
                                                     href="https://www.facebook.com/"
@@ -445,7 +284,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Content Column -->
                             <div
                                 class="content-column col-lg-8 col-md-12 col-sm-12">
                                 <div class="inner-column">
@@ -470,12 +308,9 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Testimonial Block -->
                 <div class="testimonial-block">
                     <div class="inner-box">
                         <div class="row clearfix">
-                            <!-- Image Column -->
                             <div
                                 class="image-column col-lg-4 col-md-12 col-sm-12">
                                 <div class="inner-column">
@@ -485,7 +320,6 @@
                                         <img
                                             src="/assets_client/images/resource/author-21.png"
                                             alt />
-                                        <!-- Social Box -->
                                         <ul class="social-box">
                                             <li><a
                                                     href="https://www.facebook.com/"
@@ -503,7 +337,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Content Column -->
                             <div
                                 class="content-column col-lg-8 col-md-12 col-sm-12">
                                 <div class="inner-column">
@@ -539,14 +372,9 @@
         </div>
     </div>
 </section>
-<!-- End Testimonial Section -->
-
-<!-- Gallery Section -->
 <section class="gallery-section">
     <div class="outer-container">
         <div class="instagram-carousel owl-carousel owl-theme">
-
-            <!-- Insta Gallery -->
             <div class="insta-gallery">
                 <img src="/assets_client/images/gallery/1.png" alt />
                 <div class="overlay-box">
@@ -557,8 +385,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Insta Gallery -->
             <div class="insta-gallery">
                 <img src="/assets_client/images/gallery/2.png" alt />
                 <div class="overlay-box">
@@ -570,8 +396,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Insta Gallery -->
             <div class="insta-gallery">
                 <img src="/assets_client/images/gallery/3.png" alt />
                 <div class="overlay-box">
@@ -582,8 +406,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Insta Gallery -->
             <div class="insta-gallery">
                 <img src="/assets_client/images/gallery/4.png" alt />
                 <div class="overlay-box">
@@ -594,8 +416,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Insta Gallery -->
             <div class="insta-gallery">
                 <img src="/assets_client/images/gallery/5.png" alt />
                 <div class="overlay-box">
@@ -606,8 +426,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Insta Gallery -->
             <div class="insta-gallery">
                 <img src="/assets_client/images/gallery/6.png" alt />
                 <div class="overlay-box">
@@ -622,5 +440,4 @@
         </div>
     </div>
 </section>
-<!-- End Gallery Section -->
 @endsection

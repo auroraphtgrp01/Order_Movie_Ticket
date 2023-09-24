@@ -23,7 +23,7 @@
                     <div class="content-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column">
                             <h3><b style="font-size: 2.5rem; font-weight: 500;"><b
-                                        class="text-success">@{{
+                                        class="text-warning">@{{
                                         getFirst(dataMovie.ten_phim) }} </b>
                                     <b class="text-danger">@{{
                                         getWords(dataMovie.ten_phim) }}</b> </b></h3>
@@ -54,16 +54,16 @@
                                 </div>
                                 <div class="d-flex align-middle mt-1 ms-3">
                                     <i
-                                        class="fa-solid fa-calendar text-success mt-1 me-2"
+                                        class="fa-solid fa-calendar text-warning mt-1 me-2"
                                         style="font-size:1.1rem"></i>
-                                    <b class="text-success"
+                                    <b class="text-warning"
                                         style="font-size:1.1rem">2023</b>
                                 </div>
                             </div>
                             <!-- Price -->
 
                             <div class="text mt-2"
-                                style="color: #000; font-size: 1.1rem;">@{{
+                                style="color: #fff; font-size: 1.1rem;">@{{
                                 dataMovie.mo_ta }}</div>
                             <div class="d-flex flex-wrap">
                                 <!-- Model -->
@@ -73,7 +73,7 @@
                                 </div>
                                 <!-- Select Size -->
                                 <div class="model">
-                                    <span class="model-title text-success"><b>@{{
+                                    <span class="model-title text-warning"><b>@{{
                                             dataMovie.dao_dien }}</b></span>
                                 </div>
 
@@ -86,7 +86,7 @@
                                 </div>
                                 <!-- Select Size -->
                                 <div class="model">
-                                    <span class="model-title text-success"><b>@{{
+                                    <span class="model-title text-warning"><b>@{{
                                             dataMovie.dien_vien }}</b></span>
                                 </div>
 
@@ -99,7 +99,7 @@
                                 </div>
                                 <!-- Select Size -->
                                 <div class="model">
-                                    <span class="model-title text-success"><b>@{{
+                                    <span class="model-title text-warning"><b>@{{
                                             dataMovie.ngon_ngu }}</b></span>
                                 </div>
 
@@ -144,7 +144,7 @@
         <div class="auto-container">
             <!-- Sec Title -->
             <div class="sec-title">
-                <h4><strong style="font-size: 2rem;"><b class="text-success">PHIM</b><b
+                <h4><strong style="font-size: 2rem;"><b class="text-warning">PHIM</b><b
                             class="text-danger">
                             SẮP
                             CHIẾU</b></strong></h4>
@@ -251,23 +251,19 @@
     <div class="modal fade" id="ticketModal" tabindex="-1"
         aria-labelledby aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content" style="background-color: #0e1317;">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel"><b
                             class=" text-danger">LỊCH CHIẾU CỦA PHIM </b> <b
-                            class="text-warning">QUÝ
-                            CÔNG TỬ</b></h1>
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                            class="text-warning">@{{dataMovie.ten_phim}}</b></h1>
                 </div>
                 <div class="modal-body" style="padding-bottom: 20px;">
                     <template v-if="dateTime.length == 0">
-                        <b class="text-success">PHIM HIỆN CHƯA CÓ LỊCH CHIẾU</b>
+                        <b class="text-warning">PHIM HIỆN CHƯA CÓ LỊCH CHIẾU</b>
                     </template>
                     <template v-for="(v,k) in dateTime">
                         <template v-if="(k) == v.check">
-                            <h6><b class="text-success">Ngày : @{{ v.ngay_chieu
+                            <h6><b class="text-warning">Ngày : @{{ v.ngay_chieu
                                     }}</b></h6>
                             <template v-for="(v1, k1)  in dateTime">
                                 <template v-if="v.check == v1.check">
@@ -277,7 +273,7 @@
                                         v1.gio_chieu }}</a>
                                 </template>
                             </template>
-                            <hr>
+                            <hr class="text-white">
                         </template>
                     </template>
 
