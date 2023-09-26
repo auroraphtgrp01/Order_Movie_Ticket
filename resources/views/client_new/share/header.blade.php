@@ -57,7 +57,7 @@
                                 </ul>
                             </li> -->
                                 <li><a href="/"><b>Trang Chủ</b></a></li>
-                                <li><a href="/"><b>Đơn Hàng</b></a></li>
+                                <li><a href="/order-list"><b>Đơn Hàng</b></a></li>
                                 <!-- <li class="dropdown"><a href="#">Shop</a>
                                     <ul>
                                         <li><a href="shop.html">Our

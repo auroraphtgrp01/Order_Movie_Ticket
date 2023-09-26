@@ -1,9 +1,14 @@
+
 $('document').ready(function () {
+
     new Vue({
         el: '#order_list',
         data: {
             listOrder: [],
             listTicket: [],
+            listChair: "",
+            nameMovie: 0,
+            total: 0,
         },
         created() {
             this.loadDataList();
@@ -35,12 +40,36 @@ $('document').ready(function () {
                     .post('/api/customer/list-ticket', id)
                     .then((res) => {
                         this.listTicket = res.data.data;
+                        this.listChair = this.extractSeatNumbers(this.listTicket);
+                        this.nameMovie = this.listTicket[0].ten_phim;
+                        this.total = this.calculateTotalTicketPrice(this.listTicket);
+                        console.log(this.total);
+
                     })
                     .catch((res) => {
                         $.each(res.response.data.errors, function (k, v) {
                             toastr.error(v[0], 'Error');
                         });
                     });
+            },
+            extractSeatNumbers(dataObject) {
+                const seatNumbers = [];
+                dataObject.forEach((item) => {
+                    if (item.so_ghe) {
+                        seatNumbers.push(item.so_ghe);
+                    }
+                });
+                const seatNumbersString = seatNumbers.join(", ");
+                return seatNumbersString;
+            },
+            calculateTotalTicketPrice(dataObject) {
+                let totalTicketPrice = 0;
+                dataObject.forEach((item) => {
+                    if (item.gia_ve) {
+                        totalTicketPrice += item.gia_ve;
+                    }
+                });
+                return totalTicketPrice;
             }
         },
 
