@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Jobs\sendMailJob;
 use App\Mail\sendEmail;
 use App\Models\CustomerAccount;
+use App\Models\DonHang;
 use App\Models\QuyenChucNang;
+use App\Models\VeXemPhim;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -299,5 +301,49 @@ class CustomerAccountController extends Controller
            toastr()->error('Liên kết không tồn tại !');
            return redirect('/');
         }
+    }
+    public function userInfo(){
+        $user = Auth::guard('client')->user();
+        if($user) {
+            return response()->json([
+                'status' => 1,
+                'data' => $user
+            ]);
+        } else {
+            return response()->json([
+                'status' => 0,
+            ]);
+        }
+
+    }
+    public function logOut() {
+        Auth::guard('client')->logout();
+        return response()->json([
+            'status' => 1,
+            'message' => 'Đăng xuất thành công !'
+        ]);
+
+    }
+    public function orderList(Request $request) {
+        $data = DonHang::where('id_khach_hang', Auth::guard('client')->user()->id)->get();
+        return response()->json([
+            'data'=>$data,
+        ]);
+    }
+    public function ticketList(Request $request) {
+        $id_don_hang = $request->ma_don_hang;
+        $data = VeXemPhim::where('id_don_hang', $id_don_hang)
+        // $data = DonHang::where('don_hangs.ma_don_hang', $id_don_hang)
+            // ->leftJoin('ve_xem_phims', 've_xem_phims.id_don_hang', 'don_hangs.id')
+        // ->join('ve_xem_phims', 've_xem_phims.id_don_hang', 'don_hangs.id')
+        // ->select('ve_xem_phims.*')
+        ->join('lich_chieus', 'lich_chieus.id', 've_xem_phims.id_lich_chieu')
+        ->join('phims','phims.id','lich_chieus.id_phim')
+        ->select('phims.ten_phim','lich_chieus.gio_bat_dau', 'lich_chieus.gio_ket_thuc','ve_xem_phims.*')
+        ->get();
+        return response()->json([
+            'data'=>$data,
+        ]);
+
     }
 }

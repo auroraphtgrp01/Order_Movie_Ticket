@@ -35,6 +35,7 @@ Route::get('/dang-nhap', [AuthenticationController::class, 'signin']);
 Route::get('/index', [TestController::class, 'index']);
 Route::get('/movie-detail/{slug}/cart/{id_lich_chieu}', [HomePageController::class, 'cart']);
 Route::get('/payment', [HomePageController::class, 'payment']);
+Route::get('/order-list', [HomePageController::class, 'orderList']);
 
 //
 Route::get('/test', [TestViewController::class, 'paymentCheck']);

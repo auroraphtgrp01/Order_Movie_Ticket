@@ -1,4 +1,4 @@
-    <?php
+        <?php
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\API\APIVeXemPhimController;
@@ -35,6 +35,10 @@ Route::post('/movie-detail/cart/payment',[APIMovieDetailController::class, 'paym
 Route::post('/payment',[APIMovieDetailController::class, 'paymentOrd']);
 Route::post('/payment/check', [PaymentController::class, 'paymentCheck']);
 Route::post('/payment/qrpay', [PaymentController::class, 'qrPay']);
+Route::post('/header/userInfo', [CustomerAccountController::class, 'userInfo']);
+Route::post('/header/logout', [CustomerAccountController::class, 'logOut']);
+Route::post('/customer/order-list', [CustomerAccountController::class, 'orderList']);
+Route::post('/customer/list-ticket', [CustomerAccountController::class, 'ticketList']);
 // -----------------------------------------------------------------------------------------------------------------------------------
 // ROUTE ADMIN
 

@@ -19,6 +19,50 @@
 <script src="/assets_client/js/nav-tool.js"></script>
 <script src="/assets_client/js/jquery-ui.js"></script>
 <script src="/assets_client/js/script.js"></script>
+<script>
+    $('document').ready(function(){
+        toastr.options.showMethod = 'slideDown';
+     toastr.options.progressBar = true;
+        new Vue({
+            el      :   '#headerNav',
+            data    :   {
+                check: false,
+                user: {},
+            },
+            created()   {
+                this.getHead();
+            },
+            methods :   {
+                getHead() {
+                    axios
+                        .post('/api/header/userInfo')
+                        .then((res) => {
+                            if(res.data.status) {
+                                this.check=true;
+                                this.user=res.data.data;
+                                console.log(this.user);
+                            }
+                        })
+                        .catch((res) => {
+                            $.each(res.response.data.errors, function (k, v) {
+                                toastr.error(v[0], 'Error');
+                            });
+                        });
+                },
+                logOut() {
+                    axios
+                        .post('/api/header/logout')
+                        .then((res) => {
+                            toastr.success('Đăng Xuất Thành Công !', 'Success');
+                            setTimeout(function(){
+                                window.location.href = '/';
+                            }, 600);
+                        });
+                }
+            },
+        });
+    });
+</script>
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="

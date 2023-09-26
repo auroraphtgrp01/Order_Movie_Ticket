@@ -88,33 +88,5 @@
 </header>
 @include('admin.share.js')
 <script>
-    $(document).ready(function() {
-       new Vue({
-        el      :   '#header',
-        data    :   {
 
-        },
-        created()   {
-
-        },
-        methods :   {
-            logout(){
-                axios
-                .post('/api/admin/logout')
-                .then((res) => {
-                    if(res.data.status){
-                        setTimeout(function(){
-                            window.location.href = '/admin/login';
-                        }, 1000);
-                    }
-                })
-                .catch((res) => {
-                    $.each(res.response.data.errors, function(k, v) {
-                        toastr.error(v[0], 'Error');
-            });
-        });
-            }
-        },
-       });
-    });
 </script>

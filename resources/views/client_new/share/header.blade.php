@@ -1,9 +1,9 @@
-<header class="main-header"
+<header class="main-header" id="headerNav"
     style="box-shadow: 0px 2px 3px rgba(255, 255, 255, 0.05);">
 
     <!-- Header Lower -->
     <div class="header-lower">
-
+        <input hidden type="text" v-model="check" id="hiddenCheck">
         <div class="auto-container">
             <div
                 class="inner-container d-flex justify-content-between align-items-center">
@@ -41,7 +41,7 @@
                             class="navbar-collapse collapse clearfix"
                             id="navbarSupportedContent">
                             <ul class="navigation clearfix"
-                                style="height: 70px;">
+                                style>
                                 <!-- <li class="dropdown"><a href="#">Home</a>
                                 <ul>
                                     <li><a href="index.html">Homepage One</a></li>
@@ -56,7 +56,8 @@
                                     </li>
                                 </ul>
                             </li> -->
-                                <!-- <li><a href="/"><b>Trang Chủ</b></a></li> -->
+                                <li><a href="/"><b>Trang Chủ</b></a></li>
+                                <li><a href="/"><b>Đơn Hàng</b></a></li>
                                 <!-- <li class="dropdown"><a href="#">Shop</a>
                                     <ul>
                                         <li><a href="shop.html">Our
@@ -87,7 +88,7 @@
                         </div>
 
                     </nav>
-                    <!-- Main Menu End-->
+                    <!-- Main Menu End -->
                 </div>
 
                 <!-- Outer Box -->
@@ -117,7 +118,15 @@
                     </div>
 
                     <!-- Cart Box -->
-                    <div class="cart-box">
+                    <div v-if="check == false" class="cart-box">
+                        <div class="box-inner p-0">
+                            <a href="/login"
+                                class="btn btn-outline-danger phone p-2"><b
+                                    class>Đăng
+                                    Nhập</b></a>
+                        </div>
+                    </div>
+                    <div v-else class="cart-box">
                         <div class="box-inner" style="text-transform: none;">
                             <div class
                                 style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
@@ -126,18 +135,12 @@
                                     alt="avatar"
                                     style="border-radius: 30px;">
                             </div>
-                            <b class style="color: #ED3232;">Lê Minh Tuấn</b><br>
-                            <a class="phone text-hover" href><b>Đăng Xuất</b></a>
+                            <b class style="color: #ED3232;">@{{user.ho_va_ten}}</b><br>
+                            <a class="phone text-hover" v-on:click="logOut()"><b>Đăng
+                                    Xuất</b></a>
                         </div>
                     </div>
-                    <!-- <div class="cart-box">
-                        <div class="box-inner p-0">
-                            <a href="/login"
-                                class="btn btn-outline-danger phone p-2"><b
-                                    class>Đăng
-                                    Nhập</b></a>
-                        </div>
-                    </div> -->
+
                     <!-- End Cart Box -->
                     <!-- Mobile Navigation Toggler -->
                     <div class="mobile-nav-toggler"><span
@@ -169,7 +172,7 @@
                     <!-- Main Menu -->
                     <nav class="main-menu">
                         <!--Keep This Empty / Menu will come through Javascript-->
-                        <div class="cart-box">
+                        <div v-if="check == true" class="cart-box">
                             <div class="box-inner" style="text-transform: none;">
                                 <div class
                                     style="width: 40px; height: 40px; left: 0; top: 3px; position: absolute;">
@@ -179,7 +182,8 @@
                                         style="border-radius: 30px;">
                                 </div>
                                 <b class style="color: #ED3232;">Lê Minh Tuấn</b><br>
-                                <a class="phone text-hover" href><b>Đăng Xuất</b></a>
+                                <a class="phone text-hover"
+                                    v-on:click="logOut()"><b>Đăng Xuất</b></a>
                             </div>
                         </div>
                     </nav>

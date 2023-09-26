@@ -10258,3 +10258,13 @@
 .text-hover:hover {
     color: #ed3232;
 }
+.table-hover-res:hover {
+    background-color: #ed323236;
+}
+.table-hover-res {
+    cursor: pointer !important;
+    user-select: none;
+}
+.th-css {
+    padding: 20px !important;
+}

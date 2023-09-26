@@ -112,11 +112,11 @@
 
                                 <!-- Button Box -->
                                 <div class="button-box">
-                                    <a href="shop.html"
+                                    <button
                                         class="theme-btn btn-style-one button-primary"
                                         style>
                                         <b>Trailer</b>
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="button-box">
                                     <a data-bs-toggle="modal"
@@ -267,10 +267,10 @@
                                     }}</b></h6>
                             <template v-for="(v1, k1)  in dateTime">
                                 <template v-if="v.check == v1.check">
-                                    <a
-                                        v-bind:href="generateHref(v1.id_lich_chieu)"
+                                    <button
+                                        v-on:click="generateHref(v1.id_lich_chieu)"
                                         class="btn btn-danger me-2 mt-2">@{{
-                                        v1.gio_chieu }}</a>
+                                        v1.gio_chieu }}</button>
                                 </template>
                             </template>
                             <hr class="text-white">

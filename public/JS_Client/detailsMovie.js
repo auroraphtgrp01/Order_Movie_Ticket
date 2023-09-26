@@ -18,10 +18,18 @@ $(document).ready(function () {
         },
         methods: {
             generateHref(id) {
-                console.log(id);
                 var currentURL = window.location.href;
                 var href = currentURL + '/cart/' + id;
-                return href;
+                let check = $(document).find("#hiddenCheck").val();
+                console.log(check);
+                if (check == 'true') {
+                    window.location.href = href;
+                } else {
+                    toastr.error('Bạn cần đăng nhập để đặt vé !', 'Error !');
+                    setTimeout(function () {
+                        window.location.href = '/login';
+                    }, 1000);
+                }
             },
             datVe() {
                 axios
@@ -170,6 +178,8 @@ $(document).ready(function () {
                             this.data_lc = res.data.data_lc;
                             this.dateAndTime(this.data_lc);
                             this.listRcm = res.data.data_rcm;
+                            console.log(this.data_lc);
+
                         } else {
                             this.dataMovie = res.data.data;
                             this.dateAndTime(this.data_lc);
